@@ -1,0 +1,38 @@
+<div class="container text-center">
+    <div class="row content">
+        <div class="row">
+            <div class="well well-sm">
+
+<form class="form-inline">
+            <div class="form-group">
+                <label for="mobile">Welcome ! &nbsp;  </label>
+                <label for="mobile">Name : </label>
+                <input ng-model="name" type="name" class="form-control input-sm" id="name">
+                <label for="mobile">Mobile : </label>
+                <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            </div>
+            <button class="btn btn-primary btn-sm">Save</button>
+        </form>
+                
+            </div>
+        </div>
+        <div class="row">
+            <ul class="nav nav-tabs" id="myTab">
+			  <li class="active"><a data-target="#home" data-toggle="tab">Menu 1</a></li>
+			  <li><a data-target="#profile" data-toggle="tab">Menu 2</a></li>
+			  <li><a data-target="#messages" data-toggle="tab">Menu 3</a></li>
+			  <li><a data-target="#settings" data-toggle="tab">Menu 4</a></li>
+			</ul>
+
+			<div class="tab-content">
+			  <div class="tab-pane active" id="home">Menu 1</div>
+			  <div class="tab-pane" id="profile">Menu 2</div>
+			  <div class="tab-pane" id="messages">Menu 3</div>
+			  <div class="tab-pane" id="settings">Menu 4</div>
+			</div>
+      </div>
+  </div>
+</div>
+        </div>
+    </div>
+</div>

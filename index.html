@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-route/angular-route.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./config/app.module.js"></script>
+    <script src="./config/app.config.js"></script>
+    <script src="./component/checkin/checkin.component.js"></script>
+    <script src="./component/menu/menu.component.js"></script>
+    <script src="./service/sessionService.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <body ng-app="sample">
+
+        <!-- nav bar starts -->
+        <nav class="navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#!">Sample</a>
+                </div>
+            </div>
+        </nav>
+        <!-- nav bar ends -->
+
+        <!-- ng container -->
+        <div ng-view>
+        </div>
+
+        <!-- footer starts -->
+        <footer class="container-fluid text-center navbar-fixed-bottom">
+            <p>Designed & Developed by #</p>
+        </footer>
+        <!-- footer ends -->
+
+    </body>
+</html>

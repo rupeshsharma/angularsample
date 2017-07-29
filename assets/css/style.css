@@ -1,0 +1,26 @@
+footer {
+      background-color: #555;
+      color: white;
+      padding: 5px;
+}
+
+.customNavBarClass {
+    
+    padding: 1px;
+}
+
+.vertical-center {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
