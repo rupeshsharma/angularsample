@@ -1,3 +1,5 @@
 var APP = angular.module('sample', [
-    'ngRoute'
+    'ngRoute',
+    'ngResource',
+    'ngStorage'
 ]);

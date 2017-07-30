@@ -1,18 +1,29 @@
 var APP = angular.module('sample')
-APP.service('sessionService', function () {
-
-        var userData ={};
+APP.factory('sessionService', ['$sessionStorage',
+    function($sessionStorage) {
 
         return {
             getUserData: getUserData,
-            setUserData: setUserData
+            setUserData: setUserData,
+            clearUserSession : clearUserSession
         };
 
         function getUserData() {
-            return userData;
+            if($sessionStorage.userData){
+                return $sessionStorage.userData;
+            }else{
+                var userData = {}
+                return userData;
+            }
         }
 
         function setUserData(value) {
-            userData = value;
+            $sessionStorage.userData = value
         }
-});
+
+        function clearUserSession() {
+            $sessionStorage.$reset();
+        }
+}
+
+]);

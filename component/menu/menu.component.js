@@ -5,9 +5,10 @@ angular.
     controller: ['$scope', 'sessionService',
       function menuController($scope, sessionService) {
         $scope.pageName = "Menu ******";
-
-$scope.mobile = sessionService.getUserData().mobile;
-        console.log(sessionService.getUserData());
+var userData = sessionService.getUserData();
+$scope.mobile = userData.mobile;
+$scope.name = userData.name;
+        console.log("********"+JSON.stringify(userData));
       }
     ]
   });
