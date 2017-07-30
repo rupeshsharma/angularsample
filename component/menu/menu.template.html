@@ -4,6 +4,9 @@
             <div class="well well-sm">
 
 <form class="form-inline">
+    <a href="" class="btn btn-info btn-sm pull-left">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> View Cart
+                </a>
             <div class="form-group">
                 <label for="mobile">Welcome ! &nbsp;  </label>
                 <label for="mobile">Name : </label>
@@ -12,6 +15,8 @@
                 <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
             <button class="btn btn-primary btn-sm">Save</button>
+
+            <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Clear</button>
         </form>
                 
             </div>
@@ -25,7 +30,126 @@
 			</ul>
 
 			<div class="tab-content">
-			  <div class="tab-pane active" id="home">Menu 1</div>
+			  <div class="tab-pane active" id="home">
+                  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="text-left">Item</th>
+        <th class="text-right">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-left">Item 1</td>
+        <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>      
+      <tr>
+        <td class="text-left">Item 2</td>
+        <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">Item 3</td>
+        <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">Item 4</td>
+        <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">Item 5</td>
+        <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">Item 6</td>
+       <td class="text-right col-sm-1">
+            <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="quant[2]" class="form-control input-sm input-number" value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+              </div>
 			  <div class="tab-pane" id="profile">Menu 2</div>
 			  <div class="tab-pane" id="messages">Menu 3</div>
 			  <div class="tab-pane" id="settings">Menu 4</div>
