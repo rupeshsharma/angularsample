@@ -1,17 +1,16 @@
 var APP = angular.module('sample')
 
-APP.factory('httpService', ['$resource',
-    function($resource) {
+APP.factory('httpService', ['$resource','$http','$timeout',
+    function($resource, $http, $timeout) {
         
     
-        return {
-      getUserByMobile: function getUserByMobile (mobile){
-          var user ={
-              "mobile" : "1234512345",
-              "name" : "Test User"
-          }
-       return user;
-      }
+    return {
+        getUserByMobile: function getUserByMobile (mobile){
+            return $http.get('./stubs/user.json');
+        },
+        getMenu: function getMenu() {
+            return $http.get('./stubs/menu.json');
+        }
       }    
       
     }
