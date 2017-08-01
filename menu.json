@@ -1,0 +1,126 @@
+[
+  {
+    "categoryId": "cat1",
+    "categoryName": "Chinese",
+    "items": [
+        {
+            "itemId":"itm1",
+            "itemName" : "Noodles",
+            "itemPrice":100
+        },
+        {
+            "itemId":"itm2",
+            "itemName" : "Veg Fried Rice",
+            "itemPrice":100
+        },
+        {
+            "itemId":"itm3",
+            "itemName" : "Veg Chilli Garlic Fried Rice",
+            "itemPrice":110
+        },
+        {
+            "itemId":"itm4",
+            "itemName" : "Chilli Paneer",
+            "itemPrice":120
+        },
+        {
+            "itemId":"itm5",
+            "itemName" : "Paneer Chilli Garlic Fried Rice",
+            "itemPrice":130
+        },
+        {
+            "itemId":"itm6",
+            "itemName" : "Veg Haka Chowmein",
+            "itemPrice":100
+        }
+    ]
+  },
+  {
+    "categoryId": "cat2",
+    "categoryName": "Sandwiches and Burgers",
+    "items": [
+        {
+            "itemId":"itm7",
+            "itemName" : "Paneer Tikka Sandwich",
+            "itemPrice":150
+        },
+        {
+            "itemId":"itm8",
+            "itemName" : "Spinach Corn Sandwich",
+            "itemPrice":140
+        },
+        {
+            "itemId":"itm9",
+            "itemName" : "Mushroom Sandwich",
+            "itemPrice":165
+        },
+        {
+            "itemId":"itm10",
+            "itemName" : "Veggie Burger",
+            "itemPrice":90
+        },
+        {
+            "itemId":"itm11",
+            "itemName" : "Chalet Burger",
+            "itemPrice":100
+        },
+        {
+            "itemId":"itm12",
+            "itemName" : "Veggie Burger",
+            "itemPrice":90
+        }
+    ]
+  },
+  {
+    "categoryId": "cat3",
+    "categoryName": "Salads",
+    "items": [
+        {
+            "itemId":"itm13",
+            "itemName" : "Greek Salad",
+            "itemPrice":100
+        },
+        {
+            "itemId":"i14",
+            "itemName" : "Ceasar Salad",
+            "itemPrice":"110"
+        },
+        {
+            "itemId":"i15",
+            "itemName" : "Mexican Salad",
+            "itemPrice":125
+        },
+        {
+            "itemId":"itm16",
+            "itemName" : "Grilled Salad",
+            "itemPrice":110
+        }
+    ]
+  },
+  {
+    "categoryId": "cat4",
+    "categoryName": "Desserts & Beverages",
+    "items": [
+        {
+            "itemId":"itm17",
+            "itemName" : "Nutella Pan Cake",
+            "itemPrice":140
+        },
+        {
+            "itemId":"itm18",
+            "itemName" : "Chocolate Pan Cake",
+            "itemPrice":120
+        },
+        {
+            "itemId":"itm19",
+            "itemName" : "Green Apple Mojito",
+            "itemPrice":125
+        },
+        {
+            "itemId":"itm20",
+            "itemName" : "Raspberry Mojito",
+            "itemPrice":110
+        }
+    ]
+  }
+]
