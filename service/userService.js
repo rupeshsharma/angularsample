@@ -4,9 +4,12 @@ APP.factory('userService', ['httpService',
     function(httpService) {
 
         return {
-            getUserByMobile: function getUserByMobile (mobile){
-                console.log("inside userservice get user by mobile func");
-            return httpService.getUserByMobile(mobile);
+            getUserByMobile: function getUserByMobile (mobile, callback){
+            return httpService.getUserByMobile(mobile).then(
+            resp => {
+                callback(resp.data); 
+            }
+        );
        }
       }        
     }
