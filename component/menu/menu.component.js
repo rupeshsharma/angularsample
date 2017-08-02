@@ -4,6 +4,7 @@ angular.
     templateUrl: './component/menu/menu.template.html',
     controller: ['$scope', '$timeout', '$location','sessionService','menuService',
       function menuController($scope, $timeout, $location, sessionService, menuService) {
+        $scope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
         getUserData(sessionService, $timeout);
         setUpMenu(menuService);
         $scope.cart = {
