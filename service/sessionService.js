@@ -5,7 +5,9 @@ APP.factory('sessionService', ['$sessionStorage',
         return {
             getUserData: getUserData,
             setUserData: setUserData,
-            clearUserSession : clearUserSession
+            clearUserSession : clearUserSession,
+            setAnonymousCustomer : setAnonymousCustomer,
+            isAnonymousCustomer : isAnonymousCustomer
         };
 
         function getUserData() {
@@ -23,6 +25,14 @@ APP.factory('sessionService', ['$sessionStorage',
 
         function clearUserSession() {
             $sessionStorage.$reset();
+        }
+
+        function setAnonymousCustomer(value){
+            $sessionStorage.isAnonymousCustomer = value;
+        }
+
+        function isAnonymousCustomer(){
+            return $sessionStorage.isAnonymousCustomer;
         }
 }
 
