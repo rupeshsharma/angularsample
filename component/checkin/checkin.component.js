@@ -5,10 +5,15 @@ angular.
     controller: ['$scope','$location','sessionService','userService',
       function checkInController($scope, $location, sessionService, userService) {
 
-        $scope.checkIn = function(){
-          userService.getUserByMobile($scope.mobile, resp => {
-            sessionService.setUserData(resp);
-          });  
+        $scope.checkIn = function(isAnonymous){
+          if(!isAnonymous){
+            sessionService.isAnonymousCustomer(false);
+            userService.getUserByMobile($scope.mobile, resp => {
+              sessionService.setUserData(resp);
+            });
+          }else{
+            sessionService.setAnonymousCustomer(true);
+          }
           $location.path('/menu');
         }
 
