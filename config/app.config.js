@@ -11,7 +11,7 @@ APP.config(['$locationProvider', '$routeProvider',
         when('/menu', {
           template: '<menu></menu>'
         }).
-        when('/dashboard',{
+        when('/dashboard', {
           template: '<dash-board></dash-board>'
         });
     }
