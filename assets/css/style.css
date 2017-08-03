@@ -1,12 +1,12 @@
 footer {
-      background-color: #555;
-      color: white;
-      padding: 5px;
-}
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  /* Set the fixed height of the footer here */
+  height: 25px;
+  background-color: #555;
 
-.customNavBarClass {
-    
-    padding: 1px;
 }
 
 .vertical-center {
@@ -17,16 +17,15 @@ footer {
   align-items: center;
 }
 
+.appContainer {
+margin-bottom: 27px;
+}
+
 .centered {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.appContainer{
-    padding-top: 60px;
-    padding-bottom: 47px;
 }
 
 .panel-login {
