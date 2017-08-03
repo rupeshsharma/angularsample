@@ -1,22 +1,21 @@
 <div class="container text-center">
     <div class="row content">
         <div class="row">
-            <div class="well well-sm">
-<form class="form-inline">
-    <a href="" class="btn btn-info btn-sm pull-left" data-toggle="modal" data-target="#myModal">
+            <div class="well well-sm col-sm-12">
+            <form class="form-inline">
+                <a class="btn btn-info btn-sm pull-left" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{cart.quantity}}</span>
                 </a>
-            <div class="form-group">
-                <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
-                <label for="mobile">Name : </label>
-                <input ng-model="name" type="name" class="form-control input-sm" id="name">
-                <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
-                <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            </div>
-            <button class="btn btn-primary btn-sm">Save</button>
-
-            <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Clear</button>
-        </form>
+                <div ng-if="!isAnonymousCustomer" class="form-group">
+                    <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
+                    <label for="mobile">Name : </label>
+                    <input ng-model="name" type="name" class="form-control input-sm" id="name">
+                    <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
+                    <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <button class="form-control btn btn-primary btn-sm">Save</button>
+                </div>
+                <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
+            </form>
                 
             </div>
         </div>
