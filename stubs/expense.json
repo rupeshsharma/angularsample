@@ -1,0 +1,30 @@
+[
+    {
+        "id":1,
+        "category":"Personal",
+        "description":"Some personal expense",
+        "cost":"120",
+        "paymentMode":"Cash"
+    },
+    {
+        "id":2,
+        "category":"Personal",
+        "description":"Some personal expense",
+        "cost":"120",
+        "paymentMode":"Card/Online"
+    },
+    {
+        "id":3,
+        "category":"Official",
+        "description":"Some official expense",
+        "cost":"120",
+        "paymentMode":"Cash"
+    },
+    {
+        "id":4,
+        "category":"Official",
+        "description":"Some official expense",
+        "cost":"120",
+        "paymentMode":"Card/Online"
+    }
+]

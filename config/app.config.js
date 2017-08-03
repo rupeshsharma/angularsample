@@ -1,18 +1,18 @@
 var APP = angular.module('sample')
 
 APP.config(['$locationProvider', '$routeProvider',
-    function config($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
+  function config($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-      $routeProvider.
-        when('/', {
-          template: '<check-in></check-in>'
-        }).
-        when('/menu', {
-          template: '<menu></menu>'
-        }).
-        when('/dashboard', {
-          template: '<dash-board></dash-board>'
-        });
-    }
-  ]);
+    $routeProvider.
+      when('/', {
+        template: '<check-in></check-in>'
+      }).
+      when('/menu', {
+        template: '<menu></menu>'
+      }).
+      when('/dashboard', {
+        template: '<dash-board></dash-board>'
+      });
+  }
+]);

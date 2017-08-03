@@ -10,6 +10,9 @@ APP.factory('httpService', ['$resource','$http','$timeout',
         },
         getMenu: function getMenu() {
             return $http.get('./stubs/menu.json');
+        },
+        getAllExpenses: function getAllExpenses(){
+            return $http.get('./stubs/expense.json');
         }
       }    
       
