@@ -16,7 +16,7 @@ angular.
         $scope.addCategory = function(){
           if($scope.newCategoryName && $scope.newCategoryName !=''){
           var category = {
-            "categoryName" : $scope.newCategoryName
+            "title" : $scope.newCategoryName
           }
           $scope.menu.push(category);
           $scope.newCategoryName = '';
