@@ -24,8 +24,8 @@ angular.
         $scope.addItem =function(){
           if($scope.newItemName != '' && $scope.newItemPrice != ''){
             var newItem = {
-            "itemName" : $scope.newItemName,
-            "itemPrice": $scope.newItemPrice
+            "title" : $scope.newItemName,
+            "price": $scope.newItemPrice
             }
             $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items.push(newItem);
             $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
