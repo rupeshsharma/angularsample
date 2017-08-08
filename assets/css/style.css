@@ -9,6 +9,10 @@ footer {
 
 }
 
+.navbar-default{
+background-color: #337ab7;	
+}
+
 @page 
     {
         size: auto;   /* auto is the initial value */
@@ -82,8 +86,8 @@ margin-bottom: 27px;
 	transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
-	font-size: 18px;
+	color: #337ab7;
+	font-size: 20px;
 }
 .panel-login>.panel-heading hr{
 	margin-top: 10px;
