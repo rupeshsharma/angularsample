@@ -1,61 +1,61 @@
 <div class="container text-center">
-    <div class="row content">
-        <div class="row">
-            <div class="well well-sm col-sm-12">
-            <form class="form-inline">
-                <a class="btn btn-info btn-sm pull-left" data-toggle="modal" data-target="#myModal">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{cart.quantity}}</span>
-                </a>
-                <div ng-if="!isAnonymousCustomer" class="form-group">
-                    <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
-                    <label for="mobile">Name : </label>
-                    <input ng-model="name" type="name" class="form-control input-sm" id="name">
-                    <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
-                    <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    <button class="form-control btn btn-primary btn-sm">Save</button>
-                </div>
-                <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
-            </form>
-                
-            </div>
-        </div>
-        <div class="row">
-            <ul class="nav nav-tabs" id="myTab">
-			  <li ng-repeat="cat in menu" class=""><a data-target="#{{cat.id}}" data-toggle="tab">{{cat.title}}</a></li>
-			</ul>
+  <div class="row content">
+    <div class="row">
+      <div class="well well-sm col-sm-12">
+        <form class="form-inline">
+          <a class="btn btn-info btn-sm pull-left" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{cart.quantity}}</span>
+          </a>
+          <div ng-if="!isAnonymousCustomer" class="form-group">
+            <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
+            <label for="mobile">Name : </label>
+            <input ng-model="name" type="name" class="form-control input-sm" id="name">
+            <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
+            <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <button class="form-control btn btn-primary btn-sm">Save</button>
+          </div>
+           <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
+        </form>
 
-			<div class="tab-content">
-			  <div ng-repeat="cat in menu" class="tab-pane" id="{{cat.id}}">
-                  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th class="text-left col-sm-9">Item</th>
-        <th class="text-right col-sm-1">Price</th>
-        <th class="text-right col-sm-2">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="itm in cat.items">
-        <td class="text-left col-sm-9">{{itm.title}}</td>
-        <td class="text-right col-sm-1">
-            {{itm.price}}
-        </td>
-        <td class="text-right col-sm-2">
-            <a id="{{itm.id}}" ng-click="addToCart(itm)" class="btn btn-primary btn-sm">
+      </div>
+    </div>
+    <div class="row">
+      <ul class="nav nav-tabs" id="myTab">
+        <li ng-repeat="cat in menu" class=""><a data-target="#{{cat.id}}" data-toggle="tab">{{cat.title}}</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div ng-repeat="cat in menu" class="tab-pane" id="{{cat.id}}">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="text-left col-sm-9">Item</th>
+                <th class="text-right col-sm-1">Price</th>
+                <th class="text-right col-sm-2">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="itm in cat.items">
+                <td class="text-left col-sm-9">{{itm.title}}</td>
+                <td class="text-right col-sm-1">
+                  {{itm.price}}
+                </td>
+                <td class="text-right col-sm-2">
+                  <a id="{{itm.id}}" ng-click="addToCart(itm)" class="btn btn-primary btn-sm">
               ADD <span class="glyphicon glyphicon-shopping-cart"></span>
             </a>
-        </td>
-      </tr>      
-    </tbody>
-  </table>
-              </div>
-			  
-			</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
+    </div>
   </div>
 </div>
 
- <!-- Modal -->
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
 
@@ -65,69 +65,191 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title text-center">Order</h4>
         <div class="row">
-        <div ng-if="cart.quantity != 0" class="col-sm-6 text-right">
-        <label>Payment Type :</label> <select  aria-placeholder="Payment Type"><option>Cash</option><option>Card</option></select>
-        </div>
-        <div ng-if="cart.quantity != 0" class="col-sm-6 text-left">
-        <label>Dining Mode : </label><select  aria-placeholder="Payment Type"><option>Take Away</option><option>Dine In</option></select>
-        </div>
+          <div ng-if="cart.quantity != 0" class="col-sm-6 text-right">
+            <label>Payment Type :</label> <select ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in paymentTypes"><option disabled="disabled" value="">Please select</option></select>
+          </div>
+          <div ng-if="cart.quantity != 0" class="col-sm-6 text-left">
+            <label>Dining Mode :</label> <select ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in diningModes"><option disabled="disabled" value="">Please select</option></select>
+          </div>
         </div>
       </div>
       <div class="modal-body">
         <div class="text-center" ng-if="cart.quantity == 0">
           No items in cart
         </div>
-        <div ng-if="cart.quantity != 0">
-        <table class="table table-hover">
-    <thead>
-      <tr>
-        <th class="col-sm-6">Item</th>
-        <th class="col-sm-2 text-center">Price</th>
-        <th class="col-sm-2 text-center">Quantity</th>
-        <th class="col-sm-2 text-center">Sub Total</th>
-        <th class="col-sm-2 text-center">Remove</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in cart.items">
-        <td class="col-sm-6">{{item.title}}</td>
-        <td class="col-sm-2 text-center">{{item.price}}</td>
-        <td class="col-sm-2 text-center"><button ng-click="updateCartItem(item,0)" ng-disabled="item.quantity == 1" class="btn btn-danger btn-xs">
-          <span class="glyphicon glyphicon-minus"></span>
-        </button> {{item.quantity}} <button ng-click="updateCartItem(item,1)" class="btn btn-success btn-xs">
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
-        
-        </td>
-        <td class="col-sm-2 text-center">{{item.price * item.quantity}}</td>
-        <td class="col-sm-6 text-center"><a ng-click="removeFromCart(item)">
-          <span class="glyphicon glyphicon-trash"></span>
-        </a></td>
-      </tr>
-    </tbody>
-  </table>
-  
-              <p class="text-right">
-                <div class="text-right" style="border-bottom:solid grey 1px;">
-                <strong>Total</strong>       =  {{cart.total}} <br>
-                </div>
-                <div class="text-right" style="border-bottom:solid grey 1px;">
-                <strong>CGST @ 6%</strong>   =  {{cart.cgst | number : 2}}  <br>
-                </div>
-                <div class="text-right" style="border-bottom:solid grey 1px;">
-                <strong>SGST @ 6%</strong>   =  {{cart.sgst | number : 2}}   <br>
-                </div>
-                <div class="text-right" style="border-bottom:solid black 1px;">
-                <strong >Final Price</strong> =  {{cart.finalPrice | number : 2}}
-                </div>
-              </p>
-              <div class="text-center">
-                <button ng-click="buildOrder()" type="button" class="btn btn-primary ">Build Order</button>
+        <div ng-if="cart.quantity != 0" class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title text-center"><strong>Order summary</strong></h3>
               </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <td><strong>Item</strong></td>
+                        <td class="text-center"><strong>Price</strong></td>
+                        <td class="text-center"><strong>Quantity</strong></td>
+                        <td class="text-center"><strong>Total</strong></td>
+                        <td class="text-center"><strong>Remove</strong></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                      <tr ng-repeat="item in cart.items">
+                        <td class="col-sm-4">{{item.title}}</td>
+                        <td class="col-sm-2 text-center">{{item.price}}</td>
+                        <td class="col-sm-2 text-center"><button ng-click="updateCartItem(item,0)" ng-disabled="item.quantity == 1" class="btn btn-danger btn-xs">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button> {{item.quantity}} <button ng-click="updateCartItem(item,1)" class="btn btn-success btn-xs">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                        </td>
+                        <td class="col-sm-2 text-center">{{item.price * item.quantity}}</td>
+                        <td class="col-sm-2 text-center">
+                          <a ng-click="removeFromCart(item)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="thick-line"></td>
+                        <td class="thick-line"></td>
+                        <td class="thick-line"></td>
+                        <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                        <td class="thick-line text-right">{{cart.total}}</td>
+                      </tr>
+                      <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center">CGST @ 6%</td>
+                        <td class="no-line text-right">{{cart.cgst | number : 2}}</td>
+                      </tr>
+                      <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center">SGST @ 6%</td>
+                        <td class="no-line text-right">{{cart.sgst | number : 2}}</td>
+                      </tr>
+                      <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><strong>Grand Total</strong></td>
+                        <td class="no-line text-right">{{cart.finalPrice | number : 2}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="text-center">
+                  <button ng-disabled="paymentType == undefined || diningMode == undefined" ng-click="buildOrder()" class="btn btn-primary ">Build Order</button>
+                  <button style="display:none;" id="printInvoice" ng-print print-element-id="printThisElement"></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    
       </div>
     </div>
 
+  </div>
+</div>
+<div id="printThisElement" style="display : none;">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="invoice-title">
+          <h3 class="text-center">Sample</h3>
+          <h4 class="text-center">Invoice</h4>
+          <h5 class="text-center">Order # 12345</h5>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <address>
+              <strong>Billed To:</strong><br> {{name}}
+              <br> {{mobile}}
+            </address>
+          </div>
+          <div class="col-xs-6 text-right">
+            <address>
+              <strong>Order Date:</strong><br> {{getCurrentDate() | date:'dd/MM/yyyy h:mma'}}<br><br>
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <address>
+              <strong>Payment Method:</strong><br> {{paymentType}}
+            </address>
+          </div>
+          <div class="col-xs-6 text-right">
+            <address>
+              <strong>Dining Mode:</strong><br> {{diningMode}}
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center"><strong>Order summary</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <td><strong>Item</strong></td>
+                    <td class="text-center"><strong>Price</strong></td>
+                    <td class="text-center"><strong>Quantity</strong></td>
+                    <td class="text-right"><strong>Total</strong></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr ng-repeat="item in cart.items">
+                    <td class="col-sm-6">{{item.title}}</td>
+                    <td class="col-sm-2 text-center">{{item.price}}</td>
+                    <td class="col-sm-2 text-center">{{item.quantity}}</td>
+                    <td class="col-sm-2 text-center">{{item.price * item.quantity}}</td>
+                  </tr>
+                  <tr>
+                    <td class="thick-line"></td>
+                    <td class="thick-line"></td>
+                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                    <td class="thick-line text-right">{{cart.total}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">CGST @ 6%</td>
+                    <td class="no-line text-right">{{cart.cgst | number : 2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">SGST @ 6%</td>
+                    <td class="no-line text-right">{{cart.sgst | number : 2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Grand Total</strong></td>
+                    <td class="no-line text-right">{{cart.finalPrice | number : 2}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
