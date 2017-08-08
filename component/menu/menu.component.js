@@ -6,6 +6,14 @@ angular.
       function menuController($scope, $timeout, $location, sessionService, menuService) {
         getUserData(sessionService, $timeout);
         $scope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
+        $scope.paymentTypes = [
+          "Cash",
+          "Card"
+        ];
+        $scope.diningModes = [
+          "Take Away",
+          "Dine In"
+        ];
         setUpMenu(menuService);
         $scope.cart = {
           "quantity": 0,
@@ -100,7 +108,22 @@ angular.
             sessionService.clearUserSession();
             $location.path('/');
           });
-          $("#myModal .close").click()
+          $("#myModal .close").click();
+
+          //printing invoice
+          document.getElementById("printInvoice").click();
+        }
+
+        $scope.ptChange = function(paymentType){
+          $scope.paymentType=paymentType;
+        }
+
+        $scope.dmChange = function(diningMode){
+          $scope.diningMode=diningMode;
+        }
+
+        $scope.getCurrentDate = function(){
+          return (new Date());
         }
       }
     ]
