@@ -9,8 +9,9 @@
             <tr>
                 <th>Category</th>
                 <th>Description</th>
-                <th>Cost</th>
+                <th>Amount</th>
                 <th>Payment Mode</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
                 <td>{{ex.description}}</td>
                 <td>{{ex.cost}}</td>
                 <td>{{ex.paymentMode}}</td>
+                <td>{{ex.dateOfExpense}}</td>
             </tr>
         </tbody>
     </table>
@@ -52,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3">Cost:</label>
+                        <label class="control-label col-sm-3">Amount:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control"></input>
                         </div>
@@ -64,6 +66,12 @@
                                 <option>Cash</option>
                                 <option>Card/Online</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Date:</label>
+                        <div class="col-sm-9">
+                            <input id="dateOfExpense" ng-model="dateOfExpense" type="text" class="form-control"></input>
                         </div>
                     </div>
                     <div class="form-group">

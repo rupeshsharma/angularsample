@@ -4,27 +4,31 @@
         "category":"Personal",
         "description":"Some personal expense",
         "cost":"120",
-        "paymentMode":"Cash"
+        "paymentMode":"Cash",
+        "dateOfExpense":"12/07/2017"
     },
     {
         "id":2,
         "category":"Personal",
         "description":"Some personal expense",
         "cost":"120",
-        "paymentMode":"Card/Online"
+        "paymentMode":"Card/Online",
+        "dateOfExpense":"12/07/2017"
     },
     {
         "id":3,
         "category":"Official",
         "description":"Some official expense",
         "cost":"120",
-        "paymentMode":"Cash"
+        "paymentMode":"Cash",
+        "dateOfExpense":"12/07/2017"
     },
     {
         "id":4,
         "category":"Official",
         "description":"Some official expense",
         "cost":"120",
-        "paymentMode":"Card/Online"
+        "paymentMode":"Card/Online",
+        "dateOfExpense":"12/07/2017"
     }
 ]
