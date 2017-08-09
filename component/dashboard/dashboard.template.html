@@ -20,7 +20,13 @@
         <div class="tab-pane active" id="tab_a">
           <div style="background-color:#F7F7F7;" class="row tile_count">
             <div class="x_title">
-              <h4 class="text-center">Today's Review</h4>
+              <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
+                <div class="form-group has-feedback">
+                  <label style="font-size: 18px;" for="email">Review : </label>
+                  <input type="email" id="reviewDate" ng-model="reviewDate" class="form-control" id="email">
+                  <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+              </form>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>

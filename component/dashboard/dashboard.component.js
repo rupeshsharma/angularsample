@@ -2,8 +2,14 @@ angular.
   module('sample').
   component('dashBoard', {
     templateUrl: './component/dashboard/dashboard.template.html',
-    controller: ['$scope', '$timeout', '$location', 'sessionService', 'menuService',
-      function dashBoardController($scope, $timeout, $location, sessionService, menuService) {
+    controller: ['$scope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
+      function dashBoardController($scope, $filter, $timeout, $location, sessionService, menuService) {
+        $scope.reviewDate = $filter('date')(new Date(), "dd-MM-yyyy");
+        $("#reviewDate").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: "dd-mm-yy"
+        });
         $("#orderDate").datepicker({
           changeMonth: true,
           changeYear: true,
