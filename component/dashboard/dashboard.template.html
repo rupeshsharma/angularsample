@@ -18,123 +18,80 @@
       </ul>
       <div class="tab-content col-sm-10">
         <div class="tab-pane active" id="tab_a">
+          <div style="background-color:#F7F7F7;" class="row tile_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Today's Sale</span>
+              <div style="color:#73879C;" class="count">2500</div>
+              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-clock-o"></i> Today's Collection</span>
+              <div style="color:#73879C;" class="count">123.50</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Today's Expenses</span>
+              <div style="color:#73879C;" class="count green">2,500</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total Expenses</span>
+              <div style="color:#73879C;" class="count">4,567</div>
+              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Available Collection</span>
+              <div style="color:#73879C;" class="count">2,315</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total Customers</span>
+              <div style="color:#73879C;" class="count">7,325</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+          </div>
+          </br>
           <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Sale</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
 
-            <div style="background-color:lavenderblush;" class="text-center col-sm-6">
-              <div class="row" style="border-right: 3px solid red; background-color: lightgrey;">
-                <h4>Total Sale</h4>
-              </div>
-              <div class="row">
-                <label class="radio-inline"><input checked="checked" type="radio" value="0" ng-model="rangeTypeTs" name="optradio">Today</label>
-                <label class="radio-inline"><input type="radio" value="1" ng-model="rangeTypeTs" name="optradio">Specific Date</label>
-                <label class="radio-inline"><input type="radio" value="2" ng-model="rangeTypeTs" name="optradio">Select Date Range</label>
-              </div>
-              <div ng-if="rangeTypeTs==1" class="row">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Select Date">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                </form>
-              </div>
-              <div ng-if="rangeTypeTs==2" class="row">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="From">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="To">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="row">
-                Sold : 12 <br> Amount : 1200
+                </div>
               </div>
             </div>
 
-            <div style="background-color:#ddffff;" class="text-center col-sm-6">
-              <div class="row" style="border-left: 3px solid red; background-color: lightgrey;">
-                <h4>Per Item Sale</h4>
-              </div>
-              <div class="row">
-                <label class="radio-inline"><input checked="checked" type="radio" value="0" ng-model="rangeTypePis" name="optradio1">Today</label>
-                <label class="radio-inline"><input type="radio" value="1" ng-model="rangeTypePis" name="optradio1">Specific Date</label>
-                <label class="radio-inline"><input type="radio" value="2" ng-model="rangeTypePis" name="optradio1">Select Date Range</label>
-              </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                  <h2>Expenses</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
 
-              <div ng-if="rangeTypePis==1" class="row">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Select Date">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                </form>
+                </div>
               </div>
+            </div>
 
 
-              <div ng-if="rangeTypePis==2" class="row">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="From">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="To">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Collection</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
 
-              <div class="row">
-                Sold : 12 <br> Amount : 1200
+                </div>
               </div>
             </div>
 
           </div>
-          <div class="row">
-            <div id="chartContainer" class="col-sm-5 pull-left" style="height: 300px; width: 48%;"></div>
-            <div id="pieChartContainer" class="col-sm-5 pull-left" style="height: 300px; width: 48%;"></div>
-          </div>
+
+
         </div>
         <div class="tab-pane" id="tab_b">
           <category></category>
