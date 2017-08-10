@@ -19,6 +19,8 @@
       <tr>
         <th>Item Name</th>
         <th>Item Price</th>
+        <th>Last Modified Date</th>
+        <th>Created Date</th>
         <th class="">Action</th>
       </tr>
     </thead>
@@ -26,7 +28,9 @@
       <tr ng-repeat="item in itemList">
         <td class="text-left">{{item.title}}</td>
         <td class="text-left">{{item.price}}</td>
-        <td class="text-left"><a>
+        <td class="text-left">12/07/2017</td>
+        <td class="text-left">12/07/2017</td>
+        <td class="text-left"><a ng-click="updateItemValue(item)" data-toggle="modal" data-target="#updateItemModal">
           <span class="glyphicon glyphicon-edit"></span>
         </a>&nbsp;
         <a>
@@ -65,6 +69,47 @@
     <label class="control-label col-sm-4" for="pwd">Item Price : </label>
     <div class="col-sm-6"> 
       <input type="text" class="form-control" id="itmprc" ng-model="newItemPrice" placeholder="Enter Item Price">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="text-center col-sm-12">
+      <button ng-click="addItem()" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="updateItemModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center modal-title">Update Item</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="email">Category : </label>
+    <div class="col-sm-6">
+      <input ng-disabled="true" type="text" class="form-control" id="catnme" value="{{categorySelected.title}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="pwd">Item name : </label>
+    <div class="col-sm-6"> 
+      <input type="text" class="form-control" id="itmnme" ng-model="updatedItemName" placeholder="Enter Item Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="pwd">Item Price : </label>
+    <div class="col-sm-6"> 
+      <input type="text" class="form-control" id="itmprc" ng-model="updatedItemPrice" placeholder="Enter Item Price">
     </div>
   </div>
   <div class="form-group"> 

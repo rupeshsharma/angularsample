@@ -2,39 +2,58 @@ angular.
   module('sample').
   component('item', {
     templateUrl: './component/menu/item/item.template.html',
-    controller: ['$scope','$location','sessionService','menuService',
+    controller: ['$scope', '$location', 'sessionService', 'menuService',
       function itemController($scope, $location, sessionService, menuService) {
         setUpMenu(menuService);
         $scope.itemList = [];
-
-        function setUpMenu(menuService){
+        function setUpMenu(menuService) {
           menuService.getMenu(resp => {
             $scope.menu = resp;
           })
         }
 
-        $scope.displayItemsForCategory = function(categorySelected){
-          if($scope.categorySelected && $scope.categorySelected!=''){
-          $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
-          }else{
+        $scope.displayItemsForCategory = function (categorySelected) {
+          if ($scope.categorySelected && $scope.categorySelected != '') {
+            $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
+          } else {
             $scope.itemList = [];
           }
         }
 
-        $scope.addItem =function(){
-          if($scope.newItemName != '' && $scope.newItemPrice != ''){
+        $scope.addItem = function () {
+          if ($scope.newItemName != '' && $scope.newItemPrice != '') {
             var newItem = {
-            "title" : $scope.newItemName,
-            "price": $scope.newItemPrice
+              "title": $scope.newItemName,
+              "price": $scope.newItemPrice
             }
             $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items.push(newItem);
             $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
             $scope.newItemName = '';
             $scope.newItemPrice = '';
           }
-           $("#myModal .close").click()
+          $("#myModal .close").click()
         }
-       
+
+        $scope.updateItem = function () {
+          if ($scope.newItemName != '' && $scope.newItemPrice != '') {
+            var newItem = {
+              "title": $scope.newItemName,
+              "price": $scope.newItemPrice
+            }
+            $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items.push(newItem);
+            $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
+            $scope.newItemName = '';
+            $scope.newItemPrice = '';
+          }
+          $("#myModal .close").click()
+        }
+
+        $scope.updateItemValue = function (item) {
+          $scope.updatedItemName = item.title;
+          $scope.updatedItemPrice = item.price;
+        }
+
+
       }
     ]
   });
