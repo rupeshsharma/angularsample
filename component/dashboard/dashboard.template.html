@@ -57,7 +57,14 @@
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="white-box">
-                <h3 class="box-title"><strong>Sales Chart</strong></h3>
+                <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
+                <div class="box-title form-group form-inline">
+                    <label ><h3><strong>Chart : </strong></h3></label>
+                    <select class="form-control">
+                    <option>Revenue</option>
+                    <option selected>Sales</option>
+                  </select>
+                  </div>
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-primary active" ng-click="updateChart('w')">
                     <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
