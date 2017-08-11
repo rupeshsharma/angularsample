@@ -1,20 +1,21 @@
 <div class="row text-center">
-<form class="form-inline">
-  <div class="form-group">
-    <label for="sel1">Category :</label>
-    <select ng-model="categorySelected" ng-change="displayItemsForCategory(categorySelected)" data-ng-options="cat as cat.title for cat in menu" class="form-control" id="sel1">
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="sel1">Category :</label>
+      <select ng-model="categorySelected" ng-change="displayItemsForCategory(categorySelected)" data-ng-options="cat as cat.title for cat in menu"
+        class="form-control" id="sel1">
         <option value="">Please Select</option>
-    </select>
-&nbsp;
-    <button ng-disabled="!categorySelected" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Item</button>
-  </div>
-  
-</form>
+    </select> &nbsp;
+      <button ng-disabled="!categorySelected" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Item</button>
+    </div>
+    <button ng-click="showWholeItemGraph()" data-toggle="modal" data-target="#wholeItemModal" class="pull-right btn btn-primary">View Sales Graph</button>
+  </form>
+
 </div>
 <br>
 <div ng-switch="itemList.length" class="row text-center">
-<span class="ng-empty text-center" ng-switch-when="0">No Items Found !</span>
-<table class="table table-striped" ng-switch-default>
+  <span class="ng-empty text-center" ng-switch-when="0">No Items Found !</span>
+  <table class="table table-striped" ng-switch-default>
     <thead>
       <tr>
         <th>Item Name</th>
@@ -26,16 +27,17 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList">
-        <td class="text-left">{{item.title}}</td>
+        <td class="text-left"><a ng-click="viewitemDetail(item)" data-toggle="modal" data-target="#itemDetailModal">{{item.title}}</a></td>
         <td class="text-left">{{item.price}}</td>
         <td class="text-left">12/07/2017</td>
         <td class="text-left">12/07/2017</td>
-        <td class="text-left"><a ng-click="updateItemValue(item)" data-toggle="modal" data-target="#updateItemModal">
-          <span class="glyphicon glyphicon-edit"></span>
-        </a>&nbsp;
-        <a>
-          <span class="glyphicon glyphicon-trash"></span>
-        </a>
+        <td class="text-left">
+          <a ng-click="updateItemValue(item)" data-toggle="modal" data-target="#updateItemModal">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>&nbsp;
+          <a>
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
         </td>
       </tr>
     </tbody>
@@ -53,30 +55,30 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">Category : </label>
-    <div class="col-sm-6">
-      <input ng-disabled="true" type="text" class="form-control" id="catnme" value="{{categorySelected.title}}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="pwd">Item name : </label>
-    <div class="col-sm-6"> 
-      <input type="text" class="form-control" id="itmnme" ng-model="newItemName" placeholder="Enter Item Name">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="pwd">Item Price : </label>
-    <div class="col-sm-6"> 
-      <input type="text" class="form-control" id="itmprc" ng-model="newItemPrice" placeholder="Enter Item Price">
-    </div>
-  </div>
-  <div class="form-group"> 
-    <div class="text-center col-sm-12">
-      <button ng-click="addItem()" class="btn btn-primary">Save</button>
-    </div>
-  </div>
-</form>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="email">Category : </label>
+            <div class="col-sm-6">
+              <input ng-disabled="true" type="text" class="form-control" id="catnme" value="{{categorySelected.title}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="pwd">Item name : </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="itmnme" ng-model="newItemName" placeholder="Enter Item Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="pwd">Item Price : </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="itmprc" ng-model="newItemPrice" placeholder="Enter Item Price">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="text-center col-sm-12">
+              <button ng-click="addItem()" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -94,30 +96,121 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">Category : </label>
-    <div class="col-sm-6">
-      <input ng-disabled="true" type="text" class="form-control" id="catnme" value="{{categorySelected.title}}">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="email">Category : </label>
+            <div class="col-sm-6">
+              <input ng-disabled="true" type="text" class="form-control" id="catnme" value="{{categorySelected.title}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="pwd">Item name : </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="itmnme" ng-model="updatedItemName" placeholder="Enter Item Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="pwd">Item Price : </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="itmprc" ng-model="updatedItemPrice" placeholder="Enter Item Price">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="text-center col-sm-12">
+              <button ng-click="addItem()" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="pwd">Item name : </label>
-    <div class="col-sm-6"> 
-      <input type="text" class="form-control" id="itmnme" ng-model="updatedItemName" placeholder="Enter Item Name">
+</div>
+
+<div id="itemDetailModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center modal-title">{{viewedItem.title}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+              <!--<h3 class="box-title">Sales Chart </h3>-->
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active" ng-click="updateChart('w')">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
+                  </label>
+                <label class="btn btn-primary" ng-click="updateChart('m')">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
+                  </label>
+                <label class="btn btn-primary" ng-click="updateChart('y')">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
+                  </label>
+              </div>
+              <div ng-show="renderChartBy == 'w'" class="text-right">
+                <div class="form-group form-inline">
+                  <label for="email">Month:</label>
+                  <select class="form-control">
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option selected>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                  </select>
+                  <label for="email">Year:</label>
+                  <select class="form-control">
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected>2017</option>
+                  </select>
+                </div>
+              </div>
+              <div ng-show="renderChartBy == 'm'" class="text-right">
+                <div class="form-group form-inline">
+                  <label for="email">Year:</label>
+                  <select class="form-control">
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected>2017</option>
+                  </select>
+                </div>
+              </div>
+              <div class="text-center" id="perItemChart" style="height: 405px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="pwd">Item Price : </label>
-    <div class="col-sm-6"> 
-      <input type="text" class="form-control" id="itmprc" ng-model="updatedItemPrice" placeholder="Enter Item Price">
-    </div>
-  </div>
-  <div class="form-group"> 
-    <div class="text-center col-sm-12">
-      <button ng-click="addItem()" class="btn btn-primary">Save</button>
-    </div>
-  </div>
-</form>
+</div>
+
+<div id="wholeItemModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center modal-title">Sale - Items</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div id="wholeItemChartContainer" style="height: 405px;"></div>
+        </div>
       </div>
     </div>
 
