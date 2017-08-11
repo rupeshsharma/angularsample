@@ -14,7 +14,7 @@
             <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             <button class="form-control btn btn-primary btn-sm">Save</button>
           </div>
-           <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
+          <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
         </form>
 
       </div>
@@ -65,11 +65,23 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title text-center">Order</h4>
         <div class="row">
-          <div ng-if="cart.quantity != 0" class="col-sm-6 text-right">
-            <label>Payment Type :</label> <select ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in paymentTypes"><option disabled="disabled" value="">Please select</option></select>
-          </div>
-          <div ng-if="cart.quantity != 0" class="col-sm-6 text-left">
-            <label>Dining Mode :</label> <select ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in diningModes"><option disabled="disabled" value="">Please select</option></select>
+          <form ng-if="cart.quantity != 0" class="form-inline text-center">
+            <div class="form-group">
+              <label>Payment Type :</label>
+              <select class="form-control" ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in paymentTypes"><option disabled="disabled" value="">Please select</option></select>
+            </div>
+            <div class="form-group">
+              <label>Dining Mode :</label>
+              <select class="form-control" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in diningModes"><option disabled="disabled" value="">Please select</option></select>
+            </div>
+            <div class="form-group">
+              <label>Discount :</label>
+              <input class="form-control" type="number" max="100" ng-model="discount" ng-change="updateDiscount(discount)"></input>
+            </div>
+          </form>
+
+          <div ng-if="cart.quantity != 0" class="col-sm-4 text-left">
+
           </div>
         </div>
       </div>
@@ -119,6 +131,13 @@
                         <td class="thick-line"></td>
                         <td class="thick-line text-center"><strong>Subtotal</strong></td>
                         <td class="thick-line text-right">{{cart.total}}</td>
+                      </tr>
+                      <tr ng-if="discount != undefined && discount != '' && discount != 0">
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center">Discount @ {{discount}}%</td>
+                        <td class="no-line text-right">{{cart.afterDiscount | number : 2}}</td>
                       </tr>
                       <tr>
                         <td class="no-line"></td>
@@ -170,8 +189,11 @@
         <div class="row">
           <div class="col-xs-6">
             <address>
-              <strong>Billed To:</strong><br> {{name}}
-              <br> {{mobile}}
+              <strong>Billed To:</strong>
+              <div ng-show="name != undefined && name != ''"> {{name}}
+              </div>
+              <div ng-show="name == undefined || name == ''"> Guest
+              </div>
             </address>
           </div>
           <div class="col-xs-6 text-right">
@@ -225,6 +247,12 @@
                     <td class="thick-line"></td>
                     <td class="thick-line text-center"><strong>Subtotal</strong></td>
                     <td class="thick-line text-right">{{cart.total}}</td>
+                  </tr>
+                  <tr ng-if="discount != 0">
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">Discount @ {{discount}}%</td>
+                    <td class="no-line text-right">{{cart.afterDiscount | number : 2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>

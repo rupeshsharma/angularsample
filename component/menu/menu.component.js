@@ -4,6 +4,7 @@ angular.
     templateUrl: './component/menu/menu.template.html',
     controller: ['$scope', '$timeout', '$location', 'sessionService', 'menuService',
       function menuController($scope, $timeout, $location, sessionService, menuService) {
+        $scope.discount=0;
         getUserData(sessionService, $timeout);
         $scope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
         $scope.paymentTypes = [
@@ -21,7 +22,8 @@ angular.
           "total": 0,
           "cgst": 0,
           "sgst": 0,
-          "finalPrice": 0
+          "finalPrice": 0,
+          "afterDiscount":0
         };
         $scope.clearSession = function () {
           sessionService.clearUserSession();
@@ -53,9 +55,32 @@ angular.
             $scope.cart.quantity = $scope.cart.quantity + 1;
           }
           $scope.cart.total = $scope.cart.total + parseInt(item.price);
-          $scope.cart.cgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.sgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
+            $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
+            $scope.cart.cgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.afterDiscount + $scope.cart.cgst + $scope.cart.sgst;
+          } else {
+            $scope.cart.cgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          }
+        }
+
+        $scope.updateDiscount = function (discount) {
+          if (discount != undefined && discount != "" && discount != "undefined") {
+            $scope.discount = discount;
+            $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
+            $scope.cart.cgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.afterDiscount + $scope.cart.cgst + $scope.cart.sgst;
+          } else {
+            $scope.discount = 0;
+            $scope.cart.cgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          }
+
         }
 
         $scope.removeFromCart = function (item) {
@@ -64,9 +89,16 @@ angular.
           var itm = $scope.cart.items[index];
           $scope.cart.quantity = $scope.cart.quantity - itm.quantity;
           $scope.cart.total = $scope.cart.total - (parseInt(item.price) * parseInt(item.quantity));
-          $scope.cart.cgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.sgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
+            $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
+            $scope.cart.cgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.afterDiscount + $scope.cart.cgst + $scope.cart.sgst;
+          } else {
+            $scope.cart.cgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          }
           $scope.cart.items.splice(index, 1);
         }
 
@@ -81,9 +113,16 @@ angular.
             $scope.cart.quantity = $scope.cart.quantity + 1;
             $scope.cart.total = $scope.cart.total + parseInt(item.price);
           }
-          $scope.cart.cgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.sgst = ($scope.cart.total / 100) * 6;
-          $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
+            $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
+            $scope.cart.cgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.afterDiscount / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.afterDiscount + $scope.cart.cgst + $scope.cart.sgst;
+          } else {
+            $scope.cart.cgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.sgst = ($scope.cart.total / 100) * 6;
+            $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
+          }
         }
 
         $scope.buildOrder = function () {
@@ -114,15 +153,15 @@ angular.
           document.getElementById("printInvoice").click();
         }
 
-        $scope.ptChange = function(paymentType){
-          $scope.paymentType=paymentType;
+        $scope.ptChange = function (paymentType) {
+          $scope.paymentType = paymentType;
         }
 
-        $scope.dmChange = function(diningMode){
-          $scope.diningMode=diningMode;
+        $scope.dmChange = function (diningMode) {
+          $scope.diningMode = diningMode;
         }
 
-        $scope.getCurrentDate = function(){
+        $scope.getCurrentDate = function () {
           return (new Date());
         }
       }
