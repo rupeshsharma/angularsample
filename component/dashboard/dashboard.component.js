@@ -13,22 +13,22 @@ angular.
               // Change type to "doughnut", "line", "splineArea", etc.
               type: "column",
               dataPoints: [
-                { label: "10/7/2017", y: 10 },
-                { label: "17/7/2017", y: 15 },
-                { label: "24/7/2017", y: 25 },
-                { label: "31/7/2017", y: 30 },
-                { label: "7/8/2017", y: 28 }
+                { label: "1/7/2017", y: 10 },
+                { label: "8/7/2017", y: 15 },
+                { label: "15/7/2017", y: 25 },
+                { label: "21/7/2017", y: 30 },
+                { label: "28/8/2017", y: 28 }
               ]
             },
             {
               // Change type to "doughnut", "line", "splineArea", etc.
               type: "line",
               dataPoints: [
-                { label: "10/7/2017", y: 11 },
-                { label: "17/7/2017", y: 14 },
-                { label: "24/7/2017", y: 29 },
-                { label: "31/7/2017", y: 40 },
-                { label: "7/8/2017", y: 58 }
+                { label: "1/7/2017", y: 11 },
+                { label: "8/7/2017", y: 14 },
+                { label: "15/7/2017", y: 29 },
+                { label: "21/7/2017", y: 40 },
+                { label: "28/8/2017", y: 58 }
               ]
             }
           ]
@@ -56,7 +56,7 @@ angular.
               { label: "Feb", y: 14 },
               { label: "Mar", y: 25 },
               { label: "Apr", y: 30 },
-              { label: "May", y: 28},
+              { label: "May", y: 28 },
               { label: "Jun", y: 28 },
               { label: "Jul", y: 57 },
               { label: "Aug", y: 18 },
@@ -84,18 +84,18 @@ angular.
           } else {
             $scope.chart.options.title.text = "Weekly";
             $scope.chart.options.data[0].dataPoints = [
-              { label: "10/7/2017", y: 10 },
-              { label: "17/7/2017", y: 15 },
-              { label: "24/7/2017", y: 25 },
-              { label: "31/7/2017", y: 30 },
-              { label: "7/8/2017", y: 28 }
+              { label: "1/7/2017", y: 10 },
+              { label: "8/7/2017", y: 15 },
+              { label: "15/7/2017", y: 25 },
+              { label: "21/7/2017", y: 30 },
+              { label: "28/8/2017", y: 28 }
             ];
             $scope.chart.options.data[1].dataPoints = [
-              { label: "10/7/2017", y: 10 },
-              { label: "17/7/2017", y: 15 },
-              { label: "24/7/2017", y: 25 },
-              { label: "31/7/2017", y: 30 },
-              { label: "7/8/2017", y: 28 }
+              { label: "1/7/2017", y: 11 },
+              { label: "8/7/2017", y: 14 },
+              { label: "15/7/2017", y: 29 },
+              { label: "21/7/2017", y: 40 },
+              { label: "28/8/2017", y: 58 }
             ];
           }
           $scope.chart.render();
