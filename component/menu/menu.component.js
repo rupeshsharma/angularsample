@@ -2,11 +2,13 @@ angular.
   module('sample').
   component('menu', {
     templateUrl: './component/menu/menu.template.html',
-    controller: ['$scope', '$timeout', '$location', 'sessionService', 'menuService',
-      function menuController($scope, $timeout, $location, sessionService, menuService) {
+    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService',
+      function menuController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
+        $rootScope.viewType = 'menu';
         $scope.discount=0;
         getUserData(sessionService, $timeout);
-        $scope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
+        $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
+        $rootScope.totalCartQuantity;
         $scope.paymentTypes = [
           "Cash",
           "Card"
@@ -25,9 +27,19 @@ angular.
           "finalPrice": 0,
           "afterDiscount":0
         };
-        $scope.clearSession = function () {
+        $rootScope.clearSession = function () {
           sessionService.clearUserSession();
           $location.path('/');
+          delete $rootScope.viewType;
+          delete $rootScope.viewButtonClicked;
+          delete $rootScope.mobile;
+          delete $rootScope.name;
+          delete $rootScope.isAnonymousCustomer;
+          delete $rootScope.totalCartQuantity;
+        }
+
+        $rootScope.viewButtonClicked = function(){
+          console.log('menu wala');
         }
 
         function setUpMenu(menuService) {
@@ -39,8 +51,8 @@ angular.
         function getUserData(sessionService) {
           $timeout(function () {
             var userData = sessionService.getUserData();
-            $scope.mobile = userData.mobile;
-            $scope.name = userData.name;
+            $rootScope.mobile = userData.mobile;
+            $rootScope.name = userData.name;
           }, 500);
         }
 
@@ -49,10 +61,12 @@ angular.
             var quantity = $scope.cart.items[$scope.cart.items.indexOf(item)].quantity;
             $scope.cart.items[$scope.cart.items.indexOf(item)].quantity = quantity + 1;
             $scope.cart.quantity = $scope.cart.quantity + 1;
+            $rootScope.totalCartQuantity = $scope.cart.quantity;
           } else {
             item.quantity = 1;
             $scope.cart.items.push(item);
             $scope.cart.quantity = $scope.cart.quantity + 1;
+            $rootScope.totalCartQuantity = $scope.cart.quantity;
           }
           $scope.cart.total = $scope.cart.total + parseInt(item.price);
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
@@ -88,6 +102,7 @@ angular.
           var index = $scope.cart.items.indexOf(item);
           var itm = $scope.cart.items[index];
           $scope.cart.quantity = $scope.cart.quantity - itm.quantity;
+          $rootScope.totalCartQuantity = $scope.cart.quantity;
           $scope.cart.total = $scope.cart.total - (parseInt(item.price) * parseInt(item.quantity));
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
             $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
@@ -107,10 +122,12 @@ angular.
           if (actionType == 0) {
             $scope.cart.items[index].quantity = $scope.cart.items[index].quantity - 1;
             $scope.cart.quantity = $scope.cart.quantity - 1;
+            $rootScope.totalCartQuantity = $scope.cart.quantity;
             $scope.cart.total = $scope.cart.total - parseInt(item.price);
           } else {
             $scope.cart.items[index].quantity = $scope.cart.items[index].quantity + 1;
             $scope.cart.quantity = $scope.cart.quantity + 1;
+            $rootScope.totalCartQuantity = $scope.cart.quantity;
             $scope.cart.total = $scope.cart.total + parseInt(item.price);
           }
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
@@ -144,8 +161,7 @@ angular.
             "orderDetail": orderDetailList
           }
           menuService.buildOrder(request, function () {
-            sessionService.clearUserSession();
-            $location.path('/');
+            $rootScope.clearSession();
           });
           $("#myModal .close").click();
 
