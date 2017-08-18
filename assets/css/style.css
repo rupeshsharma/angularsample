@@ -1,293 +1,252 @@
-.atZeroIndex{
-        z-index: 0;
-}
-.canvasjs-chart-credit{
-    display:none;
-}
-.totalValue {
-            border-top: 2px solid #E6E9ED;
-                        font-size: 18px;
-    line-height: 40px;
-    font-weight: 600;
-}
-@media (max-width: 1200px) {
-    .x_title h2 {
-        width: 62%;
-        font-size: 17px
-    }
-}
-@media (max-width: 1270px) and (min-width: 192px) {
-    .x_title h2 small {
-        display: none
-    }
-}
-.x_title {
-    border-bottom: 2px solid #E6E9ED;
-    padding: 1px 5px 6px;
-    margin-bottom: 10px
-}
-.x_title .filter {
-    width: 40%;
-    float: right
-}
-.x_title h2 {
-    margin: 5px 0 6px;
-    float: left;
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-	font-size: 20px;
-}
-.x_title h2 small {
-    margin-left: 10px
-}
-.x_title span {
-    color: #BDBDBD
-}
-.x_panel {
-    position: relative;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px 17px;
-    display: inline-block;
-    background: #F7F7F7;
-    border: 1px solid #E6E9ED;
-    -webkit-column-break-inside: avoid;
-    -moz-column-break-inside: avoid;
-    column-break-inside: avoid;
-    opacity: 1;
-    transition: all .2s ease
-}
-.overflow_hidden {
-    overflow: hidden
-}
-.fixed_height_320 {
-    height: 260px; 
-}
-.x_content {
-    padding: 0 5px 6px;
-    position: relative;
-    width: 100%;
-    float: left;
-    clear: both;
-    margin-top: 5px
-}
-.x_content h4 {
-    font-size: 16px;
-    font-weight: 500
-}
-.tile_count .tile_stats_count {
-    border-bottom: 1px solid #D9DEE4;
-    padding: 0 10px 0 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative
-}
-@media (min-width: 992px) {
-    .tile_count .tile_stats_count {
-        margin-bottom: 10px;
-        border-bottom: 0;
-        padding-bottom: 10px
-    }
-}
-.seperator:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    height: 65px;
-    border-left: 2px solid #ADB2B5;
-    margin-top: 10px
-}
-@media (min-width: 992px) {
-    .tile_count .tile_stats_count:first-child:before {
-        border-left: 0
-    }
-}
-.tile_count .tile_stats_count .count {
-    font-size: 20px;
-    line-height: 47px;
-    font-weight: 600
-}
+<br>
+<div class="container">
+  <div class="row content">
+    <!--<div class="row">
+      <div class="well well-sm col-sm-12 text-center">Welcome ! Admin
+        <div class="pull-right">
+          <a ng-click="logOut()" type="button" class="btn btn-sm btn-danger">Log Out</a></div>
+      </div>
+    </div>-->
+    <div class="row">
+      <ul class="nav nav-pills nav-stacked col-sm-2">
+        <li class="active"><a data-target="#tab_a" data-toggle="pill">DashBoard</a></li>
+        <li><a data-target="#tab_b" data-toggle="pill">Category</a></li>
+        <li><a data-target="#tab_c" data-toggle="pill">Item</a></li>
+        <li><a data-target="#tab_d" data-toggle="pill">Customer</a></li>
+        <li><a data-target="#tab_e" data-toggle="pill">Expense</a></li>
+        <li><a data-target="#tab_f" data-toggle="pill">Order History</a></li>
+      </ul>
+      <div class="tab-content col-sm-10">
+        <div class="tab-pane active" id="tab_a">
+          <div style="background-color:#F7F7F7;" class="row tile_count text-center">
+            <div class="x_title">
+              <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
+                <div class="form-group has-feedback">
+                  <label style="font-size: 18px;" for="email">Daily Review : </label>
+                  <input type="text" id="reviewDate" ng-model="reviewDate" class="form-control" id="email">
+                  <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
+              </span>
+              <div style="color:#73879C;" class="count">25</div>
+              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
+              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
+              </span>
+              <div style="color:#73879C;" class="count">123</div>
+              <span class="count_bottom"><i class="green"><i ></i>3% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
+              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
+              </span>
+              <div style="color:#73879C;" class="count green">2500 <i class="fa fa-inr"></i></div>
+              <span class="count_bottom"><i class="green"><i ></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
+              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-scissors"></span> Total Expenses</strong>
+              </span>
+              <div style="color:#73879C;" class="count">1500 <i class="fa fa-inr"></i></div>
+              <span class="count_bottom"><i class="red"><i ></i>12% </i> From last Week</span>
+            </div>
+          </div>
+          </br>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="white-box">
+                <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
+                <div class="box-title form-group form-inline">
+                    <label ><h4><strong>Chart : </strong></h4></label>
+                    <select class="form-control">
+                    <option>Revenue</option>
+                    <option selected>Sales</option>
+                  </select>
+                  </div>
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-primary active" ng-click="updateChart('w')">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
+                  </label>
+                  <label class="btn btn-primary" ng-click="updateChart('m')">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
+                  </label>
+                  <label class="btn btn-primary" ng-click="updateChart('y')">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
+                  </label>
+                </div>
+                <div ng-show="renderChartBy == 'w'" class="text-right">
+                  <div class="form-group form-inline">
+                    <label for="email">Month:</label>
+                    <select class="form-control">
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option selected>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                  </select>
+                    <label for="email">Year:</label>
+                    <select class="form-control">
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected>2017</option>
+                  </select>
+                  </div>
+                </div>
+                <div ng-show="renderChartBy == 'm'" class="text-right">
+                  <div class="form-group form-inline">
+                    <label for="email">Year:</label>
+                    <select class="form-control">
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected>2017</option>
+                  </select>
+                  </div>
+                </div>
+                <div id="ct-visits" style="height: 405px;"></div>
+              </div>
+            </div>
+          </div>
+          </br>
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Orders Placed</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <form class="form-horizontal">
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">From:</label>
+                      <div class="col-sm-9">
+                        <input id="fromOrderDate" ng-model="fromOrderDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">To:</label>
+                      <div class="col-sm-9">
+                        <input id="toOrderDate" ng-model="toOrderDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="text-center col-sm-12 ">
+                        <button type="submit" class="btn btn-primary">Show</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="text-center totalValue">
+                    Total : 1234
+                  </div>
+                </div>
+              </div>
+            </div>
 
-@media (min-width: 992px) and (max-width: 1100px) {
-    .tile_count .tile_stats_count .count {
-        font-size: 30px
-    }
-}
-.tile_count .tile_stats_count span {
-    font-size: 12px
-}
-@media (min-width: 768px) {
-    .tile_count .tile_stats_count span {
-        font-size: 13px
-    }
-}
-.tile_count .tile_stats_count .count_bottom i {
-    width: 12px
-}
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  /* Set the fixed height of the footer here */
-  height: 25px;
-  background-color: #337ab7;
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                  <h2>Items Sold</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <form class="form-horizontal">
 
-}
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">From:</label>
+                      <div class="col-sm-9">
+                        <input id="fromItemDate" ng-model="fromItemDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">To:</label>
+                      <div class="col-sm-9">
+                        <input id="toItemDate" ng-model="toItemDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="text-center col-sm-12 ">
+                        <button type="submit" class="btn btn-primary">Show</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="text-center totalValue">
+                    Total : 1234
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Total Collection</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <form class="form-horizontal">
 
-.navbar-default{
-background-color: #337ab7;	
-}
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">From:</label>
+                      <div class="col-sm-9">
+                        <input id="fromCollectionDate" ng-model="fromCollectionDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <label class="control-label col-sm-3">To:</label>
+                      <div class="col-sm-9">
+                        <input id="toCollectionDate" ng-model="toCollectionDate" type="text" class="form-control"></input>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="text-center col-sm-12 ">
+                        <button type="submit" class="btn btn-primary">Show</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="text-center totalValue">
+                    Total : 1234
+                  </div>
+                </div>
+              </div>
+            </div>
 
-@page 
-    {
-        size: auto;   /* auto is the initial value */
-        margin: 0mm;  /* this affects the margin in the printer settings */
-    }
+          </div>
 
-@media screen {
-    #printSection {
-        display: none;
-    }
-}
-@media print {
-    body * {
-        visibility:hidden;
-    }
-	
-    #printSection, #printSection * {
-        visibility:visible;
-    }
-    #printSection {
-        position:absolute;
-        left:5px;
-        top:5px;
-		border-style: solid;
-    	border-width: 1px;
-    }
-}
 
-.affix {
-      top: 20px;
-  }
-
-.vertical-center {
-  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 80vh; /* These two lines are counted as one :-)       */
-
-  display: flex;
-  align-items: center;
-}
-
-.appContainer {
-margin-bottom: 27px;
-margin-top: 35px;
-}
-
-.centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.panel-login {
-	border-color: #ccc;
-	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-}
-.panel-login>.panel-heading {
-	color: #00415d;
-	background-color: #fff;
-	border-color: #fff;
-	text-align:center;
-}
-.panel-login>.panel-heading a{
-	text-decoration: none;
-	color: #666;
-	font-weight: bold;
-	font-size: 15px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
-}
-.panel-login>.panel-heading a.active{
-	color: #337ab7;
-	font-size: 20px;
-}
-.panel-login>.panel-heading hr{
-	margin-top: 10px;
-	margin-bottom: 0px;
-	clear: both;
-	border: 0;
-	height: 1px;
-	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-}
-.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-	height: 45px;
-	border: 1px solid #ddd;
-	font-size: 16px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
-}
-.panel-login input:hover,
-.panel-login input:focus {
-	outline:none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	border-color: #ccc;
-}
-.btn-login {
-	background-color: #59B2E0;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #59B2E6;
-}
-.btn-login:hover,
-.btn-login:focus {
-	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
-}
-.forgot-password {
-	text-decoration: underline;
-	color: #888;
-}
-.forgot-password:hover,
-.forgot-password:focus {
-	text-decoration: underline;
-	color: #666;
-}
-
-.btn-register {
-	background-color: #1CB94E;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #1CB94A;
-}
-.btn-register:hover,
-.btn-register:focus {
-	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
-}
-
+        </div>
+        <div class="tab-pane" id="tab_b">
+          <category></category>
+        </div>
+        <div class="tab-pane" id="tab_c">
+          <item></item>
+        </div>
+        <div class="tab-pane" id="tab_d">
+          <customer></customer>
+        </div>
+        <div class="tab-pane" id="tab_e">
+          <expense></expense>
+        </div>
+        <div class="tab-pane" id="tab_f">
+          <order-history></order-history>
+        </div>
+      </div>
+      <!-- tab content -->
+    </div>
+  </div>
+</div>
+<!-- end of container -->
