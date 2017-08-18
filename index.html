@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <script src="./node_modules/angular/angular.min.js"></script>
-    <script src="./node_modules/angular-route/angular-route.min.js"></script>
-    <script src="./node_modules/angular-resource/angular-resource.min.js"></script>
-    <script src="./node_modules/ngstorage/ngStorage.min.js"></script>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./config/app.module.js"></script>
-    <script src="./config/app.config.js"></script>
-    <script src="./config/printDirective.js"></script>
-    <script src="./component/checkin/checkin.component.js"></script>
-    <script src="./component/menu/menu.component.js"></script>
-    <script src="./component/dashboard/dashboard.component.js"></script>
-    <script src="./service/sessionService.js"></script>
-    <script src="./service/httpService.js"></script>
-    <script src="./service/userService.js"></script>
-    <script src="./service/menuService.js"></script>
-    <script src="./service/expenseService.js"></script>
-    <script src="./component/menu/category/category.component.js"></script>
-    <script src="./component/menu/item/item.component.js"></script>
-    <script src="./component/customer/customer.component.js"></script>
-    <script src="./component/expense/expense.component.js"></script>
-    <script src="./component/order/orderHistory.component.js"></script>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="./assets/lib/jquery-ui.js"></script>
-    <link rel="stylesheet" href="./assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
-    <body ng-app="sample">
-        <!-- nav bar starts -->
-        <nav class="navbar-default navbar-fixed-top container-fluid">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#!"><span style="color:white;">Sample</span></a>
-                </div>
+<script src="./node_modules/angular/angular.min.js"></script>
+<script src="./node_modules/angular-route/angular-route.min.js"></script>
+<script src="./node_modules/angular-resource/angular-resource.min.js"></script>
+<script src="./node_modules/ngstorage/ngStorage.min.js"></script>
+<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="./node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./config/app.module.js"></script>
+<script src="./config/app.config.js"></script>
+<script src="./config/printDirective.js"></script>
+<script src="./component/checkin/checkin.component.js"></script>
+<script src="./component/menu/menu.component.js"></script>
+<script src="./component/dashboard/dashboard.component.js"></script>
+<script src="./service/sessionService.js"></script>
+<script src="./service/httpService.js"></script>
+<script src="./service/userService.js"></script>
+<script src="./service/menuService.js"></script>
+<script src="./service/expenseService.js"></script>
+<script src="./component/menu/category/category.component.js"></script>
+<script src="./component/menu/item/item.component.js"></script>
+<script src="./component/customer/customer.component.js"></script>
+<script src="./component/expense/expense.component.js"></script>
+<script src="./component/order/orderHistory.component.js"></script>
+<link rel="stylesheet" href="./assets/css/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./assets/lib/jquery-ui.js"></script>
+<link rel="stylesheet" href="./assets/css/jquery-ui.css">
+<link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+
+<body ng-app="sample">
+    <!-- nav bar starts -->
+    <nav class="navbar-default navbar-fixed-top container-fluid">
+        <div class="container-fluid">
+            <div class="navbar-header">
+               <span class="navbar-brand" style="color:#337ab7;">Sample APP</span>
             </div>
-        </nav>
-        <!-- nav bar ends -->
-
-        <!-- ng container -->
-        <div class="appContainer" ng-view>
+            <form ng-if="viewType == 'menu'" class="navbar-form text-center">
+                
+                <div ng-if="!isAnonymousCustomer" class="form-group">
+                    <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
+                    <label for="mobile">Name : </label>
+                    <input ng-model="name" type="name" class="form-control input-sm" id="name">
+                    <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
+                    <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <button class="btn btn-primary btn-sm">Save</button>
+                </div>
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{totalCartQuantity}}</span>
+                </button>
+                <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
+            </form>
+            <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <span style="color:#337ab7;">Welcome ! Admin </span>
+                <div class="pull-right">
+                    <a ng-click="logOut()" type="button" class="btn btn-sm btn-danger">Log Out</a></div>
+                </div>
+            </form>
         </div>
+    </nav>
+    <!-- nav bar ends -->
 
-        <!-- footer starts -->
-        <footer class="container-fluid text-center navbar-fixed-bottom">
-            <p>Designed & Developed by #</p>
-        </footer>
-        <!-- footer ends -->
+    <!-- ng container -->
+    <div class="appContainer" ng-view>
+    </div>
 
-    </body>
+    <!-- footer starts -->
+    <footer class="container-fluid text-center navbar-fixed-bottom">
+        <p>Designed & Developed by #</p>
+    </footer>
+    <!-- footer ends -->
+
+</body>
+
 </html>
