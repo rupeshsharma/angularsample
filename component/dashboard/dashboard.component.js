@@ -2,8 +2,20 @@ angular.
   module('sample').
   component('dashBoard', {
     templateUrl: './component/dashboard/dashboard.template.html',
-    controller: ['$scope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
-      function dashBoardController($scope, $filter, $timeout, $location, sessionService, menuService) {
+    controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
+      function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService) {
+        $rootScope.viewType = 'dashboard';
+
+        $rootScope.viewButtonClicked = function () {
+          console.log('dashboard wala wala');
+        }
+        $rootScope.logOut = function () {
+          sessionService.clearUserSession();
+          $location.path('/');
+          delete $rootScope.viewType;
+          delete $rootScope.viewButtonClicked;
+        }
+
         $scope.chart = new CanvasJS.Chart("ct-visits", {
           title: {
             text: "Adding & Updating dataPoints"
