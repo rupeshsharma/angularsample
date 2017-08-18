@@ -35,10 +35,10 @@
     <nav class="navbar-default navbar-fixed-top container-fluid">
         <div class="container-fluid">
             <div class="navbar-header">
-               <span class="navbar-brand" style="color:#337ab7;"><strong>Sample APP</strong></span>
+                <span class="navbar-brand" style="color:#337ab7;"><strong>Sample APP</strong></span>
             </div>
             <form ng-if="viewType == 'menu'" class="navbar-form text-center">
-                
+
                 <div ng-if="!isAnonymousCustomer" class="form-group">
                     <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
                     <label for="mobile">Name : </label>
@@ -52,11 +52,11 @@
                 </button>
                 <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
             </form>
-            <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <span style="color:#337ab7;">Welcome ! Admin </span>
+            <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
                 <div class="pull-right">
                     <a ng-click="logOut()" type="button" class="btn btn-sm btn-danger">Log Out</a></div>
-                </div>
-            </form>
+        </div>
+        </form>
         </div>
     </nav>
     <!-- nav bar ends -->
