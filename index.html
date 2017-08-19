@@ -50,7 +50,16 @@
                 <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{totalCartQuantity}}</span>
                 </button> -->
-                <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
+                <!-- <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button> -->
+                <div class="btn-group pull-right">
+                    <button type="button" ng-click="clearSession()" class="btn btn-danger btn-sm">Close</button>
+                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a>Log Out</a></li>
+                    </ul>
+                </div>
             </form>
             <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
                 <div class="pull-right">
