@@ -5,10 +5,10 @@ angular.
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService',
       function menuController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
         $rootScope.viewType = 'menu';
-        $scope.discount=0;
+        $scope.discount = 0;
         getUserData(sessionService, $timeout);
         $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
-        $rootScope.totalCartQuantity;
+
         $scope.paymentTypes = [
           "Cash",
           "Card"
@@ -25,7 +25,7 @@ angular.
           "cgst": 0,
           "sgst": 0,
           "finalPrice": 0,
-          "afterDiscount":0
+          "afterDiscount": 0
         };
         $rootScope.clearSession = function () {
           sessionService.clearUserSession();
@@ -35,10 +35,10 @@ angular.
           delete $rootScope.mobile;
           delete $rootScope.name;
           delete $rootScope.isAnonymousCustomer;
-          delete $rootScope.totalCartQuantity;
+
         }
 
-        $rootScope.viewButtonClicked = function(){
+        $rootScope.viewButtonClicked = function () {
           console.log('menu wala');
         }
 
@@ -61,12 +61,12 @@ angular.
             var quantity = $scope.cart.items[$scope.cart.items.indexOf(item)].quantity;
             $scope.cart.items[$scope.cart.items.indexOf(item)].quantity = quantity + 1;
             $scope.cart.quantity = $scope.cart.quantity + 1;
-            $rootScope.totalCartQuantity = $scope.cart.quantity;
+
           } else {
             item.quantity = 1;
             $scope.cart.items.push(item);
             $scope.cart.quantity = $scope.cart.quantity + 1;
-            $rootScope.totalCartQuantity = $scope.cart.quantity;
+
           }
           $scope.cart.total = $scope.cart.total + parseInt(item.price);
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
@@ -102,7 +102,7 @@ angular.
           var index = $scope.cart.items.indexOf(item);
           var itm = $scope.cart.items[index];
           $scope.cart.quantity = $scope.cart.quantity - itm.quantity;
-          $rootScope.totalCartQuantity = $scope.cart.quantity;
+
           $scope.cart.total = $scope.cart.total - (parseInt(item.price) * parseInt(item.quantity));
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {
             $scope.cart.afterDiscount = $scope.cart.total - (($scope.cart.total / 100) * $scope.discount);
@@ -122,12 +122,12 @@ angular.
           if (actionType == 0) {
             $scope.cart.items[index].quantity = $scope.cart.items[index].quantity - 1;
             $scope.cart.quantity = $scope.cart.quantity - 1;
-            $rootScope.totalCartQuantity = $scope.cart.quantity;
+
             $scope.cart.total = $scope.cart.total - parseInt(item.price);
           } else {
             $scope.cart.items[index].quantity = $scope.cart.items[index].quantity + 1;
             $scope.cart.quantity = $scope.cart.quantity + 1;
-            $rootScope.totalCartQuantity = $scope.cart.quantity;
+
             $scope.cart.total = $scope.cart.total + parseInt(item.price);
           }
           if ($scope.discount != undefined && $scope.discount != "" && $scope.discount != "undefined") {

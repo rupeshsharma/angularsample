@@ -40,16 +40,16 @@
             <form ng-if="viewType == 'menu'" class="navbar-form text-center">
 
                 <div ng-if="!isAnonymousCustomer" class="form-group">
-                    <label for="mobile">Welcome &nbsp;<span class="glyphicon glyphicon-user"></span></label>
+                    <label for="mobile">Customer &nbsp;<span class="glyphicon glyphicon-user"></span></label>
                     <label for="mobile">Name : </label>
-                    <input ng-model="name" type="name" class="form-control input-sm" id="name">
+                    <input ng-model="name" type="name" class="form-control input-sm" id="name">&nbsp;
                     <label for="mobile"><span class="glyphicon glyphicon-phone-alt"></span> Mobile : </label>
-                    <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    <button class="btn btn-primary btn-sm">Save</button> &nbsp;
+                    <input ng-model="mobile" type="mobile" class="form-control input-sm" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57">&nbsp;
+                    <button class="btn btn-primary btn-sm">Save</button>
                 </div>
-                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{totalCartQuantity}}</span>
-                </button>
+                </button> -->
                 <button ng-click="clearSession()" class="btn btn-danger btn-sm pull-right">Close</button>
             </form>
             <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
