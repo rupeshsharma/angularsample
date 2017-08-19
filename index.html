@@ -23,6 +23,7 @@
 <script src="./component/menu/item/item.component.js"></script>
 <script src="./component/customer/customer.component.js"></script>
 <script src="./component/expense/expense.component.js"></script>
+<script src="./component/login/login.component.js"></script>
 <script src="./component/order/orderHistory.component.js"></script>
 <link rel="stylesheet" href="./assets/css/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -57,13 +58,13 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a>Log Out</a></li>
+                        <li><a ng-click="logOut()">Log Out</a></li>
                     </ul>
                 </div>
             </form>
             <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
                 <div class="btn-group pull-right">
-                    <button type="button" ng-click="logOut()" class="btn btn-danger btn-sm">Close</button>
+                    <button type="button" ng-click="close()" class="btn btn-danger btn-sm">Close</button>
                     <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span>
                         </button>
@@ -73,7 +74,7 @@
                 </div>
             </form>
             <form ng-if="viewType == 'checkin'" class="navbar-form">
-                <button class="btn btn-danger btn-sm pull-right">Log Out</button>
+                <a ng-click="logOut()" class="btn btn-danger btn-sm pull-right">Log Out</a>
             </form>
         </div>
     </nav>

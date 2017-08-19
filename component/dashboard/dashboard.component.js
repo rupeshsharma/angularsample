@@ -9,9 +9,9 @@ angular.
         $rootScope.viewButtonClicked = function () {
           console.log('dashboard wala wala');
         }
-        $rootScope.logOut = function () {
+        $rootScope.close = function () {
           sessionService.clearUserSession();
-          $location.path('/');
+          $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
         }

@@ -29,7 +29,7 @@ angular.
         };
         $rootScope.clearSession = function () {
           sessionService.clearUserSession();
-          $location.path('/');
+          $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
           delete $rootScope.mobile;

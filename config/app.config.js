@@ -6,6 +6,9 @@ APP.config(['$locationProvider', '$routeProvider',
 
     $routeProvider.
       when('/', {
+        template: '<log-in></log-in>'
+      }).
+      when('/checkin', {
         template: '<check-in></check-in>'
       }).
       when('/menu', {
