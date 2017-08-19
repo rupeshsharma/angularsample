@@ -9,7 +9,7 @@ APP.config(['$locationProvider', '$routeProvider',
         template: '<check-in></check-in>'
       }).
       when('/menu', {
-        template: '<menu></menu>'
+        template: '<menu-cart></menu-cart>'
       }).
       when('/dashboard', {
         template: '<dash-board></dash-board>'

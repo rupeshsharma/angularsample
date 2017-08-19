@@ -1,9 +1,9 @@
 angular.
   module('sample').
-  component('menu', {
+  component('menuCart', {
     templateUrl: './component/menu/menu.template.html',
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService',
-      function menuController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
+      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
         $rootScope.viewType = 'menu';
         $scope.discount = 0;
         getUserData(sessionService, $timeout);
