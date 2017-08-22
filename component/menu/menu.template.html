@@ -26,7 +26,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="itm in cat.items | filter: searchKeyword">
-                <td class="text-left col-sm-3">{{itm.title}}</td>
+                <td class="text-left col-sm-3"><span style="color:green;" class="glyphicon glyphicon-record"></span> {{itm.title}}</td>
                 <td class="text-left col-sm-6">Some description here for {{itm.title}}... </td>
                 <td class="text-right col-sm-1">
                   {{itm.price}}
