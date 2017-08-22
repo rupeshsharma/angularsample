@@ -5,7 +5,7 @@ angular.
     controller: ['$scope', '$rootScope', '$location', 'sessionService', 'userService',
       function customerController($scope, $rootScope, $location, sessionService, userService) {
 
-        $rootScope.$on('rootScope:customerInit', function (event, data) {
+        $scope.$on('customerInit', function (event) {
            $scope.customerInit();
         });
 
