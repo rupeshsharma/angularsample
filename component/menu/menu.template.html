@@ -18,14 +18,16 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th class="text-left col-sm-9">Item</th>
-                <th class="text-right col-sm-1">Price</th>
+                <th class="text-left col-sm-3">Item</th>
+                <th class="text-left col-sm-6">Description</th>
+                <th class="text-right col-sm-1">Price <span class="fa fa-rupee"></span></th>
                 <th class="text-right col-sm-2">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="itm in cat.items | filter: searchKeyword">
-                <td class="text-left col-sm-9">{{itm.title}}</td>
+                <td class="text-left col-sm-3">{{itm.title}}</td>
+                <td class="text-left col-sm-6">Some description here for {{itm.title}}... </td>
                 <td class="text-right col-sm-1">
                   {{itm.price}}
                 </td>
@@ -90,9 +92,9 @@
                     <thead>
                       <tr>
                         <td><strong>Item</strong></td>
-                        <td class="text-center"><strong>Price</strong></td>
+                        <td class="text-center"><strong>Price <span class="fa fa-rupee"></strong></td>
                         <td class="text-center"><strong>Quantity</strong></td>
-                        <td class="text-center"><strong>Total</strong></td>
+                        <td class="text-center"><strong>Total <span class="fa fa-rupee"></strong></td>
                         <td class="text-center"><strong>Remove</strong></td>
                       </tr>
                     </thead>
@@ -220,7 +222,7 @@
                     <td><strong>Item</strong></td>
                     <td class="text-center"><strong>Price</strong></td>
                     <td class="text-center"><strong>Quantity</strong></td>
-                    <td class="text-right"><strong>Total</strong></td>
+                    <td class="text-right"><strong>Total <span class="fa fa-rupee"></strong></td>
                   </tr>
                 </thead>
                 <tbody>
