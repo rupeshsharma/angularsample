@@ -1,0 +1,46 @@
+<div class="row text-center">
+    <form class="form-inline">
+        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#staffModal">Add Staff</button>
+    </form>
+</div>
+</br>
+<div ng-switch="staffList.length" class="row">
+    <span class="ng-empty" ng-switch-when="0">No ExpensesFound !</span>
+
+    <table ng-switch-default class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="staff in staffList">
+                <td>{{staff.name}}</td>
+                <td>{{staff.type}}</td>
+                <td>{{staff.mobile}}</td>
+                <td><a class="glyphicon glyphicon-edit"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="staffModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Add Staff</h4>
+            </div>
+            <div class="modal-body">
+              form here...
+            </div>
+        </div>
+
+    </div>
+</div>
