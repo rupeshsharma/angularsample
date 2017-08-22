@@ -5,7 +5,7 @@ angular.
     controller: ['$scope', '$rootScope', '$location', 'sessionService', 'menuService',
       function itemController($scope, $rootScope, $location, sessionService, menuService) {
 
-        $rootScope.$on('rootScope:itemInit', function (event, data) {
+        $scope.$on('itemInit', function (event) {
            $scope.itemInit();
         });
 
