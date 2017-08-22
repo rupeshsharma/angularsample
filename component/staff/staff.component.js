@@ -5,7 +5,7 @@ angular.
     controller: ['$scope', '$rootScope', '$location', 'sessionService', 'userService',
       function staffController($scope, $rootScope, $location, sessionService, userService) {
 
-        $rootScope.$on('rootScope:staffInit', function (event, data) {
+         $scope.$on('staffInit', function (event) {
            $scope.staffInit();
         });
 
