@@ -2,10 +2,17 @@ angular.
   module('sample').
   component('category', {
     templateUrl: './component/menu/category/category.template.html',
-    controller: ['$scope', '$location', 'sessionService', 'menuService',
-      function categoryController($scope, $location, sessionService, menuService) {
+    controller: ['$scope', '$rootScope', '$location', 'sessionService', 'menuService',
+      function categoryController($scope, $rootScope, $location, sessionService, menuService) {
         setUpMenu(menuService);
 
+        $rootScope.$on('rootScope:categoryInit', function (event, data) {
+           $scope.categoryInit();
+        });
+
+        $scope.categoryInit = function () {
+          console.debug("Category INIT");
+        }
 
         function setUpMenu(menuService) {
           menuService.getMenu(resp => {
