@@ -5,12 +5,12 @@
     <div class="row">
       <ul class="nav nav-pills nav-stacked col-sm-2">
         <li class="active"><a data-target="#tab_a" data-toggle="pill">DashBoard</a></li>
-        <li><a data-target="#tab_b" data-toggle="pill">Category</a></li>
-        <li><a data-target="#tab_c" data-toggle="pill">Item</a></li>
-        <li><a data-target="#tab_d" data-toggle="pill">Customer</a></li>
-        <li><a data-target="#tab_e" data-toggle="pill">Expense</a></li>
-        <li><a data-target="#tab_f" data-toggle="pill">Order History</a></li>
-        <li><a data-target="#tab_g" data-toggle="pill">Manage Staff</a></li>
+        <li><a ng-click="onTabClick('categoryInit')" data-target="#tab_b" data-toggle="pill">Category</a></li>
+        <li><a ng-click="onTabClick('itemInit')" data-target="#tab_c" data-toggle="pill">Item</a></li>
+        <li><a ng-click="onTabClick('customerInit')" data-target="#tab_d" data-toggle="pill">Customer</a></li>
+        <li><a ng-click="onTabClick('expenseInit')" data-target="#tab_e" data-toggle="pill">Expense</a></li>
+        <li><a ng-click="onTabClick('orderInit')" data-target="#tab_f" data-toggle="pill">Order History</a></li>
+        <li><a ng-click="onTabClick('staffInit')" data-target="#tab_g" data-toggle="pill">Manage Staff</a></li>
       </ul>
       <div class="tab-content col-sm-10">
         <div class="tab-pane active" id="tab_a">
