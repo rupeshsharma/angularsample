@@ -2,8 +2,16 @@ angular.
   module('sample').
   component('orderHistory', {
     templateUrl: './component/order/orderHistory.template.html',
-    controller: ['$scope','$location','sessionService','userService',
-      function customerController($scope, $location, sessionService, userService) {
+    controller: ['$scope', '$rootScope', '$location','sessionService','userService',
+      function customerController($scope, $rootScope, $location, sessionService, userService) {
+
+        $rootScope.$on('rootScope:orderInit', function (event, data) {
+           $scope.orderInit();
+        });
+
+         $scope.orderInit = function () {
+          console.debug("Order INIT");
+        }
 
         $("#fromViewOrderDate").datepicker({
           changeMonth: true,
