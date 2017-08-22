@@ -6,7 +6,7 @@ angular.
       function categoryController($scope, $rootScope, $location, sessionService, menuService) {
         setUpMenu(menuService);
 
-        $rootScope.$on('rootScope:categoryInit', function (event, data) {
+        $scope.$on('categoryInit', function (event) {
            $scope.categoryInit();
         });
 
