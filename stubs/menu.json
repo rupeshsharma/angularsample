@@ -6,33 +6,51 @@
         {
             "id":"itm1",
             "title" : "Noodles",
-            "price":100
+            "price":100,
+            "type" : "veg"
         },
         {
             "id":"itm2",
             "title" : "Veg Fried Rice",
-            "price":100
+            "price":100,
+            "type" : "veg"
         },
         {
             "id":"itm3",
             "title" : "Veg Chilli Garlic Fried Rice",
-            "price":110
+            "price":110,
+            "type" : "veg"
         },
         {
             "id":"itm4",
             "title" : "Chilli Paneer",
-            "price":120
+            "price":120,
+            "type" : "veg"
         },
         {
             "id":"itm5",
             "title" : "Paneer Chilli Garlic Fried Rice",
-            "price":130
+            "price":130,
+            "type" : "veg"
         },
         {
             "id":"itm6",
             "title" : "Veg Haka Chowmein",
-            "price":100
-        }
+            "price":100,
+            "type" : "veg"
+        },
+        {
+            "id":"itm21",
+            "title" : "Chicken Spring Roll",
+            "price":100,
+            "type" : "nonVeg"
+        },
+        {
+            "id":"itm22",
+            "title" : "Chilli Crispy Chicken",
+            "price":100,
+            "type" : "nonVeg"
+        }  
     ]
   },
   {
@@ -42,32 +60,38 @@
         {
             "id":"itm7",
             "title" : "Paneer Tikka Sandwich",
-            "price":150
+            "price":150,
+            "type" : "veg"
         },
         {
             "id":"itm8",
             "title" : "Spinach Corn Sandwich",
-            "price":140
+            "price":140,
+            "type" : "veg"
         },
         {
             "id":"itm9",
             "title" : "Mushroom Sandwich",
-            "price":165
+            "price":165,
+            "type" : "veg"
         },
         {
             "id":"itm10",
             "title" : "Veggie Burger",
-            "price":90
+            "price":90,
+            "type" : "veg"
         },
         {
             "id":"itm11",
             "title" : "Chalet Burger",
-            "price":100
+            "price":100,
+            "type" : "veg"
         },
         {
             "id":"itm12",
             "title" : "Veggie Burger",
-            "price":90
+            "price":90,
+            "type" : "veg"
         }
     ]
   },
@@ -78,22 +102,26 @@
         {
             "id":"itm13",
             "title" : "Greek Salad",
-            "price":100
+            "price":100,
+            "type" : "veg"
         },
         {
             "id":"i14",
             "title" : "Ceasar Salad",
-            "price":"110"
+            "price":"110",
+            "type" : "veg"
         },
         {
             "id":"i15",
             "title" : "Mexican Salad",
-            "price":125
+            "price":125,
+            "type" : "veg"
         },
         {
             "id":"itm16",
             "title" : "Grilled Salad",
-            "price":110
+            "price":110,
+            "type" : "veg"
         }
     ]
   },
@@ -104,12 +132,14 @@
         {
             "id":"itm17",
             "title" : "Nutella Pan Cake",
-            "price":140
+            "price":140,
+            "type" : "nonVeg"
         },
         {
             "id":"itm18",
             "title" : "Chocolate Pan Cake",
-            "price":120
+            "price":120,
+            "type" : "veg"
         },
         {
             "id":"itm19",
