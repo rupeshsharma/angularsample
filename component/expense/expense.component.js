@@ -2,8 +2,15 @@ angular.
   module('sample').
   component('expense', {
     templateUrl: './component/expense/expense.template.html',
-    controller: ['$scope','$filter', '$location', 'sessionService', 'expenseService',
-      function expenseController($scope, $filter, $location, sessionService, expenseService) {
+    controller: ['$scope', '$rootScope','$filter', '$location', 'sessionService', 'expenseService',
+      function expenseController($scope, $rootScope, $filter, $location, sessionService, expenseService) {
+        $rootScope.$on('rootScope:expenseInit', function (event, data) {
+           $scope.expenseInit();
+        });
+
+         $scope.expenseInit = function () {
+          console.debug("Expense INIT");
+        }
 
         $("#fromExpenseDate").datepicker({
           changeMonth: true,
