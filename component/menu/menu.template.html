@@ -102,8 +102,9 @@
                     <tbody>
                       <!-- foreach ($order->lineItems as $line) or some such thing here -->
                       <tr ng-repeat="item in cart.items">
-                        <td class="col-sm-4">{{item.title}}</td>
-                        <td class="col-sm-2 text-center">{{item.price}}</td>
+                        <td class="col-sm-4"><span ng-if="item.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
+                          <span ng-if="item.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>{{item.title}}</td>
+                        <td class="col-sm-2 text-center"> {{item.price}}</td>
                         <td class="col-sm-2 text-center"><button ng-click="updateCartItem(item,0)" ng-disabled="item.quantity == 1" class="btn btn-danger btn-xs">
                           <span class="glyphicon glyphicon-minus"></span>
                           </button> {{item.quantity}} <button ng-click="updateCartItem(item,1)" class="btn btn-success btn-xs">
