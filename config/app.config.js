@@ -1,4 +1,8 @@
-var APP = angular.module('sample')
+var APP = angular.module('sample');
+
+APP.run(function ($rootScope, $location) {
+  
+});
 
 APP.config(['$locationProvider', '$routeProvider',
   function config($locationProvider, $routeProvider) {
