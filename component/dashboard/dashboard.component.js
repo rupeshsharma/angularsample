@@ -6,17 +6,17 @@ angular.
       function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService) {
         $scope.onTabClick = function (tabClicked) {
           if(tabClicked == 'staffInit'){
-            $rootScope.$emit('rootScope:staffInit', 'staffInit!');
+            $rootScope.$broadcast('staffInit');
           }else if(tabClicked == 'orderInit'){
-            $rootScope.$emit('rootScope:orderInit', 'orderInit!');
+            $rootScope.$broadcast('orderInit');
           }else if(tabClicked == 'expenseInit'){
-            $rootScope.$emit('rootScope:expenseInit', 'expenseInit!');
+            $rootScope.$broadcast('expenseInit');
           }else if(tabClicked == 'customerInit'){
-            $rootScope.$emit('rootScope:customerInit', 'customerInit!');
+            $rootScope.$broadcast('customerInit');
           }else if(tabClicked == 'itemInit'){
-            $rootScope.$emit('rootScope:itemInit', 'itemInit!');
+            $rootScope.$broadcast('itemInit');
           }else if(tabClicked == 'categoryInit'){
-            $rootScope.$emit('rootScope:categoryInit', 'categoryInit!');
+            $scope.$broadcast('categoryInit');
           }
         }
 
