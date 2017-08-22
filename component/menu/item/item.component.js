@@ -2,8 +2,17 @@ angular.
   module('sample').
   component('item', {
     templateUrl: './component/menu/item/item.template.html',
-    controller: ['$scope', '$location', 'sessionService', 'menuService',
-      function itemController($scope, $location, sessionService, menuService) {
+    controller: ['$scope', '$rootScope', '$location', 'sessionService', 'menuService',
+      function itemController($scope, $rootScope, $location, sessionService, menuService) {
+
+        $rootScope.$on('rootScope:itemInit', function (event, data) {
+           $scope.itemInit();
+        });
+
+         $scope.itemInit = function () {
+          console.debug("Item INIT");
+        }
+
         setUpMenu(menuService);
         $scope.itemList = [];
         function setUpMenu(menuService) {
