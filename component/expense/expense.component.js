@@ -4,7 +4,7 @@ angular.
     templateUrl: './component/expense/expense.template.html',
     controller: ['$scope', '$rootScope','$filter', '$location', 'sessionService', 'expenseService',
       function expenseController($scope, $rootScope, $filter, $location, sessionService, expenseService) {
-        $rootScope.$on('rootScope:expenseInit', function (event, data) {
+        $scope.$on('expenseInit', function (event) {
            $scope.expenseInit();
         });
 
