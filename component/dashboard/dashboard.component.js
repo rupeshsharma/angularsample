@@ -4,6 +4,22 @@ angular.
     templateUrl: './component/dashboard/dashboard.template.html',
     controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
       function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService) {
+        $scope.onTabClick = function (tabClicked) {
+          if(tabClicked == 'staffInit'){
+            $rootScope.$emit('rootScope:staffInit', 'staffInit!');
+          }else if(tabClicked == 'orderInit'){
+            $rootScope.$emit('rootScope:orderInit', 'orderInit!');
+          }else if(tabClicked == 'expenseInit'){
+            $rootScope.$emit('rootScope:expenseInit', 'expenseInit!');
+          }else if(tabClicked == 'customerInit'){
+            $rootScope.$emit('rootScope:customerInit', 'customerInit!');
+          }else if(tabClicked == 'itemInit'){
+            $rootScope.$emit('rootScope:itemInit', 'itemInit!');
+          }else if(tabClicked == 'categoryInit'){
+            $rootScope.$emit('rootScope:categoryInit', 'categoryInit!');
+          }
+        }
+
         $rootScope.viewType = 'dashboard';
 
         $rootScope.viewButtonClicked = function () {
