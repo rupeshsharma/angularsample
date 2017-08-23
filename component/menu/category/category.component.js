@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('category', {
     templateUrl: './component/menu/category/category.template.html',
-    controller: ['$scope', '$rootScope', '$location', 'sessionService', 'menuService',
-      function categoryController($scope, $rootScope, $location, sessionService, menuService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'menuService',
+      function categoryController($scope, $timeout, $rootScope, $location, sessionService, menuService) {
         setUpMenu(menuService);
 
         $scope.$on('categoryInit', function (event) {
