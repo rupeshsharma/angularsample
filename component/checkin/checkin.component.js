@@ -16,12 +16,7 @@ angular.
           }
           $location.path('/menu');
         }
-
-        $timeout(function(){
-          document.getElementById("loadingIndicator").style.display = 'none';
-          document.getElementById("checkInComponent").style.display = 'block';
-        }, 500);
-
+        
         $scope.logOut = function(){
           sessionService.logOut();
         }
