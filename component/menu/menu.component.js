@@ -4,6 +4,11 @@ angular.
     templateUrl: './component/menu/menu.template.html',
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService',
       function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
+        $timeout(function(){
+          document.getElementById("loadingIndicator").style.display = 'none';
+          document.getElementById("menuComponent").style.display = 'block';
+        }, 500);
+        
         $rootScope.viewType = 'menu';
         $scope.discount = 0;
         getUserData(sessionService, $timeout);
