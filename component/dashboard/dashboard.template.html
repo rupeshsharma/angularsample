@@ -13,7 +13,9 @@
         <li><a ng-click="onTabClick('staffInit')" data-target="#tab_g" data-toggle="pill">Manage Staff</a></li>
       </ul>
       <div class="tab-content col-sm-10">
+        <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px"></span>
         <div class="tab-pane active" id="tab_a">
+          <div id="dashBoardComponent" style="display:none;">
           <div style="background-color:#F7F7F7;" class="row tile_count text-center">
             <div class="x_title">
               <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
@@ -223,25 +225,25 @@
 
           </div>
 
-
+        </div>
         </div>
         <div class="tab-pane" id="tab_b">
-          <category></category>
+          <category id="categoryComponent" style="display:none;"></category>
         </div>
         <div class="tab-pane" id="tab_c">
-          <item></item>
+          <item id="itemComponent" style="display:none;"></item>
         </div>
         <div class="tab-pane" id="tab_d">
-          <customer></customer>
+          <customer id="customerComponent" style="display:none;"></customer>
         </div>
         <div class="tab-pane" id="tab_e">
-          <expense></expense>
+          <expense id="expenseComponent" style="display:none;"></expense>
         </div>
         <div class="tab-pane" id="tab_f">
-          <order-history></order-history>
+          <order-history id="orderComponent" style="display:none;"></order-history>
         </div>
         <div class="tab-pane" id="tab_g">
-          <staff></staff>
+          <staff id="staffComponent" style="display:none;"></staff>
         </div>
       </div>
       <!-- tab content -->
