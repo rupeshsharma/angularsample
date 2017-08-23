@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('staff', {
     templateUrl: './component/staff/staff.template.html',
-    controller: ['$scope', '$rootScope', '$location', 'sessionService', 'userService',
-      function staffController($scope, $rootScope, $location, sessionService, userService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'userService',
+      function staffController($scope, $timeout, $rootScope, $location, sessionService, userService) {
 
          $scope.$on('staffInit', function (event) {
            $scope.staffInit();
