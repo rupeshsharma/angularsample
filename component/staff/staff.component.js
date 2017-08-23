@@ -10,6 +10,12 @@ angular.
         });
 
         $scope.staffInit = function () {
+           document.getElementById("loadingIndicator").style.display = 'block';
+           document.getElementById("staffComponent").style.display = 'none';
+           $timeout(function () {
+             document.getElementById("loadingIndicator").style.display = 'none';
+             document.getElementById("staffComponent").style.display = 'block';
+        }, 500);
           console.debug("Staff INIT");
         }
 
