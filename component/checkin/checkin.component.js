@@ -20,7 +20,7 @@ angular.
         $timeout(function(){
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("checkInComponent").style.display = 'block';
-        }, 1000);
+        }, 500);
 
         $scope.logOut = function(){
           sessionService.logOut();
