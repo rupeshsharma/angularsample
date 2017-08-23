@@ -1,3 +1,7 @@
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
 .form-signin
 {
     max-width: 330px;
