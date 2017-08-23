@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('expense', {
     templateUrl: './component/expense/expense.template.html',
-    controller: ['$scope', '$rootScope','$filter', '$location', 'sessionService', 'expenseService',
-      function expenseController($scope, $rootScope, $filter, $location, sessionService, expenseService) {
+    controller: ['$scope', '$timeout', '$rootScope','$filter', '$location', 'sessionService', 'expenseService',
+      function expenseController($scope, $timeout, $rootScope, $filter, $location, sessionService, expenseService) {
         $scope.$on('expenseInit', function (event) {
            $scope.expenseInit();
         });
