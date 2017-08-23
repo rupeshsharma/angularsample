@@ -10,6 +10,12 @@ angular.
         });
 
          $scope.customerInit = function () {
+           document.getElementById("loadingIndicator").style.display = 'block';
+           document.getElementById("customerComponent").style.display = 'none';
+           $timeout(function () {
+             document.getElementById("loadingIndicator").style.display = 'none';
+             document.getElementById("customerComponent").style.display = 'block';
+        }, 500);
           console.debug("Customer INIT");
         }
 
