@@ -10,6 +10,12 @@ angular.
         });
 
          $scope.orderInit = function () {
+           document.getElementById("loadingIndicator").style.display = 'block';
+           document.getElementById("orderComponent").style.display = 'none';
+           $timeout(function () {
+             document.getElementById("loadingIndicator").style.display = 'none';
+             document.getElementById("orderComponent").style.display = 'block';
+        }, 500);
           console.debug("Order INIT");
         }
 
