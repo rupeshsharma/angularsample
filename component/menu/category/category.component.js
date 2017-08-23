@@ -11,6 +11,12 @@ angular.
         });
 
         $scope.categoryInit = function () {
+          document.getElementById("loadingIndicator").style.display = 'block';
+          document.getElementById("categoryComponent").style.display = 'none';
+          $timeout(function () {
+            document.getElementById("loadingIndicator").style.display = 'none';
+          document.getElementById("categoryComponent").style.display = 'block';
+        }, 500);
           console.debug("Category INIT");
         }
 
