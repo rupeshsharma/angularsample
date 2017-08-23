@@ -4,6 +4,11 @@ angular.
     templateUrl: './component/dashboard/dashboard.template.html',
     controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
       function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService) {
+        $timeout(function(){
+          document.getElementById("loadingIndicator").style.display = 'none';
+          document.getElementById("dashBoardComponent").style.display = 'block';
+        }, 500);
+        
         $scope.onTabClick = function (tabClicked) {
           if(tabClicked == 'staffInit'){
             $rootScope.$broadcast('staffInit');
