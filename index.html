@@ -59,7 +59,7 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a>Change Password</a></li>
+                        <li><a data-toggle="modal" data-target="#changePassModal">Change Password</a></li>
                         <li><a ng-click="logOut()">Log Out</a></li>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@
                           <span class="caret"></span>
                         </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a>Change Password</a></li>
+                        <li><a data-toggle="modal" data-target="#changePassModal">Change Password</a></li>
                         <li><a ng-click="logOut()">Log Out</a></li>
                     </ul>
                 </div>
@@ -83,13 +83,32 @@
                           <span class="caret"></span>
                         </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a>Change Password</a></li>
+                        <li><a data-toggle="modal" data-target="#changePassModal">Change Password</a></li>
                     </ul>
                 </div>
             </form>
         </div>
     </nav>
     <!-- nav bar ends -->
+
+<!-- change password modal starts-->
+<div id="changePassModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        change password form here..
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- change password modal ends -->
 
     <!-- ng container -->
     <div class="appContainer" ng-view>
