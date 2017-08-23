@@ -9,6 +9,12 @@ angular.
         });
 
          $scope.expenseInit = function () {
+           document.getElementById("loadingIndicator").style.display = 'block';
+           document.getElementById("expenseComponent").style.display = 'none';
+           $timeout(function () {
+             document.getElementById("loadingIndicator").style.display = 'none';
+             document.getElementById("expenseComponent").style.display = 'block';
+        }, 500);
           console.debug("Expense INIT");
         }
 
