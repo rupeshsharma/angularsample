@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('item', {
     templateUrl: './component/menu/item/item.template.html',
-    controller: ['$scope', '$rootScope', '$location', 'sessionService', 'menuService',
-      function itemController($scope, $rootScope, $location, sessionService, menuService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'menuService',
+      function itemController($scope, $timeout, $rootScope, $location, sessionService, menuService) {
 
         $scope.$on('itemInit', function (event) {
            $scope.itemInit();
