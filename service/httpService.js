@@ -46,7 +46,45 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             deleteCategory: function deleteCategory(id) {
                 return $http({
                     method: "DELETE",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/category/"+id,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/category/" + id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            getItemsForCategory: function getItemsForCategory(id) {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/" + id + "/item",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            addItemInCategory: function addItemInCategory(request) {
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            updateItemInCategory: function updateItemInCategory(request){
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            deleteItem: function deleteItem(id){
+                return $http({
+                    method: "DELETE",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item/"+id,
                     headers: {
                         'Content-Type': 'application/json'
                     }

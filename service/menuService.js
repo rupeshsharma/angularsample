@@ -45,6 +45,34 @@ APP.factory('menuService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getItemsForCategory: function(id, callback){
+                httpService.getItemsForCategory(id).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
+            },
+            addItemInCategory: function(request, callback){
+                httpService.addItemInCategory(request).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
+            },
+            updateItemInCategory: function(request, callback){
+                httpService.updateItemInCategory(request).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
+            },
+            deleteItem: function(id, callback){
+                httpService.deleteItem(id).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }

@@ -4,68 +4,112 @@ angular.
     templateUrl: './component/menu/item/item.template.html',
     controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'menuService',
       function itemController($scope, $timeout, $rootScope, $location, sessionService, menuService) {
-
+        $scope.itemData = {};
         $scope.$on('itemInit', function (event) {
-           $scope.itemInit();
+          $scope.itemInit();
         });
 
-         $scope.itemInit = function () {
-           document.getElementById("loadingIndicator").style.display = 'block';
-           document.getElementById("itemComponent").style.display = 'none';
-           $timeout(function () {
-             document.getElementById("loadingIndicator").style.display = 'none';
-             document.getElementById("itemComponent").style.display = 'block';
-        }, 500);
-          console.debug("Item INIT");
+        $scope.itemInit = function () {
+          document.getElementById("loadingIndicator").style.display = 'block';
+          document.getElementById("itemComponent").style.display = 'none';
+          getAllCategories();
         }
 
-        setUpMenu(menuService);
-        $scope.itemList = [];
-        function setUpMenu(menuService) {
-          menuService.getMenu(resp => {
-            $scope.menu = resp;
-          })
+        function getAllCategories() {
+          menuService.getAllCategories(loadCategoryData);
         }
+
+        let loadCategoryData = function (data) {
+          $scope.categoryList = data;
+          closeLoadingIndicator();
+        }
+
+        function closeLoadingIndicator() {
+          document.getElementById("loadingIndicator").style.display = 'none';
+          document.getElementById("itemComponent").style.display = 'block';
+        }
+
+
+        $scope.itemList = [];
+
+        $('.close').click(function() {
+          $scope.itemData = {};
+        });
+
 
         $scope.displayItemsForCategory = function (categorySelected) {
           if ($scope.categorySelected && $scope.categorySelected != '') {
-            $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
+            document.getElementById("loadingIndicator").style.display = 'block';
+            document.getElementById("itemComponent").style.display = 'none';
+            menuService.getItemsForCategory(categorySelected.id, function (data) {
+              $scope.itemList = data;
+              closeLoadingIndicator();
+            });
           } else {
             $scope.itemList = [];
           }
         }
 
         $scope.addItem = function () {
-          if ($scope.newItemName != '' && $scope.newItemPrice != '') {
-            var newItem = {
-              "title": $scope.newItemName,
-              "price": $scope.newItemPrice
-            }
-            $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items.push(newItem);
-            $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
-            $scope.newItemName = '';
-            $scope.newItemPrice = '';
+          if ($scope.itemData.title != '' && $scope.itemData.price != '') {
+            document.getElementById("loadingIndicator").style.display = 'block';
+            document.getElementById("itemComponent").style.display = 'none';
+            $scope.itemData.category = $scope.categorySelected.id;
+            menuService.addItemInCategory(
+              $scope.itemData, function (data) {
+                $scope.itemList.push(data);
+                $scope.itemData = {};
+                $("#newItemModal .close").click()
+                closeLoadingIndicator();
+              }
+            );
+
           }
-          $("#myModal .close").click()
+
         }
 
         $scope.updateItem = function () {
-          if ($scope.newItemName != '' && $scope.newItemPrice != '') {
-            var newItem = {
-              "title": $scope.newItemName,
-              "price": $scope.newItemPrice
-            }
-            $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items.push(newItem);
-            $scope.itemList = $scope.menu[$scope.menu.indexOf($scope.categorySelected)].items;
-            $scope.newItemName = '';
-            $scope.newItemPrice = '';
+          if ($scope.itemData.title != '' && $scope.itemData.price != '') {
+            document.getElementById("loadingIndicator").style.display = 'block';
+            document.getElementById("itemComponent").style.display = 'none';
+            menuService.updateItemInCategory(
+              $scope.itemData, function (data) {
+                $scope.selectedItem.title = data.title;
+                $scope.selectedItem.price = data.price;
+                $scope.selectedItem.description = data.description;
+                $scope.selectedItem.modifiedDate = data.modifiedDate;
+                $scope.itemData = {};
+                $("#updateItemModal .close").click()
+                closeLoadingIndicator();
+              }
+            );
           }
-          $("#myModal .close").click()
+
         }
 
-        $scope.updateItemValue = function (item) {
-          $scope.updatedItemName = item.title;
-          $scope.updatedItemPrice = item.price;
+        $scope.showUpdateItemModal = function (item) {
+          $scope.selectedItem = item;
+          $scope.itemData.title = item.title;
+          $scope.itemData.price = item.price;
+          $scope.itemData.description = item.description;
+          $scope.itemData.id = item.id;
+          $scope.itemData.category = item.category;
+        }
+
+        $scope.showDeleteItemModal = function (item) {
+          $scope.selectedItem = item;
+        }
+
+        $scope.deleteItem = function () {
+          document.getElementById("loadingIndicator").style.display = 'block';
+          document.getElementById("itemComponent").style.display = 'none';
+
+          menuService.deleteItem($scope.selectedItem.id, function (data) {
+            var index = $scope.itemList.indexOf($scope.selectedItem);
+            $scope.itemList.splice(index, 1);
+            $("#deleteItemModal .close").click()
+            closeLoadingIndicator();
+          });
         }
 
         $scope.chart = new CanvasJS.Chart("perItemChart", {

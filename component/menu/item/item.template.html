@@ -2,11 +2,11 @@
   <form class="form-inline">
     <div class="form-group">
       <label for="sel1">Category :</label>
-      <select ng-model="categorySelected" ng-change="displayItemsForCategory(categorySelected)" data-ng-options="cat as cat.title for cat in menu"
+      <select ng-model="categorySelected" ng-change="displayItemsForCategory(categorySelected)" data-ng-options="cat as cat.title for cat in categoryList"
         class="form-control" id="sel1">
         <option value="">Please Select</option>
     </select> &nbsp;
-      <button ng-disabled="!categorySelected" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Item</button>
+      <button ng-disabled="!categorySelected" data-toggle="modal" data-target="#newItemModal" class="btn btn-primary">Add Item</button>
     </div>
     <button ng-click="showWholeItemGraph()" data-toggle="modal" data-target="#wholeItemModal" class="pull-right btn btn-primary">View Sales Graph</button>
   </form>
@@ -20,6 +20,7 @@
       <tr>
         <th>Item Name</th>
         <th>Item Price</th>
+        <th>Item Description</th>
         <th>Last Modified Date</th>
         <th>Created Date</th>
         <th class="">Action</th>
@@ -29,13 +30,14 @@
       <tr ng-repeat="item in itemList">
         <td class="text-left"><a ng-click="viewitemDetail(item)" data-toggle="modal" data-target="#itemDetailModal">{{item.title}}</a></td>
         <td class="text-left">{{item.price}}</td>
-        <td class="text-left">12/07/2017</td>
-        <td class="text-left">12/07/2017</td>
+        <td class="text-left">{{item.description}}</td>
+        <td class="text-left">{{item.modifiedDate || "Not Yet Modified"}}</td>
+        <td class="text-left">{{item.createdDate}}</td>
         <td class="text-left">
-          <a ng-click="updateItemValue(item)" data-toggle="modal" data-target="#updateItemModal">
+          <a ng-click="showUpdateItemModal(item)" data-toggle="modal" data-target="#updateItemModal">
             <span class="glyphicon glyphicon-edit"></span>
           </a>&nbsp;
-          <a>
+          <a ng-click="showDeleteItemModal(item)" data-toggle="modal" data-target="#deleteItemModal">
             <span class="glyphicon glyphicon-trash"></span>
           </a>
         </td>
@@ -44,7 +46,7 @@
   </table>
 </div>
 
-<div id="myModal" class="modal fade" role="dialog">
+<div id="newItemModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -64,13 +66,19 @@
           <div class="form-group">
             <label class="control-label col-sm-4" for="pwd">Item name : </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="itmnme" ng-model="newItemName" placeholder="Enter Item Name">
+              <input type="text" class="form-control" id="itmnme" ng-model="itemData.title" placeholder="Enter Item Name">
             </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-sm-4" for="pwd">Item Description : </label>
+              <div class="col-sm-6">
+                  <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
+              </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-4" for="pwd">Item Price : </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="itmprc" ng-model="newItemPrice" placeholder="Enter Item Price">
+              <input type="number" class="form-control" id="itmprc" ng-model="itemData.price" placeholder="Enter Item Price">
             </div>
           </div>
           <div class="form-group">
@@ -105,18 +113,24 @@
           <div class="form-group">
             <label class="control-label col-sm-4" for="pwd">Item name : </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="itmnme" ng-model="updatedItemName" placeholder="Enter Item Name">
+              <input type="text" class="form-control" id="itmnme" ng-model="itemData.title" placeholder="Enter Item Name">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="pwd">Item Price : </label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="itmprc" ng-model="updatedItemPrice" placeholder="Enter Item Price">
-            </div>
+              <label class="control-label col-sm-4" for="pwd">Item Description : </label>
+              <div class="col-sm-6">
+                  <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-sm-4" for="pwd">Item Price : </label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" id="itmprc" ng-model="itemData.price" placeholder="Enter Item Price">
+              </div>
           </div>
           <div class="form-group">
             <div class="text-center col-sm-12">
-              <button ng-click="addItem()" class="btn btn-primary">Save</button>
+              <button ng-click="updateItem()" class="btn btn-primary">Save</button>
             </div>
           </div>
         </form>
@@ -125,6 +139,32 @@
 
   </div>
 </div>
+
+<div id="deleteItemModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="text-center modal-title">Delete Item</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal text-center">            
+            <div class="form-group">
+                <span>Do you want to delete <strong>{{selectedItem.title}}</strong> item under category <strong>{{categorySelected.title}}</strong> ?</span>
+            </div>
+            <div class="form-group">
+              <div class="text-center col-sm-12">
+                <button ng-click="deleteItem()" class="btn btn-primary">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
 
 <div id="itemDetailModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
