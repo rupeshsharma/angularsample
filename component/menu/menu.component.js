@@ -2,13 +2,13 @@ angular.
   module('sample').
   component('menuCart', {
     templateUrl: './component/menu/menu.template.html',
-    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService',
-      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService) {
-        $timeout(function(){
+    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'userService',
+      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, userService) {
+        $timeout(function () {
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("menuComponent").style.display = 'block';
         }, 500);
-        
+
         $rootScope.viewType = 'menu';
         $scope.discount = 0;
         getUserData(sessionService, $timeout);
@@ -37,8 +37,8 @@ angular.
           $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
-          delete $rootScope.mobile;
-          delete $rootScope.name;
+          delete $rootScope.customerMobile;
+          delete $rootScope.customerName;
           delete $rootScope.isAnonymousCustomer;
 
         }
@@ -47,18 +47,32 @@ angular.
           console.log('menu wala');
         }
 
+        $rootScope.updateCustomer = function (customerName, customerMobile) {
+          document.getElementById("menuCustomerDataDiv").style.display = 'none';
+          document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'block';
+          var userData = sessionService.getUserData()
+          userService.updateCustomer(
+            {
+              "id": userData.id,
+              "name": customerName,
+              "mobile": customerMobile
+            }, function (data) {
+              sessionService.setUserData(data);
+              document.getElementById("menuCustomerDataDiv").style.display = 'block';
+              document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'none';
+            });
+        }
+
         function setUpMenu(menuService) {
           menuService.getMenu(resp => {
             $scope.menu = resp;
           })
         }
 
-        function getUserData(sessionService) {
-          $timeout(function () {
+        function getUserData() {
             var userData = sessionService.getUserData();
-            $rootScope.mobile = userData.mobile;
-            $rootScope.name = userData.name;
-          }, 500);
+            $rootScope.customerMobile = userData.mobile;
+            $rootScope.customerName = userData.name;
         }
 
         $scope.addToCart = function (item) {

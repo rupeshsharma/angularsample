@@ -1,3 +1,6 @@
+.onTop {
+   z-index: 999; 
+}
 .disabledDiv {
     pointer-events: none;
     opacity: 0.4;

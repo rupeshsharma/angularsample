@@ -3,19 +3,19 @@
     <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px"></span>
     <div id="menuComponent" style="display:none;" class="row">
       <ul class="nav nav-tabs" id="myTab">
-        <li ng-repeat="cat in menu" class=""><a data-target="#{{cat.id}}" data-toggle="tab">{{cat.title}}</a></li>
+        <li ng-repeat="cat in menu.categories" class=""><a data-target="#{{cat.id+'catdiv'}}" data-toggle="tab">{{cat.title}}</a></li>
       </ul>
 
       <div class="tab-content">
         </br>
-          <button class="btn btn-primary btn-sm pull-left" data-toggle="modal" data-target="#myModal">
+        <button class="btn btn-primary btn-sm pull-left" data-toggle="modal" data-target="#myModal">
               <span class="glyphicon glyphicon-shopping-cart"></span> View Cart <span ng-if="cart.quantity != 0" class="badge">{{cart.quantity}}</span>
           </button>
         <div class="form-group pull-right">
-        
+
           <input class="form-control" placeholder="Search" ng-model="searchKeyword" />
         </div>
-        <div ng-repeat="cat in menu" class="tab-pane" id="{{cat.id}}">
+        <div ng-repeat="cat in menu.categories" class="tab-pane" id="{{cat.id+'catdiv'}}">
           <table class="table table-striped table-hover">
             <thead>
               <tr>
@@ -27,9 +27,11 @@
             </thead>
             <tbody>
               <tr ng-repeat="itm in cat.items | filter: searchKeyword">
-                <td class="text-left col-sm-3"><span ng-if="itm.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
-                <span ng-if="itm.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span> {{itm.title}}</td>
-                <td class="text-left col-sm-6">Some description here for {{itm.title}}... </td>
+                <td class="text-left col-sm-3">
+                  <!-- <span ng-if="itm.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span> -->
+                  <!-- <span ng-if="itm.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>  -->
+                  {{itm.title}}</td>
+                <td class="text-left col-sm-6">{{itm.description}}</td>
                 <td class="text-right col-sm-1">
                   {{itm.price}}
                 </td>

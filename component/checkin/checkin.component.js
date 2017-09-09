@@ -7,14 +7,24 @@ angular.
         $rootScope.viewType = 'checkin';
         $scope.checkIn = function(isAnonymous){
           if(!isAnonymous){
-            sessionService.isAnonymousCustomer(false);
-            userService.getUserByMobile($scope.mobile, resp => {
+              document.getElementById("loadingIndicator").style.display = 'block';
+              document.getElementById("checkInComponent").style.display = 'none';
+              sessionService.isAnonymousCustomer(false);
+              userService.getCustomerByMobile($scope.customerMobile, resp => {
               sessionService.setUserData(resp);
+              closeLoadingIndicator();
+              $location.path('/menu');
             });
           }else{
-            sessionService.setAnonymousCustomer(true);
+              sessionService.setAnonymousCustomer(true);
+              $location.path('/menu');
           }
-          $location.path('/menu');
+          
+        }
+
+        function closeLoadingIndicator() {
+          document.getElementById("loadingIndicator").style.display = 'none';
+          document.getElementById("checkInComponent").style.display = 'block';
         }
         
         $scope.logOut = function(){

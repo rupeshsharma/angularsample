@@ -5,11 +5,33 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
     function ($resource, $http, $timeout) {
 
         return {
-            getUserByMobile: function getUserByMobile(mobile) {
-                return $http.get('./stubs/user.json');
+            getCustomerByMobile: function getCustomerByMobile(mobile) {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/getOrCreate/" + mobile,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            updateCustomer: function updateCustomer(request) {
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/update",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             getMenu: function getMenu() {
-                return $http.get('./stubs/menu.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             getAllExpenses: function getAllExpenses() {
                 return $http.get('./stubs/expense.json');
@@ -71,7 +93,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                     }
                 });
             },
-            updateItemInCategory: function updateItemInCategory(request){
+            updateItemInCategory: function updateItemInCategory(request) {
                 return $http({
                     method: "PUT",
                     url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item",
@@ -81,10 +103,10 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                     }
                 });
             },
-            deleteItem: function deleteItem(id){
+            deleteItem: function deleteItem(id) {
                 return $http({
                     method: "DELETE",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item/"+id,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/item/" + id,
                     headers: {
                         'Content-Type': 'application/json'
                     }

@@ -1,5 +1,5 @@
 <div class="centered container text-center">
-	
+	<span id="loadingIndicator" class="fa fa-spinner fa-spin centered onTop" style="color:#337ab7; font-size:34px; display: none;"></span>
 	<div id="checkInComponent" id="login-overlay" class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -9,10 +9,10 @@
 							<form>
 								<div class="form-group">
 									<label for="mobile" class="control-label">Customer's Mobile</label>
-									<input type="text" class="form-control" name="mobile" title="Please enter mobile no." placeholder="Mobile">
+									<input type="text" ng-model="customerMobile" class="form-control" name="mobile" title="Please enter mobile no." placeholder="Mobile">
 									<span class="help-block"></span>
 								</div>
-								<button ng-click="checkIn(false)" class="btn btn-primary btn-block">Serve</button>
+								<button ng-disabled="customerMobile == '' || customerMobile == undefined" ng-click="checkIn(false)" class="btn btn-primary btn-block">Serve</button>
 								</br>
 								</br>
 								-OR-
