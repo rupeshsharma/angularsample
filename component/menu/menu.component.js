@@ -180,15 +180,19 @@ angular.
           // console.log(JSON.stringify(request))
 
           menuService.buildOrder(request, function (data) {
-            $scope.orderNumber = data;
-            $scope.customerName = $rootScope.customerName;
-            console.log($scope.orderNumber + " - " + $scope.customerName)
+            sessionService.setOrderDetail({
+              "orderNumber": data,
+              "customerName": $rootScope.customerName
+            });
+
             //printing invoice
-            document.getElementById("printInvoice").click();
             $("#myModal .close").click();
             $timeout(function () {
+              document.getElementById("printInvoice").click();
+            }, 50);
+            $timeout(function () {
               $rootScope.clearCustomerSession();
-            }, 500);
+            }, 100);
           });
 
         }
@@ -203,6 +207,10 @@ angular.
 
         $scope.getCurrentDate = function () {
           return (new Date());
+        }
+
+        $scope.getOrderDetail = function () {
+          return sessionService.getOrderDetail();
         }
       }
     ]

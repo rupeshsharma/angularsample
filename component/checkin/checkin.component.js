@@ -14,6 +14,7 @@ angular.
               userService.getCustomerByMobile($scope.customerMobile, resp => {
               sessionService.setCustomerData(resp);
               closeLoadingIndicator();
+              sessionService.removeOrderDetail();
               $location.path('/menu');
             });
           }else{

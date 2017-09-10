@@ -179,17 +179,17 @@
         <div class="invoice-title">
           <h3 class="text-center">Castle Delight</h3>
           <h4 class="text-center">Invoice</h4>
-          <h5 class="text-center">Order # {{orderNumber}}</h5>
+          <h5 class="text-center">Order # {{getOrderDetail().orderNumber}}</h5>
         </div>
         <hr>
         <div class="row">
           <div class="col-xs-6">
             <address>
               <strong>Billed To:</strong>
-              <div ng-show="customerName != undefined && customerName != ''">
-                {{customerName}}
+              <div ng-show="getOrderDetail().customerName != undefined && getOrderDetail().customerName != ''">
+               {{getOrderDetail().customerName}}
               </div>
-              <div ng-show="customerName == undefined || customerName == ''"> Guest
+              <div ng-show="getOrderDetail().customerName == undefined || getOrderDetail().customerName == ''"> Guest
               </div>
             </address>
           </div>
