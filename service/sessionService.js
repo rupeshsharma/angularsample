@@ -3,24 +3,27 @@ APP.factory('sessionService', ['$sessionStorage',
     function($sessionStorage) {
 
         return {
-            getUserData: getUserData,
-            setUserData: setUserData,
+            getCustomerData: getCustomerData,
+            setCustomerData: setCustomerData,
+            removeCustomerData: removeCustomerData,
             clearUserSession : clearUserSession,
             setAnonymousCustomer : setAnonymousCustomer,
-            isAnonymousCustomer : isAnonymousCustomer
+            isAnonymousCustomer : isAnonymousCustomer,
+            setMasterData : setMasterData,
+            getMasterData : getMasterData
         };
 
-        function getUserData() {
-            if($sessionStorage.userData){
-                return $sessionStorage.userData;
-            }else{
-                var userData = {}
-                return userData;
-            }
+        function getCustomerData() {
+            return $sessionStorage.customerData;
         }
 
-        function setUserData(value) {
-            $sessionStorage.userData = value
+        function setCustomerData(value) {
+            $sessionStorage.customerData = value
+        }
+
+        function removeCustomerData(){
+            delete $sessionStorage.customerData;
+            delete $sessionStorage.isAnonymousCustomer
         }
 
         function clearUserSession() {
@@ -33,6 +36,14 @@ APP.factory('sessionService', ['$sessionStorage',
 
         function isAnonymousCustomer(){
             return $sessionStorage.isAnonymousCustomer;
+        }
+
+        function setMasterData(data){
+            $sessionStorage.masterData = data;
+        }
+
+        function getMasterData(){
+            return $sessionStorage.masterData;
         }
 }
 

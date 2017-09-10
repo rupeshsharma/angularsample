@@ -16,7 +16,11 @@ APP.factory('menuService', ['httpService',
                 );
             },
             buildOrder: function buildOrder(request, callback) {
-                callback();
+                httpService.createOrder(request).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             },
             getAllCategories: function(callback){
                 httpService.getAllCategories().then(

@@ -75,6 +75,7 @@ angular.
             menuService.updateItemInCategory(
               $scope.itemData, function (data) {
                 $scope.selectedItem.title = data.title;
+                $scope.selectedItem.type = data.type;
                 $scope.selectedItem.price = data.price;
                 $scope.selectedItem.description = data.description;
                 $scope.selectedItem.modifiedDate = data.modifiedDate;
@@ -90,6 +91,7 @@ angular.
         $scope.showUpdateItemModal = function (item) {
           $scope.selectedItem = item;
           $scope.itemData.title = item.title;
+          $scope.itemData.type = item.type
           $scope.itemData.price = item.price;
           $scope.itemData.description = item.description;
           $scope.itemData.id = item.id;

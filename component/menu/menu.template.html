@@ -28,9 +28,9 @@
             <tbody>
               <tr ng-repeat="itm in cat.items | filter: searchKeyword">
                 <td class="text-left col-sm-3">
-                  <!-- <span ng-if="itm.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span> -->
-                  <!-- <span ng-if="itm.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>  -->
-                  {{itm.title}}</td>
+                  <span ng-if="itm.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
+                  <span ng-if="itm.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span> {{itm.title}}
+                </td>
                 <td class="text-left col-sm-6">{{itm.description}}</td>
                 <td class="text-right col-sm-1">
                   {{itm.price}}
@@ -63,11 +63,11 @@
           <form ng-if="cart.quantity != 0" class="form-inline text-center">
             <div class="form-group">
               <label>Payment Type :</label>
-              <select class="form-control" ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in paymentTypes"><option disabled="disabled" value="">Please select</option></select>
+              <select class="form-control" ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in masterData.paymentType"><option disabled="disabled" value="">Please select</option></select>
             </div>
             <div class="form-group">
               <label>Dining Mode :</label>
-              <select class="form-control" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in diningModes"><option disabled="disabled" value="">Please select</option></select>
+              <select class="form-control" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in masterData.diningMode"><option disabled="disabled" value="">Please select</option></select>
             </div>
             <div class="form-group">
               <label>Discount :</label>
@@ -106,7 +106,7 @@
                       <!-- foreach ($order->lineItems as $line) or some such thing here -->
                       <tr ng-repeat="item in cart.items">
                         <td class="col-sm-4"><span ng-if="item.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
-                          <span ng-if="item.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>{{item.title}}</td>
+                          <span ng-if="item.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>                          {{item.title}}</td>
                         <td class="col-sm-2 text-center"> {{item.price}}</td>
                         <td class="col-sm-2 text-center"><button ng-click="updateCartItem(item,0)" ng-disabled="item.quantity == 1" class="btn btn-danger btn-xs">
                           <span class="glyphicon glyphicon-minus"></span>
@@ -177,18 +177,19 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="invoice-title">
-          <h3 class="text-center">Sample</h3>
+          <h3 class="text-center">Castle Delight</h3>
           <h4 class="text-center">Invoice</h4>
-          <h5 class="text-center">Order # 12345</h5>
+          <h5 class="text-center">Order # {{orderNumber}}</h5>
         </div>
         <hr>
         <div class="row">
           <div class="col-xs-6">
             <address>
               <strong>Billed To:</strong>
-              <div ng-show="name != undefined && name != ''"> {{name}}
+              <div ng-show="customerName != undefined && customerName != ''">
+                {{customerName}}
               </div>
-              <div ng-show="name == undefined || name == ''"> Guest
+              <div ng-show="customerName == undefined || customerName == ''"> Guest
               </div>
             </address>
           </div>

@@ -111,6 +111,25 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                         'Content-Type': 'application/json'
                     }
                 });
+            },
+            getMasterData: function getMasterData() {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/master",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
+            createOrder: function createOrder(request) {
+                return $http({
+                    method: "POST",
+                    data: request,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             }
         }
 

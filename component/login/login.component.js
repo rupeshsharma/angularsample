@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('logIn', {
     templateUrl: './component/login/login.template.html',
-    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'userService',
-      function loginController($scope, $timeout, $rootScope, $location, sessionService, userService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'userService', 'masterService',
+      function loginController($scope, $timeout, $rootScope, $location, sessionService, userService, masterService) {
 
         $rootScope.logOut = function () {
           for (var prop in $rootScope) {
@@ -15,12 +15,14 @@ angular.
           $location.path('/');
         }
 
-        $scope.doLogin = function() {
+        $scope.doLogin = function () {
           $("#loginComponent").addClass("disabledDiv");
           document.getElementById("loadingIndicator").style.display = 'block';
-          $timeout(function () {
+
+          masterService.getMasterData(function (data) {
+            sessionService.setMasterData(data.masterData);
             $location.path('/checkin');
-          }, 1000);
+          });
         }
       }
     ]

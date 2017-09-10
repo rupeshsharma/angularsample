@@ -11,17 +11,11 @@ angular.
 
         $rootScope.viewType = 'menu';
         $scope.discount = 0;
-        getUserData(sessionService, $timeout);
+        getCustomerData();
         $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
 
-        $scope.paymentTypes = [
-          "Cash",
-          "Card"
-        ];
-        $scope.diningModes = [
-          "Take Away",
-          "Dine In"
-        ];
+        $scope.masterData = sessionService.getMasterData();
+
         setUpMenu(menuService);
         $scope.cart = {
           "quantity": 0,
@@ -32,8 +26,8 @@ angular.
           "finalPrice": 0,
           "afterDiscount": 0
         };
-        $rootScope.clearSession = function () {
-          sessionService.clearUserSession();
+        $rootScope.clearCustomerSession = function () {
+          sessionService.removeCustomerData();
           $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
@@ -50,14 +44,14 @@ angular.
         $rootScope.updateCustomer = function (customerName, customerMobile) {
           document.getElementById("menuCustomerDataDiv").style.display = 'none';
           document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'block';
-          var userData = sessionService.getUserData()
+          var userData = sessionService.getCustomerData()
           userService.updateCustomer(
             {
               "id": userData.id,
               "name": customerName,
               "mobile": customerMobile
             }, function (data) {
-              sessionService.setUserData(data);
+              sessionService.setCustomerData(data);
               document.getElementById("menuCustomerDataDiv").style.display = 'block';
               document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'none';
             });
@@ -69,10 +63,10 @@ angular.
           })
         }
 
-        function getUserData() {
-            var userData = sessionService.getUserData();
-            $rootScope.customerMobile = userData.mobile;
-            $rootScope.customerName = userData.name;
+        function getCustomerData() {
+          var userData = sessionService.getCustomerData();
+          $rootScope.customerMobile = userData.mobile;
+          $rootScope.customerName = userData.name;
         }
 
         $scope.addToCart = function (item) {
@@ -167,7 +161,7 @@ angular.
 
           for (index = 0; index < $scope.cart.items.length; ++index) {
             var orderDetail = {
-              "item": $scope.cart.items[index],
+              "item": { "id": $scope.cart.items[index].id },
               "quantity": $scope.cart.items[index].quantity,
               "unitPrice": $scope.cart.items[index].price
             }
@@ -175,17 +169,28 @@ angular.
           }
 
           var request = {
-            "amount": $scope.cart.finalPrice,
-            "customer": sessionService.getUserData(),
+            "amount": $scope.cart.total,
+            "customer": { "id": sessionService.getCustomerData().id },
+            "paymentType": $scope.paymentType,
+            "diningMode": $scope.diningMode,
+            "discount": $scope.discount,
             "orderDetail": orderDetailList
           }
-          menuService.buildOrder(request, function () {
-            $rootScope.clearSession();
-          });
-          $("#myModal .close").click();
 
-          //printing invoice
-          document.getElementById("printInvoice").click();
+          // console.log(JSON.stringify(request))
+
+          menuService.buildOrder(request, function (data) {
+            $scope.orderNumber = data;
+            $scope.customerName = $rootScope.customerName;
+            console.log($scope.orderNumber + " - " + $scope.customerName)
+            //printing invoice
+            document.getElementById("printInvoice").click();
+            $("#myModal .close").click();
+            $timeout(function () {
+              $rootScope.clearCustomerSession();
+            }, 500);
+          });
+
         }
 
         $scope.ptChange = function (paymentType) {
