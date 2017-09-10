@@ -4,10 +4,11 @@ angular.
     templateUrl: './component/menu/menu.template.html',
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'userService',
       function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, userService) {
-        $timeout(function () {
+
+        function closeLoadingIndicator(){
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("menuComponent").style.display = 'block';
-        }, 500);
+        }
 
         $rootScope.viewType = 'menu';
         $scope.discount = 0;
@@ -58,8 +59,11 @@ angular.
         }
 
         function setUpMenu(menuService) {
+          document.getElementById("loadingIndicator").style.display = 'block';
+          document.getElementById("menuComponent").style.display = 'none';
           menuService.getMenu(resp => {
             $scope.menu = resp;
+            closeLoadingIndicator();
           })
         }
 
