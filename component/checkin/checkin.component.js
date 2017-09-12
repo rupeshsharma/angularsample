@@ -11,7 +11,7 @@ angular.
               document.getElementById("loadingIndicator").style.display = 'block';
               document.getElementById("checkInComponent").style.display = 'none';
               sessionService.isAnonymousCustomer(false);
-              userService.getCustomerByMobile($scope.customerMobile, resp => {
+              customerService.getCustomerByMobile($scope.customerMobile, resp => {
               sessionService.setCustomerData(resp);
               closeLoadingIndicator();
               sessionService.removeOrderDetail();
