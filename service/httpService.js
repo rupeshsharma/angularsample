@@ -157,6 +157,16 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             searchOrderHistoryInRange: function searchOrderHistoryInRange(fromOrderDate, toOrderDate) {
                 return $http.get('./stubs/orderHistory.json');
+            },
+            getReviewByDate: function getReviewByDate(reviewDate){
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/review/"+reviewDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
             }
         }
 

@@ -2,25 +2,31 @@ angular.
   module('sample').
   component('dashBoard', {
     templateUrl: './component/dashboard/dashboard.template.html',
-    controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService',
-      function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService) {
-        $timeout(function(){
+    controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService', 'dashboardService',
+      function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService, dashboardService) {
+
+        function closeLoadingIndicator() {
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("dashBoardComponent").style.display = 'block';
-        }, 500);
-        
+        }
+        $scope.reviewDate = $filter('date')(new Date(), "dd-MM-yyyy");
+        dashboardService.getReviewByDate($scope.reviewDate, data => {
+          $scope.dailyReviewData = data;
+          closeLoadingIndicator();
+        })
+
         $scope.onTabClick = function (tabClicked) {
-          if(tabClicked == 'staffInit'){
+          if (tabClicked == 'staffInit') {
             $rootScope.$broadcast('staffInit');
-          }else if(tabClicked == 'orderInit'){
+          } else if (tabClicked == 'orderInit') {
             $rootScope.$broadcast('orderInit');
-          }else if(tabClicked == 'expenseInit'){
+          } else if (tabClicked == 'expenseInit') {
             $rootScope.$broadcast('expenseInit');
-          }else if(tabClicked == 'customerInit'){
+          } else if (tabClicked == 'customerInit') {
             $rootScope.$broadcast('customerInit');
-          }else if(tabClicked == 'itemInit'){
+          } else if (tabClicked == 'itemInit') {
             $rootScope.$broadcast('itemInit');
-          }else if(tabClicked == 'categoryInit'){
+          } else if (tabClicked == 'categoryInit') {
             $scope.$broadcast('categoryInit');
           }
         }
@@ -135,7 +141,7 @@ angular.
 
         $scope.updateChart('w');
 
-        $scope.reviewDate = $filter('date')(new Date(), "dd-MM-yyyy");
+        
         $("#reviewDate").datepicker({
           changeMonth: true,
           changeYear: true,

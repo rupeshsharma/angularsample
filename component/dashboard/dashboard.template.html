@@ -26,29 +26,20 @@
                 </div>
               </form>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
               </span>
-              <div style="color:#73879C;" class="count">25</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
+            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
               <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
               </span>
-              <div style="color:#73879C;" class="count">123</div>
-              <span class="count_bottom"><i class="green"><i ></i>3% </i> From last Week</span>
+              <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
+            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
               <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
               </span>
-              <div style="color:#73879C;" class="count green">2500 <i class="fa fa-inr"></i></div>
-              <span class="count_bottom"><i class="green"><i ></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count seperator">
-              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-scissors"></span> Total Expenses</strong>
-              </span>
-              <div style="color:#73879C;" class="count">1500 <i class="fa fa-inr"></i></div>
-              <span class="count_bottom"><i class="red"><i ></i>12% </i> From last Week</span>
+              <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
             </div>
           </div>
           </br>
