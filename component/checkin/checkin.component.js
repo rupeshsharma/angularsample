@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('checkIn', {
     templateUrl: './component/checkin/checkin.template.html',
-    controller: ['$scope', '$timeout', '$rootScope', '$location','sessionService','userService', 'masterService',
-      function checkInController($scope, $timeout, $rootScope, $location, sessionService, userService, masterService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location','sessionService','customerService', 'masterService',
+      function checkInController($scope, $timeout, $rootScope, $location, sessionService, customerService, masterService) {
         $rootScope.viewType = 'checkin';
 
         $scope.checkIn = function(isAnonymous){
