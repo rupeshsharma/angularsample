@@ -140,8 +140,11 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             getTodayOrderList: function getTodayOrderList() {
                 return $http.get('./stubs/orderHistory.json');
             },
-            getOrderDetailById: function getOrderDetailById(){
+            getOrderDetailById: function getOrderDetailById() {
                 return $http.get('./stubs/orderDetail.json');
+            },
+            searchOrderHistoryInRange: function searchOrderHistoryInRange(fromOrderDate, toOrderDate) {
+                return $http.get('./stubs/orderHistory.json');
             }
         }
 
