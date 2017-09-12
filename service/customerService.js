@@ -1,6 +1,6 @@
 var APP = angular.module('sample')
 
-APP.factory('userService', ['httpService',
+APP.factory('customerService', ['httpService',
     function (httpService) {
 
         return {
