@@ -33,7 +33,13 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                     }
                 });
             },
-            getAllExpenses: function getAllExpenses() {
+            getTodaysExpenses: function getTodaysExpenses() {
+                return $http.get('./stubs/expense.json');
+            },
+            addOrUpdateExpense: function (request) {
+                return { "data": request };
+            },
+            searchExpensesInRange: function searchExpensesInRange(from, to) {
                 return $http.get('./stubs/expense.json');
             },
             getAllCategories: function getAllCategories() {
