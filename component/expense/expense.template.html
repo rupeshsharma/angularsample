@@ -1,17 +1,19 @@
 <div class="row text-center">
     <form class="form-inline">
+        <button ng-click="getTodaysExpenses()" class="form-control btn btn-primary btn-sm pull-left">Today's</button>
         <div class="form-group has-feedback">
             <label>From : </label>
-            <input type="text" id="fromExpenseDate" class="form-control">
+            <input type="text" ng-model="searchExpenseFrom" id="fromExpenseDate" class="form-control">
             <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
         </div>
         <div class="form-group has-feedback">
             <label></span> To : </label>
-            <input type="text" id="toExpenseDate" class="form-control">
+            <input type="text" ng-model="searchExpenseTo" id="toExpenseDate" class="form-control">
             <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
         </div>
-        <button class="form-control btn btn-primary btn-sm">Search</button>
-        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myMModal">Add Expense</button>
+        <button ng-click="searchExpenses()" class="form-control btn btn-primary btn-sm">Search</button>
+        <button class="form-control btn btn-primary pull-right" ng-click="showAddEditExpenseModal('',false)" data-toggle="modal"
+            data-target="#addEditExpenseModal">Add Expense</button>
     </form>
 </div>
 </br>
@@ -21,86 +23,88 @@
     <table ng-switch-default class="table table-striped">
         <thead>
             <tr>
+                <th>Type</th>
                 <th>Category</th>
-                <th>Description</th>
                 <th>Amount</th>
                 <th>Payment Mode</th>
+                <th>Modified</th>
                 <th>Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="ex in expenses">
+                <td>{{ex.type}}</td>
                 <td>{{ex.category}}</td>
-                <td>{{ex.description}}</td>
-                <td>{{ex.cost}}</td>
+                <td>{{ex.amount}}</td>
                 <td>{{ex.paymentMode}}</td>
+                <td>Not Yet Modified</td>
                 <td>{{ex.dateOfExpense}}</td>
+                <td>
+                    <a ng-click="showAddEditExpenseModal(ex,true)" data-toggle="modal" data-target="#addEditExpenseModal">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <!-- Modal -->
-<div id="myMModal" class="modal fade" role="dialog">
+<div id="addEditExpenseModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Add Expense</h4>
+                <h4 class="modal-title text-center">{{expenseModalTitle}}</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-3">Type:</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="sel1">
-                                <option>Start Up</option>
-                                <option>Running</option>
+                            <select ng-model="expenseData.type" data-ng-options="expenseType as expenseType for expenseType in masterData.expenseType" class="form-control" id="sel1"> 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Category:</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="sel1">
-                                <option>Personal</option>
-                                <option>Official</option>
+                            <select ng-model="expenseData.category" data-ng-options="expenseCategory as expenseCategory for expenseCategory in masterData.expenseCategory" class="form-control" id="sel1">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Description:</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                            <textarea ng-model="expenseData.description" class="form-control" rows="5" id="comment"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Amount:</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control"></input>
+                            <input ng-model="expenseData.amount" type="text" class="form-control"></input>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="text-left control-label col-sm-3">Payment Mode:</label>
                         <div class="col-sm-9">
-                            <select class="form-control">
-                                <option>Cash</option>
-                                <option>Card/Online</option>
+                            <select ng-model="expenseData.paymentMode" data-ng-options="expensePaymentMode as expensePaymentMode for expensePaymentMode in masterData.expensePaymentMode" class="form-control">
                             </select>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3">Date:</label>
                         <div class="col-sm-9">
-                            <input id="dateOfExpense" ng-model="dateOfExpense" type="text" class="form-control"></input>
+                            <input ng-model="expenseData.dateOfExpense" id="dateOfExpense" type="text" class="form-control"></input>
                             <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="text-center col-sm-12 ">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button ng-click="addOrUpdateExpense()" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </form>
