@@ -31,7 +31,6 @@ angular.
           console.log('dashboard wala wala');
         }
         $rootScope.close = function () {
-          sessionService.clearUserSession();
           $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;

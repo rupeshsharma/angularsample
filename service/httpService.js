@@ -138,10 +138,22 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 });
             },
             getTodayOrderList: function getTodayOrderList() {
-                return $http.get('./stubs/orderHistory.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/today",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
-            getOrderDetailById: function getOrderDetailById() {
-                return $http.get('./stubs/orderDetail.json');
+            getOrderDetailById: function getOrderDetailById(orderId) {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/"+orderId,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             searchOrderHistoryInRange: function searchOrderHistoryInRange(fromOrderDate, toOrderDate) {
                 return $http.get('./stubs/orderHistory.json');
