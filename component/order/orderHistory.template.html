@@ -1,16 +1,17 @@
 <div class="row text-center">
     <form class="form-inline">
+        <button ng-click="getTodayOrderList()" class="form-control btn btn-primary btn-sm pull-left">Today's</button>
         <div class="form-group has-feedback">
             <label>From : </label>
-            <input type="text" id="fromViewOrderDate" class="form-control">
+            <input type="text" ng-model="fromViewOrderHistoryDate" id="fromViewOrderDate" class="form-control">
             <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
         </div>
         <div class="form-group has-feedback">
             <label></span> To : </label>
-            <input type="text" id="toViewOrderDate" class="form-control">
+            <input type="text" ng-model="toViewOrderHistoryDate" id="toViewOrderDate" class="form-control">
             <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
         </div>
-        <button class="form-control btn btn-primary btn-sm">Search</button>
+        <button ng-click="searchOrderHistoryInRange()" class="form-control btn btn-primary btn-sm">Search</button>
     </form>
 </div>
 </br>
@@ -19,46 +20,22 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Order Id</th>
-                <th>Full Name</th>
-                <th>Mobile</th>
+                <th>Customer</th>
+                <th>Dining Mode</th>
+                <th>Payment Type</th>
+                <th>Amount</th>
                 <th>Date</th>
-                <th>Price</th>
-                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><a data-toggle="modal" data-target="#orderDetailModal">O1</a></td>
-                <td>Waqas Hussain</td>
-                <td>example@mirchu.net</td>
-                <td>11/6/2014</td>
-                <td>899.00</td>
-                <td><span class="label label-info">Processing</span></td>
-            </tr>
-            <tr>
-                <td><a data-toggle="modal" data-target="#orderDetailModal">O2</a></td>
-                <td>Basit Raza</td>
-                <td>example@bugpluss.com</td>
-                <td>10/6/2014</td>
-                <td>621.00</td>
-                <td><span class="label label-success">Completed</span></td>
-            </tr>
-            <tr>
-                <td><a data-toggle="modal" data-target="#orderDetailModal">O3</a></td>
-                <td>Raza Ahmed</td>
-                <td>example@therazz.net</td>
-                <td>11/9/2013</td>
-                <td>640.00</td>
-                <td><span class="label label-info">Processing</span></td>
-            </tr>
-            <tr>
-                <td><a data-toggle="modal" data-target="#orderDetailModal">O4</a></td>
-                <td>Mirchu net</td>
-                <td>example@mirchu.net</td>
-                <td>11/6/2014</td>
-                <td>12.00</td>
-                <td><span class="label label-success">Completed</span></td>
+            <tr ng-repeat="orhl in orderHistoryList">
+                <td>{{orhl.customer.name}}</td>
+                <td>{{orhl.diningMode}}</td>
+                <td>{{orhl.paymentType}}</td>
+                <td>{{orhl.amount}}</td>
+                <td>{{orhl.orderDate}}</td>
+                <td><a ng-click="getOrderDetailById(orhl.id)" data-toggle="modal" data-target="#orderDetailModal">View Detail</a></td>
             </tr>
         </tbody>
     </table>
@@ -72,11 +49,98 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-center">Order Detail</h4>
+                <div ng-show="showOrderDetailView" class="row">
+                    <form class="form-inline text-center">
+                        <div class="form-group">
+                            Order Number : <label>{{orderDetail.orderNumber}}</label>
+                        </div>
+                        &nbsp;
+                        <div class="form-group">
+                            Order Date : <label>{{orderDetail.orderDate}}</label>
+                        </div>
+                        
+                    </form>
+                    <form class="form-inline text-center">
+                        <div class="form-group">
+                            Payment Type : <label>{{orderDetail.paymentType}}</label>
+                        </div>
+                        &nbsp;
+                        <div class="form-group">
+                            Dining Mode : <label>{{orderDetail.diningMode}}</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <span id="orderDetailLoadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:24px"></span>
+                    <div ng-show="showOrderDetailView" class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center"><strong>Order summary</strong></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Item</strong></td>
+                                                <td class="text-center"><strong>Price <span class="fa fa-rupee"></strong></td>
+                                                <td class="text-center"><strong>Quantity</strong></td>
+                                                <td class="text-center"><strong>Total <span class="fa fa-rupee"></strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                            <tr ng-repeat="ordtl in orderDetail.orderDetail">
+                                                <td class="col-sm-4"><span ng-if="item.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
+                                                    <span ng-if="item.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span>                                                    {{ordtl.item.title}}</td>
+                                                <td class="col-sm-2 text-center"> {{ordtl.unitPrice}}</td>
+                                                <td class="col-sm-4 text-center">{{ordtl.quantity}}</td>
+                                                <td class="col-sm-2 text-center">{{ordtl.unitPrice * ordtl.quantity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="thick-line"></td>
+                                                <td class="thick-line"></td>
+                                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                                <td class="thick-line text-right">{{orderDetail.amount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-line"></td>
+                                                <td class="no-line"></td>
+                                                <td class="no-line text-center">Discount @ {{orderDetail.discount}}%</td>
+                                                <td class="no-line text-right">{{(orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    | number : 2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-line"></td>
+                                                <td class="no-line"></td>
+                                                <td class="no-line text-center">CGST @ 6%</td>
+                                                <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    / 100) * 6) | number : 2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-line"></td>
+                                                <td class="no-line"></td>
+                                                <td class="no-line text-center">SGST @ 6%</td>
+                                                <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    / 100) * 6) | number : 2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-line"></td>
+                                                <td class="no-line"></td>
+                                                <td class="no-line text-center"><strong>Grand Total</strong></td>
+                                                <td class="no-line text-right">{{((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    + (((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    / 100) * 6) + (((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
+                                                    / 100) * 6)) | number : 2}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p class="text-center">order details</p>
-            </div>
-        </div>
 
+        </div>
     </div>
-</div>
