@@ -136,6 +136,12 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                         'Content-Type': 'application/json'
                     }
                 });
+            },
+            getTodayOrderList: function getTodayOrderList() {
+                return $http.get('./stubs/orderHistory.json');
+            },
+            getOrderDetailById: function getOrderDetailById(){
+                return $http.get('./stubs/orderDetail.json');
             }
         }
 
