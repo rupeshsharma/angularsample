@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('menuCart', {
     templateUrl: './component/menu/menu.template.html',
-    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'userService',
-      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, userService) {
+    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'customerService',
+      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, customerService) {
 
         function closeLoadingIndicator(){
           document.getElementById("loadingIndicator").style.display = 'none';
@@ -46,7 +46,7 @@ angular.
           document.getElementById("menuCustomerDataDiv").style.display = 'none';
           document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'block';
           var userData = sessionService.getCustomerData()
-          userService.updateCustomer(
+          customerService.updateCustomer(
             {
               "id": userData.id,
               "name": customerName,
