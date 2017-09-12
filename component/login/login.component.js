@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('logIn', {
     templateUrl: './component/login/login.template.html',
-    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'userService', 'masterService',
-      function loginController($scope, $timeout, $rootScope, $location, sessionService, userService, masterService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'customerService', 'masterService',
+      function loginController($scope, $timeout, $rootScope, $location, sessionService, customerService, masterService) {
 
         $rootScope.logOut = function () {
           for (var prop in $rootScope) {
