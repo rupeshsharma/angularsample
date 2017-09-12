@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 500,
+        "orderDate": "12/09/2017",
+        "paymentType": "Card",
+        "diningMode": "Dine In"
+    },
+    {
+        "id": 2,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 500,
+        "orderDate": "12/09/2017",
+        "paymentType": "Cash",
+        "diningMode": "Dine In"
+    },
+    {
+        "id": 3,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 600,
+        "orderDate": "12/09/2017",
+        "paymentType": "Card",
+        "diningMode": "Take Away"
+    },
+    {
+        "id": 4,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 750,
+        "orderDate": "12/09/2017",
+        "paymentType": "Cash",
+        "diningMode": "Delivery"
+    }
+]
