@@ -1,7 +1,15 @@
 var APP = angular.module('sample');
 
-APP.run(function ($rootScope, $location) {
-  
+APP.run(function ($rootScope, $location, sessionService) {
+  $rootScope.logOut = function () {
+    for (var prop in $rootScope) {
+      if (prop.substring(0, 1) !== '$') {
+        delete $rootScope[prop];
+      }
+    }
+    sessionService.clearUserSession();
+    $location.path('/');
+  }
 });
 
 APP.config(['$locationProvider', '$routeProvider',
