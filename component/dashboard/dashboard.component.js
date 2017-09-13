@@ -13,7 +13,7 @@ angular.
         dashboardService.getReviewByDate($scope.reviewDate, data => {
           $scope.dailyReviewData = data;
           closeLoadingIndicator();
-        })
+        });
 
         $scope.onTabClick = function (tabClicked) {
           $scope.$broadcast(tabClicked);
@@ -129,11 +129,23 @@ angular.
 
         $scope.updateChart('w');
 
-        
+
         $("#reviewDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          onSelect: function (date) {
+            document.getElementById("reviewDataSectionLoadingIndicator").style.display = 'block';
+            document.getElementById("reviewDataSection").style.display = 'none';
+            $scope.reviewDate = date;
+
+            dashboardService.getReviewByDate($scope.reviewDate, data => {
+              $scope.dailyReviewData = data;
+              document.getElementById("reviewDataSectionLoadingIndicator").style.display = 'none';
+              document.getElementById("reviewDataSection").style.display = 'block';
+            });
+
+          }
         });
         $("#orderDate").datepicker({
           changeMonth: true,
