@@ -16,6 +16,18 @@ APP.factory('customerService', ['httpService',
                     resp => {
                         callback(resp.data);
                     });
+            },
+            searchCustomerVisitedBefore: function searchCustomerVisitedBefore(lastVisitedDate, callback) {
+                return httpService.searchCustomerVisitedBefore(lastVisitedDate).then(
+                    resp => {
+                        callback(resp.data);
+                    });
+            },
+            getCustomerHistory: function getCustomerHistory(id, callback) {
+                return httpService.getCustomerHistory(id).then(
+                    resp => {
+                        callback(resp.data);
+                    });
             }
         }
     }
