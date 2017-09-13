@@ -149,16 +149,17 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             getOrderDetailById: function getOrderDetailById(orderId) {
                 return $http({
                     method: "GET",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/"+orderId,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/" + orderId,
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/orderDetail.json');
             },
             searchOrderHistoryInRange: function searchOrderHistoryInRange(fromOrderDate, toOrderDate) {
                 return $http.get('./stubs/orderHistory.json');
             },
-            getReviewByDate: function getReviewByDate(reviewDate){
+            getReviewByDate: function getReviewByDate(reviewDate) {
                 return $http({
                     method: "GET",
                     url: CONTEXT_ROOT + APP_ROOT + "/api/order/review/"+reviewDate,
@@ -166,7 +167,13 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                         'Content-Type': 'application/json'
                     }
                 });
-
+                // return $http.get('./stubs/reviewData.json');
+            },
+            searchCustomerVisitedBefore: function searchCustomerVisitedBefore() {
+                return $http.get('./stubs/searchCustomer.json');
+            },
+            getCustomerHistory: function getCustomerHistory(id) {
+                return $http.get('./stubs/orderHistory.json');
             }
         }
 
