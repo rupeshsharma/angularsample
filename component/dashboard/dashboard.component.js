@@ -16,19 +16,7 @@ angular.
         })
 
         $scope.onTabClick = function (tabClicked) {
-          if (tabClicked == 'staffInit') {
-            $rootScope.$broadcast('staffInit');
-          } else if (tabClicked == 'orderInit') {
-            $rootScope.$broadcast('orderInit');
-          } else if (tabClicked == 'expenseInit') {
-            $rootScope.$broadcast('expenseInit');
-          } else if (tabClicked == 'customerInit') {
-            $rootScope.$broadcast('customerInit');
-          } else if (tabClicked == 'itemInit') {
-            $rootScope.$broadcast('itemInit');
-          } else if (tabClicked == 'categoryInit') {
-            $scope.$broadcast('categoryInit');
-          }
+          $scope.$broadcast(tabClicked);
         }
 
         $rootScope.viewType = 'dashboard';
