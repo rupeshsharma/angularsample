@@ -1,43 +1,32 @@
 <div class="row text-center">
   <form class="form-inline">
     <div class="form-group has-feedback">
-      <label>From : </label>
-      <input type="text" id="fromDate" class="form-control">
+      <label>Last Visited : </label>
+      <input type="text" ng-model="lastVisitedDate" id="lastVisitedDate" class="form-control">
       <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
     </div>
-    <div class="form-group has-feedback">
-      <label></span> To : </label>
-      <input type="text" id="toDate" class="form-control">
-      <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-    </div>
-    <button class="form-control btn btn-primary btn-sm">Search</button>
+
+    <button ng-click="searchLastVisited()" class="form-control btn btn-primary btn-sm">Search</button>
   </form>
 </div>
 </br>
-<div class="row">
-  <table class="table table-striped">
+<div ng-switch="customerList.length" class="row text-center">
+  <span class="ng-empty" ng-switch-when="0">No Customers Found !</span>
+  <table ng-switch-default class="table table-striped">
     <thead>
       <tr>
         <th>Full Name</th>
         <th>Mobile</th>
         <th>Last Visited</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a data-toggle="modal" data-target="#customerModal">John</a></td>
-        <td>1234567890</td>
-        <td>8/4/2017</td>
-      </tr>
-      <tr>
-        <td><a data-toggle="modal" data-target="#customerModal">Mary</a></td>
-        <td>1234567890</td>
-        <td>8/4/2017</td>
-      </tr>
-      <tr>
-        <td><a data-toggle="modal" data-target="#customerModal">July</a></td>
-        <td>1234567890</td>
-        <td>8/4/2017</td>
+      <tr ng-repeat="cust in customerList">
+        <td class="text-left">{{cust.name}}</td>
+        <td class="text-left">{{cust.mobile}}</td>
+        <td class="text-left">{{cust.lastVisitedDate}}</td>
+        <td class="text-left"><a ng-click="showCustomerHistory(cust)" data-toggle="modal" data-target="#customerModal">View History</a></td>
       </tr>
     </tbody>
   </table>
@@ -53,7 +42,135 @@
         <h4 class="text-center modal-title">Customer History</h4>
       </div>
       <div class="modal-body">
-        History here...
+        <form class="form-inline text-center">
+          <div class="form-group">
+            Name : <label>{{selectedCustomer.name}}</label>
+          </div>
+          &nbsp;
+          <div class="form-group">
+            Mobile : <label>{{selectedCustomer.mobile}}</label>
+          </div>
+        </form>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Dining Mode</th>
+                <th>Payment Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="custorhl in customerOrderHistoryList">
+                <td>{{custorhl.diningMode}}</td>
+                <td>{{custorhl.paymentType}}</td>
+                <td>{{custorhl.amount}}</td>
+                <td>{{custorhl.orderDate}}</td>
+                <td><a ng-click="viewOrderDetail(custorhl.id)" data-toggle="modal" data-target="#customerHistoryModal">View Detail</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="customerHistoryModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center modal-title">Order Detail</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline text-center">
+          <div class="form-group">
+            Order Number : <label>{{orderDetail.orderNumber}}</label>
+          </div>
+          &nbsp;
+          <div class="form-group">
+            Order Date : <label>{{orderDetail.orderDate}}</label>
+          </div>
+
+        </form>
+        <form class="form-inline text-center">
+          <div class="form-group">
+            Payment Type : <label>{{orderDetail.paymentType}}</label>
+          </div>
+          &nbsp;
+          <div class="form-group">
+            Dining Mode : <label>{{orderDetail.diningMode}}</label>
+          </div>
+        </form>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center"><strong>Order summary</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <td><strong>Item</strong></td>
+                    <td class="text-center"><strong>Price <span class="fa fa-rupee"></strong></td>
+                    <td class="text-center"><strong>Quantity</strong></td>
+                    <td class="text-center"><strong>Total <span class="fa fa-rupee"></strong></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr ng-repeat="ordtl in orderDetail.orderDetail">
+                    <td class="col-sm-4"><span ng-if="item.type == 'veg'" style="color:green;" class="glyphicon glyphicon-record"></span>
+                      <span ng-if="item.type == 'nonVeg'" style="color:red;" class="glyphicon glyphicon-record"></span> {{ordtl.item.title}}</td>
+                    <td class="col-sm-2 text-center"> {{ordtl.unitPrice}}</td>
+                    <td class="col-sm-4 text-center">{{ordtl.quantity}}</td>
+                    <td class="col-sm-2 text-center">{{ordtl.unitPrice * ordtl.quantity}}</td>
+                  </tr>
+                  <tr>
+                    <td class="thick-line"></td>
+                    <td class="thick-line"></td>
+                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                    <td class="thick-line text-right">{{orderDetail.amount}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">Discount @ {{orderDetail.discount}}%</td>
+                    <td class="no-line text-right">{{(orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) | number : 2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">CGST @ 6%</td>
+                    <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) | number :
+                      2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center">SGST @ 6%</td>
+                    <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) | number :
+                      2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Grand Total</strong></td>
+                    <td class="no-line text-right">{{((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) + (((orderDetail.amount
+                      - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) + (((orderDetail.amount - ((orderDetail.amount
+                      / 100) * orderDetail.discount)) / 100) * 6)) | number : 2}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
