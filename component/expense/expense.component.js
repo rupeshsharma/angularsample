@@ -111,6 +111,7 @@ angular.
           } else {
             $scope.expenseModalTitle = 'Add Expense';
             $scope.expenseData = {};
+            $scope.expenseData.dateOfExpense = $filter('date')(new Date(), "dd-MM-yyyy");
           }
 
         }
