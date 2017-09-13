@@ -1,7 +1,7 @@
 <br>
 <div class="container">
   <div class="row content">
-    
+
     <div class="row">
       <ul class="nav nav-pills nav-stacked col-sm-2">
         <li class="active"><a data-target="#tab_a" data-toggle="pill">DashBoard</a></li>
@@ -17,59 +17,61 @@
         <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px"></span>
         <div class="tab-pane active" id="tab_a">
           <div id="dashBoardComponent" style="display:none;">
-          <div style="background-color:#F7F7F7;" class="row tile_count text-center">
-            <div class="x_title">
-              <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
-                <div class="form-group has-feedback">
-                  <label style="font-size: 18px;" for="email">Daily Review : </label>
-                  <input type="text" id="reviewDate" ng-model="reviewDate" class="form-control" id="email">
-                  <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                </div>
-              </form>
+            <div style="background-color:#F7F7F7;" class="row tile_count text-center">
+              <div class="x_title">
+                <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
+                  <div class="form-group has-feedback">
+                    <label style="font-size: 18px;" for="email">Daily Review : </label>
+                    <input type="text" id="reviewDate" ng-model="reviewDate" class="form-control" id="email">
+                    <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
+                </span>
+                <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
+                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
+                </span>
+                <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
+                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
+                </span>
+                <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
+              </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
-              </span>
-              <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
-              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
-              </span>
-              <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
-              <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
-              </span>
-              <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
-            </div>
-          </div>
-          </br>
-          <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="white-box">
-                <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
-                <div class="box-title form-group form-inline">
-                    <label ><h4><strong>Chart : </strong></h4></label>
+            </br>
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="white-box">
+                  <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
+                  <div class="box-title form-group form-inline">
+                    <label><h4><strong>Chart : </strong></h4></label>
                     <select class="form-control">
                     <option>Revenue</option>
                     <option selected>Sales</option>
                   </select>
+                  <button data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
                   </div>
-                <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-primary active" ng-click="updateChart('w')">
+                  <div id="chartDivSection" class="collapse">
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active" ng-click="updateChart('w')">
                     <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
                   </label>
-                  <label class="btn btn-primary" ng-click="updateChart('m')">
+                    <label class="btn btn-primary" ng-click="updateChart('m')">
                     <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
                   </label>
-                  <label class="btn btn-primary" ng-click="updateChart('y')">
+                    <label class="btn btn-primary" ng-click="updateChart('y')">
                     <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
                   </label>
-                </div>
-                <div ng-show="renderChartBy == 'w'" class="text-right">
-                  <div class="form-group form-inline">
-                    <label for="email">Month:</label>
-                    <select class="form-control">
+                  </div>
+                  <div ng-show="renderChartBy == 'w'" class="text-right">
+                    <div class="form-group form-inline">
+                      <label for="email">Month:</label>
+                      <select class="form-control">
                     <option>Jan</option>
                     <option>Feb</option>
                     <option>Mar</option>
@@ -83,141 +85,178 @@
                     <option>Nov</option>
                     <option>Dec</option>
                   </select>
-                    <label for="email">Year:</label>
-                    <select class="form-control">
+                      <label for="email">Year:</label>
+                      <select class="form-control">
                     <option>2014</option>
                     <option>2015</option>
                     <option>2016</option>
                     <option selected>2017</option>
                   </select>
+                    </div>
                   </div>
-                </div>
-                <div ng-show="renderChartBy == 'm'" class="text-right">
-                  <div class="form-group form-inline">
-                    <label for="email">Year:</label>
-                    <select class="form-control">
+                  <div ng-show="renderChartBy == 'm'" class="text-right">
+                    <div class="form-group form-inline">
+                      <label for="email">Year:</label>
+                      <select class="form-control">
                     <option>2014</option>
                     <option>2015</option>
                     <option>2016</option>
                     <option selected>2017</option>
                   </select>
+                    </div>
+                  </div>
+                  <div id="ct-visits" style="height: 405px;"></div>
                   </div>
                 </div>
-                <div id="ct-visits" style="height: 405px;"></div>
               </div>
             </div>
+            </br>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_title">
+                    <h2>Orders Placed</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <form class="form-horizontal">
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">From:</label>
+                        <div class="col-sm-9">
+                          <input id="fromOrderDate" ng-model="fromOrderDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">To:</label>
+                        <div class="col-sm-9">
+                          <input id="toOrderDate" ng-model="toOrderDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center col-sm-12 ">
+                          <button type="submit" class="btn btn-primary">Show</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="text-center totalValue">
+                      Total : 1234
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                  <div class="x_title">
+                    <h2>Items Sold</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <form class="form-horizontal">
+
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">From:</label>
+                        <div class="col-sm-9">
+                          <input id="fromItemDate" ng-model="fromItemDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">To:</label>
+                        <div class="col-sm-9">
+                          <input id="toItemDate" ng-model="toItemDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center col-sm-12 ">
+                          <button type="submit" class="btn btn-primary">Show</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="text-center totalValue">
+                      Total : 1234
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_title">
+                    <h2>Total Expenses</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <form class="form-horizontal">
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">From:</label>
+                        <div class="col-sm-9">
+                          <input id="fromExpenseDate" ng-model="fromExpenseDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">To:</label>
+                        <div class="col-sm-9">
+                          <input id="toExpenseDate" ng-model="toExpenseDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center col-sm-12 ">
+                          <button type="submit" class="btn btn-primary">Show</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="text-center totalValue">
+                      Total : 1234
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_title">
+                    <h2>Total Collection</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <form class="form-horizontal">
+
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">From:</label>
+                        <div class="col-sm-9">
+                          <input id="fromCollectionDate" ng-model="fromCollectionDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">To:</label>
+                        <div class="col-sm-9">
+                          <input id="toCollectionDate" ng-model="toCollectionDate" type="text" class="form-control"></input>
+                          <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="text-center col-sm-12 ">
+                          <button type="submit" class="btn btn-primary">Show</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="text-center totalValue">
+                      Total : 1234
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
-          </br>
-          <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Orders Placed</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <form class="form-horizontal">
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">From:</label>
-                      <div class="col-sm-9">
-                        <input id="fromOrderDate" ng-model="fromOrderDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">To:</label>
-                      <div class="col-sm-9">
-                        <input id="toOrderDate" ng-model="toOrderDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="text-center col-sm-12 ">
-                        <button type="submit" class="btn btn-primary">Show</button>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="text-center totalValue">
-                    Total : 1234
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
-                <div class="x_title">
-                  <h2>Items Sold</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <form class="form-horizontal">
-
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">From:</label>
-                      <div class="col-sm-9">
-                        <input id="fromItemDate" ng-model="fromItemDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">To:</label>
-                      <div class="col-sm-9">
-                        <input id="toItemDate" ng-model="toItemDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="text-center col-sm-12 ">
-                        <button type="submit" class="btn btn-primary">Show</button>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="text-center totalValue">
-                    Total : 1234
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Total Collection</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <form class="form-horizontal">
-
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">From:</label>
-                      <div class="col-sm-9">
-                        <input id="fromCollectionDate" ng-model="fromCollectionDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <label class="control-label col-sm-3">To:</label>
-                      <div class="col-sm-9">
-                        <input id="toCollectionDate" ng-model="toCollectionDate" type="text" class="form-control"></input>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="text-center col-sm-12 ">
-                        <button type="submit" class="btn btn-primary">Show</button>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="text-center totalValue">
-                    Total : 1234
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
         </div>
         <div class="tab-pane" id="tab_b">
           <category id="categoryComponent" style="display:none;"></category>
