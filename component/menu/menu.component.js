@@ -172,9 +172,16 @@ angular.
             orderDetailList.push(orderDetail);
           }
 
+          var customerData = {
+            "id": 1
+          }
+          if (!sessionService.isAnonymousCustomer()) {
+            customerData.id = sessionService.getCustomerData().id;
+          }
+
           var request = {
             "amount": $scope.cart.total,
-            "customer": { "id": sessionService.getCustomerData().id },
+            "customer": customerData,
             "paymentType": $scope.paymentType,
             "diningMode": $scope.diningMode,
             "discount": $scope.discount,
