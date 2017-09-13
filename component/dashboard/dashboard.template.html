@@ -11,6 +11,7 @@
         <li><a ng-click="onTabClick('expenseInit')" data-target="#tab_e" data-toggle="pill">Expense</a></li>
         <li><a ng-click="onTabClick('orderInit')" data-target="#tab_f" data-toggle="pill">Order History</a></li>
         <li><a ng-click="onTabClick('staffInit')" data-target="#tab_g" data-toggle="pill">Manage Staff</a></li>
+        <li><a ng-click="onTabClick('masterDataInit')" data-target="#tab_h" data-toggle="pill">Manage Master Data</a></li>
       </ul>
       <div class="tab-content col-sm-10">
         <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px"></span>
@@ -235,6 +236,9 @@
         </div>
         <div class="tab-pane" id="tab_g">
           <staff id="staffComponent" style="display:none;"></staff>
+        </div>
+        <div class="tab-pane" id="tab_h">
+          <master-data id="masterDataComponent" style="display:none;"></master-data>
         </div>
       </div>
       <!-- tab content -->
