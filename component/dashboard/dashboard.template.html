@@ -22,11 +22,13 @@
                 <form style="padding: 6px 0px 0px 0px;" class="form-inline text-center">
                   <div class="form-group has-feedback">
                     <label style="font-size: 18px;" for="email">Daily Review : </label>
-                    <input type="text" id="reviewDate" ng-model="reviewDate" class="form-control" id="email">
+                    <input type="text" id="reviewDate" ng-model="reviewDate" class="form-control">
                     <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
                   </div>
                 </form>
               </div>
+              <span id="reviewDataSectionLoadingIndicator" class="fa fa-spinner fa-spin" style="color:#337ab7; font-size:24px; display:none;"></span>
+              <div id="reviewDataSection">
               <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
                 </span>
@@ -41,6 +43,7 @@
                 <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
                 </span>
                 <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
+              </div>
               </div>
             </div>
             </br>
