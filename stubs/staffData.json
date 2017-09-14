@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Rupesh Sharma",
+        "mobile": "8826479790",
+        "type": "Admin"
+    },
+    {
+        "id": 2,
+        "name": "Devendra Sharma",
+        "mobile": "9691639313",
+        "type": "Admin"
+    }
+]
