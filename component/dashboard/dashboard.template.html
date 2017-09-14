@@ -53,62 +53,35 @@
                   <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
                   <div class="box-title form-group form-inline">
                     <label><h4><strong>Chart : </strong></h4></label>
-                    <select class="form-control">
-                    <option>Revenue</option>
-                    <option selected>Sales</option>
-                  </select>
-                    <button data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
+                    <select class="form-control" ng-model="chartType" ng-change="ctChange(chartType)" data-ng-options="ct as ct for ct in masterData.chartType"><option disabled="disabled" value="">Please select</option></select>
+                    <button ng-disabled="chartType == undefined || chartType == ''" data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
                   </div>
-                  <div id="chartDivSection" class="collapse">
-                    <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-primary active" ng-click="updateChart('w')">
-                    <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
+                  <div id="chartDivSection" class="collapse text-center col-sm-12">
+                    <div class="form-inline row">
+                      <div class="btn-group pull-left" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-click="updateRenderChartBy('d')">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Daily
                   </label>
-                      <label class="btn btn-primary" ng-click="updateChart('m')">
+                        <label class="btn btn-primary" ng-click="updateRenderChartBy('m')">
                     <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
                   </label>
-                      <label class="btn btn-primary" ng-click="updateChart('y')">
+                        <label class="btn btn-primary" ng-click="updateRenderChartBy('y')">
                     <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
                   </label>
-                    </div>
-                    <div ng-show="renderChartBy == 'w'" class="text-right">
+                      </div>
+                      &nbsp;&nbsp;
                       <div class="form-group form-inline">
-                        <label for="email">Month:</label>
-                        <select class="form-control">
-                    <option>Jan</option>
-                    <option>Feb</option>
-                    <option>Mar</option>
-                    <option>Apr</option>
-                    <option>May</option>
-                    <option>Jun</option>
-                    <option>Jul</option>
-                    <option selected>Aug</option>
-                    <option>Sep</option>
-                    <option>Oct</option>
-                    <option>Nov</option>
-                    <option>Dec</option>
-                  </select>
-                        <label for="email">Year:</label>
-                        <select class="form-control">
-                    <option>2014</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option selected>2017</option>
-                  </select>
+                        <label ng-if="renderChartBy == 'd'" text-right for="email">Month:</label>
+                        <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="mn as mn for mn in masterData.month"><option disabled="disabled" value="">Please select</option></select>
+                        <label ng-if="renderChartBy == 'd' || renderChartBy == 'm'" for="email">Year:</label>
+                        <select ng-if="renderChartBy == 'd' || renderChartBy == 'm'" class="form-control" ng-model="selectedYear" ng-change="yrChange(selectedYear)"
+                          data-ng-options="yr as yr for yr in masterData.year"><option disabled="disabled" value="">Please select</option></select>
+                      </div>
+                      <div class="form-group form-inline pull-right">
+                        <button ng-disabled="renderChartBy == undefined || renderChartBy == ''" ng-click="generateChart()" class="form-control btn btn-primary">Generate</button>
                       </div>
                     </div>
-                    <div ng-show="renderChartBy == 'm'" class="text-right">
-                      <div class="form-group form-inline">
-                        <label for="email">Year:</label>
-                        <select class="form-control">
-                    <option>2014</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option selected>2017</option>
-                  </select>
-                      </div>
-                    </div>
-                    <div id="ct-visits" style="height: 405px;"></div>
+                    <div class="row" id="ct-visits" style="height: 405px;"></div>
                   </div>
                 </div>
               </div>
