@@ -1,6 +1,6 @@
 <div class="row text-center">
     <form class="form-inline">
-        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#staffModal">Add Staff</button>
+        <button ng-click="showStaffForm()" type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#staffModal">Add Staff</button>
     </form>
 </div>
 </br>
@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Type</th>
+                <th>Role</th>
                 <th>Contact</th>
                 <th>Action</th>
             </tr>
@@ -21,7 +21,9 @@
                 <td>{{staff.name}}</td>
                 <td>{{staff.type}}</td>
                 <td>{{staff.mobile}}</td>
-                <td><a class="glyphicon glyphicon-edit"></a></td>
+                <td>
+                    <a class="glyphicon glyphicon-edit"></a>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -38,41 +40,41 @@
                 <h4 class="modal-title text-center">Add Staff</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal">
-            <div class="form-group has-feedback">
-                <label class="control-label col-sm-3">Name:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control"></input>
-                    <span class="glyphicon glyphicon-user form-control-feedback atZeroIndex"></span>
-                </div>
-            </div>
-            <div class="form-group has-feedback">
-                <label class="control-label col-sm-3">Contact:</label>
-                <div class="col-sm-9">
-                    <input  type="text" class="form-control"></input>
-                    <span class="glyphicon glyphicon-earphone form-control-feedback atZeroIndex"></span>
-                </div>
-            </div>
-            <div class="form-group has-feedback">
-                <label class="control-label col-sm-3">Password:</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control"></input>
-                    <span class="glyphicon glyphicon-lock form-control-feedback atZeroIndex"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3">Type:</label>
-                <div class="col-sm-9 text-left">
-                    <div class="radio">
-                        <label><input type="radio" name="optradio">Admin</label>
+                <form class="form-horizontal text-center">
+                    <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"></input>
+                            <span class="glyphicon glyphicon-user form-control-feedback atZeroIndex"></span>
+                        </div>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="optradio">Regular</label>
+                    <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">Contact:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"></input>
+                            <span class="glyphicon glyphicon-earphone form-control-feedback atZeroIndex"></span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <button class="btn btn-primary">Save</button>
-        </form>
+                    <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">Password:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control"></input>
+                            <span class="glyphicon glyphicon-lock form-control-feedback atZeroIndex"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Role:</label>
+                        <div class="col-sm-9 text-left">
+                            <div class="radio">
+                                <label><input type="radio" name="optradio">Admin</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio">Regular</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Save</button>
+                </form>
             </div>
         </div>
 
