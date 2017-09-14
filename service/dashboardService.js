@@ -37,6 +37,13 @@ APP.factory('dashboardService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getChartData: function (request, callback) {
+                return httpService.getChartData(request).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }
