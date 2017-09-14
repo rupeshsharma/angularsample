@@ -134,6 +134,7 @@ angular.
           changeMonth: true,
           changeYear: true,
           dateFormat: "dd-mm-yy",
+          maxDate: 0,
           onSelect: function (date) {
             document.getElementById("reviewDataSectionLoadingIndicator").style.display = 'block';
             document.getElementById("reviewDataSection").style.display = 'none';
@@ -147,51 +148,131 @@ angular.
 
           }
         });
-        $("#orderDate").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          dateFormat: "dd-mm-yy"
-        });
+
         $("#fromOrderDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.fromOrderDate = date;
+          }
         });
         $("#toOrderDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
-        });
-        $("#itemDate").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.toOrderDate = date;
+          }
         });
         $("#fromItemDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.fromItemDate = date;
+          }
         });
         $("#toItemDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.toItemDate = date;
+          }
         });
-        $("#collectionDate").datepicker({
+        $("#fromExpnsDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.fromExpnsDate = date;
+          }
+        });
+        $("#toExpnsDate").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.toExpnsDate = date;
+          }
         });
         $("#fromCollectionDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.fromCollectionDate = date;
+          }
         });
         $("#toCollectionDate").datepicker({
           changeMonth: true,
           changeYear: true,
-          dateFormat: "dd-mm-yy"
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.toCollectionDate = date;
+          }
         });
+
+        $scope.showTotalOrderInRange = function () {
+          if ($scope.fromOrderDate != undefined && $scope.fromOrderDate != '' && $scope.toOrderDate != undefined && $scope.toOrderDate != '') {
+            if ($scope.fromOrderDate > $scope.toOrderDate) {
+              alert('From date cannot be greater than To date')
+            } else {
+              dashboardService.getTotalOrderInRange($scope.fromOrderDate, $scope.toOrderDate, data => {
+                $scope.totalOrderPlacedInRange = data;
+              });
+            }
+          }
+
+        }
+
+        $scope.showTotalItemInRange = function () {
+          if ($scope.fromItemDate != undefined && $scope.fromItemDate != '' && $scope.toItemDate != undefined && $scope.toItemDate != '') {
+            if ($scope.fromItemDate > $scope.toItemDate) {
+              alert('From date cannot be greater than To date')
+            } else {
+              dashboardService.getTotalItemInRange($scope.fromItemDate, $scope.toItemDate, data => {
+                $scope.totalItemSoldInRange = data;
+              });
+            }
+          }
+
+        }
+
+        $scope.showTotalExpenseInRange = function () {
+          if ($scope.fromExpnsDate != undefined && $scope.fromExpnsDate != '' && $scope.toExpnsDate != undefined && $scope.toExpnsDate != '') {
+            if ($scope.fromExpnsDate > $scope.toExpnsDate) {
+              alert('From date cannot be greater than To date')
+            } else {
+              dashboardService.getTotalExpenseInRange($scope.fromExpnsDate, $scope.toExpnsDate, data => {
+                $scope.totalExpenseInRange = data;
+              });
+            }
+          }
+
+        }
+
+        $scope.showTotalCollectionInRange = function () {
+          if ($scope.fromCollectionDate != undefined && $scope.fromCollectionDate != '' && $scope.toCollectionDate != undefined && $scope.toCollectionDate != '') {
+            if ($scope.fromCollectionDate > $scope.toCollectionDate) {
+              alert('From date cannot be greater than To date')
+            } else {
+              dashboardService.getTotalCollectionInRange($scope.fromCollectionDate, $scope.toCollectionDate, data => {
+                $scope.totalCollectionInRange = data;
+              });
+            }
+          }
+
+        }
       }
     ]
   });
