@@ -187,6 +187,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             getTotalCollectionInRange: function getTotalCollectionInRange(fromDate, toDate) {
                 return $http.get('./stubs/dashboardData.json');
+            },
+            getChartData: function getChartData(request) {
+                if (request.renderChartBy == 'm') {
+                    return $http.get('./stubs/monthlyChartData.json');
+                } else if (request.renderChartBy == 'y') {
+                    return $http.get('./stubs/yearlyChartData.json');
+                } else {
+                    return $http.get('./stubs/dailyChartData.json');
+                }
             }
         }
 
