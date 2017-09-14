@@ -77,6 +77,13 @@ APP.factory('menuService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getWholeItemGraph: function(callback){
+                httpService.getWholeItemGraph().then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }
