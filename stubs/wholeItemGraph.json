@@ -1,0 +1,30 @@
+[
+    {
+        "y": 5,
+        "label": "Item1"
+    },
+    {
+        "y": 6,
+        "label": "Item2"
+    },
+    {
+        "y": 7,
+        "label": "Item3"
+    },
+    {
+        "y": 11,
+        "label": "Item4"
+    },
+    {
+        "y": 8,
+        "label": "Item5"
+    },
+    {
+        "y": 81,
+        "label": "Item6"
+    },
+    {
+        "y": 19,
+        "label": "Item7"
+    }
+]
