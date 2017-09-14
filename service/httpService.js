@@ -145,6 +145,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/orderHistory.json');
             },
             getOrderDetailById: function getOrderDetailById(orderId) {
                 return $http({
@@ -174,6 +175,18 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             getCustomerHistory: function getCustomerHistory(id) {
                 return $http.get('./stubs/orderHistory.json');
+            },
+            getTotalOrderInRange: function getTotalOrderInRange(fromDate, toDate) {
+                return $http.get('./stubs/dashboardData.json');
+            },
+            getTotalItemInRange: function getTotalItemInRange(fromDate, toDate) {
+                return $http.get('./stubs/dashboardData.json');
+            },
+            getTotalExpenseInRange: function getTotalExpenseInRange(fromDate, toDate) {
+                return $http.get('./stubs/dashboardData.json');
+            },
+            getTotalCollectionInRange: function getTotalCollectionInRange(fromDate, toDate) {
+                return $http.get('./stubs/dashboardData.json');
             }
         }
 
