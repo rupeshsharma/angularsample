@@ -29,21 +29,21 @@
               </div>
               <span id="reviewDataSectionLoadingIndicator" class="fa fa-spinner fa-spin" style="color:#337ab7; font-size:24px; display:none;"></span>
               <div id="reviewDataSection">
-              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
-                </span>
-                <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
-                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
-                </span>
-                <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
-                <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
-                </span>
-                <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
-              </div>
+                <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+                  <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
+                  </span>
+                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
+                  <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
+                  </span>
+                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
+                  <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
+                  </span>
+                  <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
+                </div>
               </div>
             </div>
             </br>
@@ -57,24 +57,24 @@
                     <option>Revenue</option>
                     <option selected>Sales</option>
                   </select>
-                  <button data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
+                    <button data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
                   </div>
                   <div id="chartDivSection" class="collapse">
-                  <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active" ng-click="updateChart('w')">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-primary active" ng-click="updateChart('w')">
                     <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
                   </label>
-                    <label class="btn btn-primary" ng-click="updateChart('m')">
+                      <label class="btn btn-primary" ng-click="updateChart('m')">
                     <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
                   </label>
-                    <label class="btn btn-primary" ng-click="updateChart('y')">
+                      <label class="btn btn-primary" ng-click="updateChart('y')">
                     <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
                   </label>
-                  </div>
-                  <div ng-show="renderChartBy == 'w'" class="text-right">
-                    <div class="form-group form-inline">
-                      <label for="email">Month:</label>
-                      <select class="form-control">
+                    </div>
+                    <div ng-show="renderChartBy == 'w'" class="text-right">
+                      <div class="form-group form-inline">
+                        <label for="email">Month:</label>
+                        <select class="form-control">
                     <option>Jan</option>
                     <option>Feb</option>
                     <option>Mar</option>
@@ -88,34 +88,34 @@
                     <option>Nov</option>
                     <option>Dec</option>
                   </select>
-                      <label for="email">Year:</label>
-                      <select class="form-control">
+                        <label for="email">Year:</label>
+                        <select class="form-control">
                     <option>2014</option>
                     <option>2015</option>
                     <option>2016</option>
                     <option selected>2017</option>
                   </select>
+                      </div>
                     </div>
-                  </div>
-                  <div ng-show="renderChartBy == 'm'" class="text-right">
-                    <div class="form-group form-inline">
-                      <label for="email">Year:</label>
-                      <select class="form-control">
+                    <div ng-show="renderChartBy == 'm'" class="text-right">
+                      <div class="form-group form-inline">
+                        <label for="email">Year:</label>
+                        <select class="form-control">
                     <option>2014</option>
                     <option>2015</option>
                     <option>2016</option>
                     <option selected>2017</option>
                   </select>
+                      </div>
                     </div>
-                  </div>
-                  <div id="ct-visits" style="height: 405px;"></div>
+                    <div id="ct-visits" style="height: 405px;"></div>
                   </div>
                 </div>
               </div>
             </div>
             </br>
             <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel tile fixed_height_320">
                   <div class="x_title">
                     <h2>Orders Placed</h2>
@@ -139,18 +139,19 @@
                       </div>
                       <div class="form-group">
                         <div class="text-center col-sm-12 ">
-                          <button type="submit" class="btn btn-primary">Show</button>
+                          <button ng-click="showTotalOrderInRange()" class="btn btn-primary">Show</button>
                         </div>
                       </div>
                     </form>
                     <div class="text-center totalValue">
-                      Total : 1234
+                      <span ng-if="totalOrderPlacedInRange != undefined && totalOrderPlacedInRange != ''">Total : {{totalOrderPlacedInRange}}</span>
+                      <span ng-show="totalOrderPlacedInRange == undefined || totalOrderPlacedInRange == ''">Please select both dates and click show !</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel tile fixed_height_320 overflow_hidden">
                   <div class="x_title">
                     <h2>Items Sold</h2>
@@ -175,18 +176,20 @@
                       </div>
                       <div class="form-group">
                         <div class="text-center col-sm-12 ">
-                          <button type="submit" class="btn btn-primary">Show</button>
+                          <button ng-click="showTotalItemInRange()" class="btn btn-primary">Show</button>
                         </div>
                       </div>
                     </form>
                     <div class="text-center totalValue">
-                      Total : 1234
+                      <span ng-if="totalExpenseInRange != undefined && totalExpenseInRange != ''">Total : {{totalItemSoldInRange}}</span>
+                      <span ng-show="totalExpenseInRange == undefined || totalExpenseInRange == ''">Please select both dates and click show !</span>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-3 col-sm-3 col-xs-12">
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel tile fixed_height_320">
                   <div class="x_title">
                     <h2>Total Expenses</h2>
@@ -197,31 +200,32 @@
                       <div class="form-group has-feedback">
                         <label class="control-label col-sm-3">From:</label>
                         <div class="col-sm-9">
-                          <input id="fromExpenseDate" ng-model="fromExpenseDate" type="text" class="form-control"></input>
+                          <input id="fromExpnsDate" ng-model="fromExpnsDate" type="text" class="form-control"></input>
                           <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
                         </div>
                       </div>
                       <div class="form-group has-feedback">
                         <label class="control-label col-sm-3">To:</label>
                         <div class="col-sm-9">
-                          <input id="toExpenseDate" ng-model="toExpenseDate" type="text" class="form-control"></input>
+                          <input id="toExpnsDate" ng-model="toExpnsDate" type="text" class="form-control"></input>
                           <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="text-center col-sm-12 ">
-                          <button type="submit" class="btn btn-primary">Show</button>
+                          <button ng-click="showTotalExpenseInRange()" class="btn btn-primary">Show</button>
                         </div>
                       </div>
                     </form>
                     <div class="text-center totalValue">
-                      Total : 1234
+                      <span ng-if="totalExpenseInRange != undefined && totalExpenseInRange != ''">Total : {{totalExpenseInRange}}</span>
+                      <span ng-show="totalExpenseInRange == undefined || totalExpenseInRange == ''">Please select both dates and click show !</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel tile fixed_height_320">
                   <div class="x_title">
                     <h2>Total Collection</h2>
@@ -246,19 +250,18 @@
                       </div>
                       <div class="form-group">
                         <div class="text-center col-sm-12 ">
-                          <button type="submit" class="btn btn-primary">Show</button>
+                          <button ng-click="showTotalCollectionInRange()" class="btn btn-primary">Show</button>
                         </div>
                       </div>
                     </form>
                     <div class="text-center totalValue">
-                      Total : 1234
+                      <span ng-if="totalCollectionInRange !=undefined && totalCollectionInRange !=''">Total : {{totalCollectionInRange}}</span>
+                      <span ng-show="totalCollectionInRange == undefined || totalCollectionInRange == ''">Please select both dates and click show !</span>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
         <div class="tab-pane" id="tab_b">
