@@ -1,0 +1,102 @@
+{
+    "data1": [
+        {
+            "label": "Jan",
+            "y": 10
+        },
+        {
+            "label": "Feb",
+            "y": 15
+        },
+        {
+            "label": "Mar",
+            "y": 25
+        },
+        {
+            "label": "Apr",
+            "y": 30
+        },
+        {
+            "label": "May",
+            "y": 28
+        },
+        {
+            "label": "Jun",
+            "y": 28
+        },
+        {
+            "label": "Jul",
+            "y": 50
+        },
+        {
+            "label": "Aug",
+            "y": 28
+        },
+        {
+            "label": "Sep",
+            "y": 60
+        },
+        {
+            "label": "Oct",
+            "y": 28
+        },
+        {
+            "label": "Nov",
+            "y": 28
+        },
+        {
+            "label": "Dec",
+            "y": 100
+        }
+    ],
+    "data2": [
+        {
+            "label": "Jan",
+            "y": 16
+        },
+        {
+            "label": "Feb",
+            "y": 14
+        },
+        {
+            "label": "Mar",
+            "y": 25
+        },
+        {
+            "label": "Apr",
+            "y": 30
+        },
+        {
+            "label": "May",
+            "y": 28
+        },
+        {
+            "label": "Jun",
+            "y": 28
+        },
+        {
+            "label": "Jul",
+            "y": 57
+        },
+        {
+            "label": "Aug",
+            "y": 18
+        },
+        {
+            "label": "Sep",
+            "y": 60
+        },
+        {
+            "label": "Oct",
+            "y": 68
+        },
+        {
+            "label": "Nov",
+            "y": 28
+        },
+        {
+            "label": "Dec",
+            "y": 100
+        }
+    ]
+}
