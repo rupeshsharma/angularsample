@@ -199,6 +199,9 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             getWholeItemGraph: function getWholeItemGraph(){
                 return $http.get('./stubs/dailyChartData.json');
+            },
+            getStaffList: function getStaffList(){
+                return $http.get('./stubs/staffData.json');
             }
         }
 
