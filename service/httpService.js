@@ -196,6 +196,9 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 } else {
                     return $http.get('./stubs/dailyChartData.json');
                 }
+            },
+            getWholeItemGraph: function getWholeItemGraph(){
+                return $http.get('./stubs/dailyChartData.json');
             }
         }
 
