@@ -32,7 +32,7 @@ angular.
 
         $scope.itemList = [];
 
-        $('.close').click(function() {
+        $('.close').click(function () {
           $scope.itemData = {};
         });
 
@@ -176,73 +176,40 @@ angular.
           $scope.updateChart('w');
         }
 
-        $scope.wholeItemChart = new CanvasJS.Chart("wholeItemChartContainer", {
-          animationEnabled: true,
-          axisX: {
-            interval: 1,
-            gridThickness: 0,
-            labelFontSize: 10,
-            labelFontStyle: "normal",
-            labelFontWeight: "normal",
-            labelFontFamily: "Lucida Sans Unicode"
-
-          },
-          axisY2: {
-            interlacedColor: "rgba(1,77,101,.2)",
-            gridColor: "rgba(1,77,101,.1)"
-
-          },
-
-          data: [
-            {
-              type: "bar",
-              name: "companies",
-              axisYType: "secondary",
-              color: "#014D65",
-              dataPoints: [
-
-                { y: 5, label: "Sweden" },
-                { y: 6, label: "Taiwan" },
-                { y: 7, label: "Russia" },
-                { y: 8, label: "Spain" },
-                { y: 8, label: "Brazil" },
-                { y: 8, label: "India" },
-                { y: 9, label: "Italy" },
-                { y: 9, label: "Australia" },
-                { y: 12, label: "Canada" },
-                { y: 13, label: "South Korea" },
-                { y: 13, label: "Netherlands" },
-                { y: 15, label: "Switzerland" },
-                { y: 28, label: "Britain" },
-                { y: 32, label: "Germany" },
-                { y: 32, label: "France" },
-                { y: 68, label: "Japan" },
-                { y: 73, label: "China" },
-                { y: 132, label: "US" }
-              ]
-            }
-
-          ]
-        });
         $scope.showWholeItemGraph = function () {
-          var itemList = [];
-          var dataPoints = [];
-          for (i = 0; i < $scope.menu.length; i++) {
-            itemList = itemList.concat($scope.menu[i].items);
-          }
-          var newDataPoin = {};
-          var min = Math.ceil(100);
-          var max = Math.floor(500);
-          for (i = 0; i < itemList.length; i++) {
-            newDataPoint = {
-              y: Math.floor(Math.random() * (max - min + 1)) + min,
-              legendText: itemList[i].title,
-              label: itemList[i].title
-            }
-            dataPoints.push(newDataPoint);
-          }
-          $scope.wholeItemChart.options.data[0].dataPoints = dataPoints;
-          $scope.wholeItemChart.render();
+          menuService.getWholeItemGraph(data => {
+            $scope.wholeItemChart = new CanvasJS.Chart("wholeItemChartContainer", {
+              animationEnabled: true,
+              axisX: {
+                interval: 1,
+                gridThickness: 0,
+                labelFontSize: 10,
+                labelFontStyle: "normal",
+                labelFontWeight: "normal",
+                labelFontFamily: "Lucida Sans Unicode"
+
+              },
+              axisY2: {
+                interlacedColor: "rgba(1,77,101,.2)",
+                gridColor: "rgba(1,77,101,.1)"
+
+              },
+
+              data: [
+                {
+                  type: "bar",
+                  name: "Items",
+                  axisYType: "secondary",
+                  color: "#014D65",
+                  dataPoints: [
+                  ]
+                }
+
+              ]
+            });
+            $scope.wholeItemChart.options.data[0].dataPoints = data;
+            $scope.wholeItemChart.render();
+          });
         }
 
 
