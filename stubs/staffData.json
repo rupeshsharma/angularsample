@@ -1,14 +1,20 @@
 [
     {
         "id": 1,
-        "name": "Rupesh Sharma",
+        "name": "some name 1",
         "mobile": "8826479790",
-        "type": "Admin"
+        "role": "Admin"
     },
     {
         "id": 2,
-        "name": "Devendra Sharma",
-        "mobile": "9691639313",
-        "type": "Admin"
+        "name": "some name 2",
+        "mobile": "1234567890",
+        "role": "Admin"
+    },
+    {
+        "id": 3,
+        "name": "some name 3",
+        "mobile": "1234567890",
+        "role": "Regular"
     }
 ]
