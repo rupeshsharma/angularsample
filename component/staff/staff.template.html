@@ -1,6 +1,6 @@
 <div class="row text-center">
     <form class="form-inline">
-        <button ng-click="showStaffForm()" type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#staffModal">Add Staff</button>
+        <button ng-click="showAddEditStaffForm(false, '')" class="btn btn-primary text-center" data-toggle="modal" data-target="#staffModal">Add Staff</button>
     </form>
 </div>
 </br>
@@ -19,10 +19,12 @@
         <tbody>
             <tr ng-repeat="staff in staffList">
                 <td>{{staff.name}}</td>
-                <td>{{staff.type}}</td>
+                <td>{{staff.role}}</td>
                 <td>{{staff.mobile}}</td>
                 <td>
-                    <a class="glyphicon glyphicon-edit"></a>
+                    <a ng-click="showAddEditStaffForm(true, staff)" data-toggle="modal" data-target="#staffModal" class="glyphicon glyphicon-edit"></a>
+                    &nbsp;&nbsp;
+                    <a ng-click="showPasswordStaffForm(staff)" data-toggle="modal" data-target="#staffPasswordModal" class="glyphicon glyphicon-lock"></a>
                 </td>
             </tr>
         </tbody>
@@ -44,21 +46,21 @@
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3">Name:</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control"></input>
+                            <input type="text" ng-model="staffFormData.name" class="form-control"></input>
                             <span class="glyphicon glyphicon-user form-control-feedback atZeroIndex"></span>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3">Contact:</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control"></input>
+                            <input type="text" ng-model="staffFormData.mobile" class="form-control"></input>
                             <span class="glyphicon glyphicon-earphone form-control-feedback atZeroIndex"></span>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div ng-hide="isEdit" class="form-group has-feedback">
                         <label class="control-label col-sm-3">Password:</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control"></input>
+                            <input type="password" ng-model="staffFormData.password" class="form-control"></input>
                             <span class="glyphicon glyphicon-lock form-control-feedback atZeroIndex"></span>
                         </div>
                     </div>
@@ -66,14 +68,46 @@
                         <label class="control-label col-sm-3">Role:</label>
                         <div class="col-sm-9 text-left">
                             <div class="radio">
-                                <label><input type="radio" name="optradio">Admin</label>
+                                <label><input type="radio" ng-model="staffFormData.role" value="Admin" name="optradio">Admin</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="optradio">Regular</label>
+                                <label><input type="radio" ng-model="staffFormData.role" value="Regular" name="optradio">Regular</label>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary">Save</button>
+                    <button ng-click="createOrUpdateStaff()" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="staffPasswordModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal text-center">
+                    <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">Name:</label>
+                        <div class="col-sm-9 text-left">
+                            <label class="control-label">{{staffFormData.name}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="control-label col-sm-3">Password:</label>
+                        <div class="col-sm-9">
+                            <input type="password" ng-model="staffFormData.password" class="form-control"></input>
+                            <span class="glyphicon glyphicon-lock form-control-feedback atZeroIndex"></span>
+                        </div>
+                    </div>
+                    <button ng-click="changePassword()" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>
