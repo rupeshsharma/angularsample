@@ -23,6 +23,7 @@ angular.
           changeMonth: true,
           changeYear: true,
           dateFormat: "dd-mm-yy",
+          maxDate : 0,
           onSelect: function (date) {
             $scope.searchExpenseFrom = date;
           }
@@ -31,6 +32,7 @@ angular.
           changeMonth: true,
           changeYear: true,
           dateFormat: "dd-mm-yy",
+          maxDate : 0,
           onSelect: function (date) {
             $scope.searchExpenseTo = date;
           }

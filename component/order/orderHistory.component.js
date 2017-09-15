@@ -60,6 +60,7 @@ angular.
           changeMonth: true,
           changeYear: true,
           dateFormat: "dd-mm-yy",
+          maxDate : 0,
           onSelect: function (date) {
             $scope.fromViewOrderHistoryDate = date;
           }
@@ -68,6 +69,7 @@ angular.
           changeMonth: true,
           changeYear: true,
           dateFormat: "dd-mm-yy",
+          maxDate : 0,
           onSelect: function (date) {
             $scope.toViewOrderHistoryDate = date;
           }

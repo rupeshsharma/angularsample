@@ -38,7 +38,7 @@
                 <td>{{ex.category}}</td>
                 <td>{{ex.amount}}</td>
                 <td>{{ex.paymentMode}}</td>
-                <td>Not Yet Modified</td>
+                <td>{{ex.modifiedDate || "Not Yet Modified"}}</td>
                 <td>{{ex.dateOfExpense}}</td>
                 <td>
                     <a ng-click="showAddEditExpenseModal(ex,true)" data-toggle="modal" data-target="#addEditExpenseModal">

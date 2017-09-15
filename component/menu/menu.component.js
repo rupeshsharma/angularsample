@@ -5,7 +5,7 @@ angular.
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'customerService',
       function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, customerService) {
 
-        function closeLoadingIndicator(){
+        function closeLoadingIndicator() {
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("menuComponent").style.display = 'block';
         }
@@ -45,7 +45,8 @@ angular.
         $rootScope.updateCustomer = function (customerName, customerMobile) {
           document.getElementById("menuCustomerDataDiv").style.display = 'none';
           document.getElementById("menuCustomerDataLoadingIndicator").style.display = 'block';
-          var userData = sessionService.getCustomerData()
+          var userData = sessionService.getCustomerData();
+          $rootScope.customerName = customerName;
           customerService.updateCustomer(
             {
               "id": userData.id,
@@ -180,12 +181,16 @@ angular.
           }
 
           var request = {
-            "amount": $scope.cart.total,
+            "total": $scope.cart.total,
             "customer": customerData,
             "paymentType": $scope.paymentType,
             "diningMode": $scope.diningMode,
             "discount": $scope.discount,
-            "orderDetail": orderDetailList
+            "orderDetail": orderDetailList,
+            "afterDiscountTotal": ($scope.discount != 0 && $scope.discount != '') ? $scope.cart.afterDiscount : $scope.cart.total,
+            "cgst": $scope.cart.cgst,
+            "sgst": $scope.cart.sgst,
+            "grandTotal": $scope.cart.finalPrice
           }
 
           // console.log(JSON.stringify(request))

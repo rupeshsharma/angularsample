@@ -33,7 +33,7 @@
                 <td>{{orhl.customer.name}}</td>
                 <td>{{orhl.diningMode}}</td>
                 <td>{{orhl.paymentType}}</td>
-                <td>{{orhl.amount}}</td>
+                <td>{{orhl.grandTotal}}</td>
                 <td>{{orhl.orderDate}}</td>
                 <td><a ng-click="getOrderDetailById(orhl.id)" data-toggle="modal" data-target="#orderDetailModal">View Detail</a></td>
             </tr>
@@ -105,37 +105,31 @@
                                                 <td class="thick-line"></td>
                                                 <td class="thick-line"></td>
                                                 <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                                <td class="thick-line text-right">{{orderDetail.amount}}</td>
+                                                <td class="thick-line text-right">{{orderDetail.total}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line"></td>
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center">Discount @ {{orderDetail.discount}}%</td>
-                                                <td class="no-line text-right">{{(orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    | number : 2}}</td>
+                                                <td class="no-line text-right">{{orderDetail.afterDiscountTotal | number : 2}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line"></td>
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center">CGST @ 6%</td>
-                                                <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    / 100) * 6) | number : 2}}</td>
+                                                <td class="no-line text-right">{{orderDetail.cgst | number : 2}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line"></td>
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center">SGST @ 6%</td>
-                                                <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    / 100) * 6) | number : 2}}</td>
+                                                <td class="no-line text-right">{{orderDetail.sgst | number : 2}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line"></td>
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center"><strong>Grand Total</strong></td>
-                                                <td class="no-line text-right">{{((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    + (((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    / 100) * 6) + (((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount))
-                                                    / 100) * 6)) | number : 2}}</td>
+                                                <td class="no-line text-right">{{orderDetail.grandTotal | number : 2}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

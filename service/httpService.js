@@ -34,13 +34,34 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 });
             },
             getTodaysExpenses: function getTodaysExpenses() {
-                return $http.get('./stubs/expense.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/expense/today",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/expense.json');
             },
             addOrUpdateExpense: function (request) {
-                return { "data": request };
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/expense/createOrUpdate",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             searchExpensesInRange: function searchExpensesInRange(from, to) {
-                return $http.get('./stubs/expense.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/expense/search/" + from + "/" + to,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/expense.json');
             },
             getAllCategories: function getAllCategories() {
                 return $http({
@@ -158,12 +179,19 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 // return $http.get('./stubs/orderDetail.json');
             },
             searchOrderHistoryInRange: function searchOrderHistoryInRange(fromOrderDate, toOrderDate) {
-                return $http.get('./stubs/orderHistory.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/search/" + fromOrderDate + "/" + toOrderDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/orderHistory.json');
             },
             getReviewByDate: function getReviewByDate(reviewDate) {
                 return $http({
                     method: "GET",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/review/"+reviewDate,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/review/" + reviewDate,
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -177,16 +205,44 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 return $http.get('./stubs/orderHistory.json');
             },
             getTotalOrderInRange: function getTotalOrderInRange(fromDate, toDate) {
-                return $http.get('./stubs/dashboardData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/total/" + fromDate + "/" + toDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/dashboardData.json');
             },
             getTotalItemInRange: function getTotalItemInRange(fromDate, toDate) {
-                return $http.get('./stubs/dashboardData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/total/item/" + fromDate + "/" + toDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/dashboardData.json');
             },
             getTotalExpenseInRange: function getTotalExpenseInRange(fromDate, toDate) {
-                return $http.get('./stubs/dashboardData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/expense/total/" + fromDate + "/" + toDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/dashboardData.json');
             },
             getTotalCollectionInRange: function getTotalCollectionInRange(fromDate, toDate) {
-                return $http.get('./stubs/dashboardData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/total/collection/" + fromDate + "/" + toDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/dashboardData.json');
             },
             getChartData: function getChartData(request) {
                 if (request.renderChartBy == 'm') {
@@ -197,19 +253,19 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                     return $http.get('./stubs/dailyChartData.json');
                 }
             },
-            getWholeItemGraph: function getWholeItemGraph(){
+            getWholeItemGraph: function getWholeItemGraph() {
                 return $http.get('./stubs/dailyChartData.json');
             },
-            getStaffList: function getStaffList(){
+            getStaffList: function getStaffList() {
                 return $http.get('./stubs/staffData.json');
             },
-            updateUser: function updateUser(request){
+            updateUser: function updateUser(request) {
 
             },
-            createUser:function createUser(request){
+            createUser: function createUser(request) {
 
             },
-            changePassword:function changePassword(request){
+            changePassword: function changePassword(request) {
 
             }
         }
