@@ -202,6 +202,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             getStaffList: function getStaffList(){
                 return $http.get('./stubs/staffData.json');
+            },
+            updateUser: function updateUser(request){
+
+            },
+            createUser:function createUser(request){
+
+            },
+            changePassword:function changePassword(request){
+
             }
         }
 
