@@ -43,24 +43,22 @@ angular.
 
         }
 
-        $scope.updateStaff = function () {
+        $scope.createOrUpdateStaff = function () {
           document.getElementById("loadingIndicator").style.display = 'block';
           document.getElementById("staffComponent").style.display = 'none';
-          userService.updateUser($scope.staffFormData, data => {
-            $scope.selectedStaff.name = data.name;
-            $scope.selectedStaff.mobile = data.mobile
-            $scope.selectedStaff.role = data.role;
-            closeLoadingIndicator();
-          });
-        }
-
-        $scope.createStaff = function () {
-          document.getElementById("loadingIndicator").style.display = 'block';
-          document.getElementById("staffComponent").style.display = 'none';
-          userService.createUser($scope.staffFormData, data => {
-            $scope.staffList.push(data);
-            closeLoadingIndicator();
-          });
+          if ($scope.isEdit) {
+            userService.updateUser($scope.staffFormData, data => {
+              $scope.selectedStaff.name = data.name;
+              $scope.selectedStaff.mobile = data.mobile
+              $scope.selectedStaff.role = data.role;
+              closeLoadingIndicator();
+            });
+          } else {
+            userService.createUser($scope.staffFormData, data => {
+              $scope.staffList.push(data);
+              closeLoadingIndicator();
+            });
+          }
         }
 
         $scope.changePassword = function () {
