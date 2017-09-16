@@ -270,7 +270,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             getWholeItemGraph: function getWholeItemGraph() {
                 return $http({
                     method: "GET",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/wholeItemGraph",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/chart/wholeItemGraph",
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -280,7 +280,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             showWholeItemGraphInRange: function (fromDate, toDate) {
                 return $http({
                     method: "GET",
-                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/wholeItemGraph/" + fromDate + "/" + toDate,
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/chart/wholeItemGraph/" + fromDate + "/" + toDate,
                     headers: {
                         'Content-Type': 'application/json'
                     }
