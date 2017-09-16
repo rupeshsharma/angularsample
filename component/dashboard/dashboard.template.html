@@ -32,17 +32,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
                   <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-list-alt"></span> Total Order</strong>
                   </span>
-                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder}}</div>
+                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalOrder || "No Order Placed"}}</div>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
                   <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-cutlery"></span> Total Items Sold</strong>
                   </span>
-                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold}}</div>
+                  <div style="color:#73879C;" class="count">{{dailyReviewData.totalItemsSold || "No Item Sold"}}</div>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count seperator">
                   <span class="count_top"><i ></i><strong><span class="glyphicon glyphicon-piggy-bank"></span> Total Collection</strong>
                   </span>
-                  <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection}} <i class="fa fa-inr"></i></div>
+                  <div style="color:#73879C;" class="count green">{{dailyReviewData.totalCollection || "No Collection"}} <i class="fa fa-inr"></i></div>
                 </div>
               </div>
             </div>
@@ -50,38 +50,57 @@
             <div class="row">
               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="white-box">
-                  <!--<h3 class=""><strong>Sales Chart</strong></h3>-->
-                  <div class="box-title form-group form-inline">
-                    <label><h4><strong>Chart : </strong></h4></label>
-                    <select class="form-control" ng-model="chartType" ng-change="ctChange(chartType)" data-ng-options="ct as ct for ct in masterData.chartType"><option disabled="disabled" value="">Please select</option></select>
-                    <button ng-disabled="chartType == undefined || chartType == ''" data-toggle="collapse" data-target="#chartDivSection" class="form-control btn btn-primary pull-right">Show/Hide Chart</button>
-                  </div>
-                  <div id="chartDivSection" class="collapse text-center col-sm-12">
-                    <div class="form-inline row">
-                      <div class="btn-group pull-left" data-toggle="buttons">
-                        <label class="btn btn-primary" ng-click="updateRenderChartBy('d')">
-                    <input type="radio" name="options" id="option1" autocomplete="off"> Daily
-                  </label>
-                        <label class="btn btn-primary" ng-click="updateRenderChartBy('m')">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
-                  </label>
-                        <label class="btn btn-primary" ng-click="updateRenderChartBy('y')">
-                    <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
-                  </label>
-                      </div>
-                      &nbsp;&nbsp;
-                      <div class="form-group form-inline">
-                        <label ng-if="renderChartBy == 'd'" text-right for="email">Month:</label>
-                        <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="mn as mn for mn in masterData.month"><option disabled="disabled" value="">Please select</option></select>
-                        <label ng-if="renderChartBy == 'd' || renderChartBy == 'm'" for="email">Year:</label>
-                        <select ng-if="renderChartBy == 'd' || renderChartBy == 'm'" class="form-control" ng-model="selectedYear" ng-change="yrChange(selectedYear)"
-                          data-ng-options="yr as yr for yr in masterData.year"><option disabled="disabled" value="">Please select</option></select>
-                      </div>
-                      <div class="form-group form-inline pull-right">
-                        <button ng-disabled="renderChartBy == undefined || renderChartBy == ''" ng-click="generateChart()" class="form-control btn btn-primary">Generate</button>
+                  <div id="chartDivSection" class="text-center col-sm-12">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">
+                              View Revenue / Sales Chart</h3>
+                          </div>
+                          <div class="panel-body">
+                            <div class="row">
+                              <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br />
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <label>Chart :</label>
+                                    <select class="form-control" ng-model="chartType" ng-change="ctChange(chartType)" data-ng-options="ct as ct for ct in masterData.chartType"><option disabled="disabled" value="">Please select</option></select>
+                                  </div>
+                                </form>
+                                <br />
+                                <div class="btn-group" data-toggle="buttons">
+                                  <label class="btn btn-primary" ng-click="updateRenderChartBy('d')">
+                                <input type="radio" name="options" id="option1" autocomplete="off"> Daily
+                              </label>
+                                  <label class="btn btn-primary" ng-click="updateRenderChartBy('m')">
+                                <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
+                              </label>
+                                  <label class="btn btn-primary" ng-click="updateRenderChartBy('y')">
+                                <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
+                              </label>
+                                </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6 login-box">
+                                <form role="form">
+                                  <div class="form-group form-inline">
+                                    <label ng-if="renderChartBy == 'd'" text-right for="email">Month:</label>
+                                    <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="mn as mn for mn in masterData.month"><option disabled="disabled" value="">Please select</option></select>
+                                    <label ng-if="renderChartBy == 'd' || renderChartBy == 'm'" for="email">Year:</label>
+                                    <select ng-if="renderChartBy == 'd' || renderChartBy == 'm'" class="form-control" ng-model="selectedYear" ng-change="yrChange(selectedYear)"
+                                      data-ng-options="yr as yr for yr in masterData.year"><option disabled="disabled" value="">Please select</option></select>
+                                  </div>
+                                  <br>
+                                  <div class="form-group form-inline">
+                                    <button ng-disabled="validateGenerateChart()" ng-click="generateChart()" class="form-control btn btn-primary">Generate Chart</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="row" id="ct-visits" style="height: 405px;"></div>
+                    <div class="row" id="ct-visits" style="height: 405px; display: none;"></div>
                   </div>
                 </div>
               </div>

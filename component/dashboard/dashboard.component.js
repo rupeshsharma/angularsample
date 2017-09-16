@@ -55,6 +55,19 @@ angular.
           }
         });
 
+        $scope.validateGenerateChart = function () {
+          if ($scope.renderChartBy == undefined || $scope.renderChartBy == '' || $scope.chartType == undefined || $scope.chartType == '') {
+            return true;
+          } else {
+            if ($scope.renderChartBy == 'd' && ($scope.selectedMonth == undefined || $scope.selectedMonth == '' || $scope.selectedYear == undefined || $scope.selectedYear == '')) {
+              return true;
+            }else if($scope.renderChartBy == 'm' && ($scope.selectedYear == undefined || $scope.selectedYear == '')){
+              return true;
+            }
+            return false;
+          }
+        }
+
         $("#fromOrderDate").datepicker({
           changeMonth: true,
           changeYear: true,
@@ -197,6 +210,7 @@ angular.
         }
 
         $scope.generateChart = function () {
+          document.getElementById("ct-visits").style.display = 'block';
           $scope.chart = new CanvasJS.Chart("ct-visits", {
             title: {
               text: ""
