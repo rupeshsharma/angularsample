@@ -84,6 +84,13 @@ APP.factory('menuService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            showWholeItemGraphInRange: function(fromDate, toDate, callback){
+                httpService.showWholeItemGraphInRange(fromDate, toDate).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }

@@ -268,7 +268,23 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 }
             },
             getWholeItemGraph: function getWholeItemGraph() {
-                return $http.get('./stubs/dailyChartData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/wholeItemGraph",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/wholeItemGraph.json');
+            },
+            showWholeItemGraphInRange: function (fromDate, toDate) {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/menu/wholeItemGraph/" + fromDate + "/" + toDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             getStaffList: function getStaffList() {
                 return $http.get('./stubs/staffData.json');

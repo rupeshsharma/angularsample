@@ -70,10 +70,10 @@
             </div>
           </div>
           <div class="form-group">
-              <label class="control-label col-sm-4" for="pwd">Item Description : </label>
-              <div class="col-sm-6">
-                  <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
-              </div>
+            <label class="control-label col-sm-4" for="pwd">Item Description : </label>
+            <div class="col-sm-6">
+              <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
+            </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-4" for="pwd">Item Price : </label>
@@ -82,19 +82,19 @@
             </div>
           </div>
           <div class="form-group">
-              <label class="control-label col-sm-4" for="pwd">Item Type : </label>
-              <div class="col-sm-6">
-                  <label class="radio-inline">
+            <label class="control-label col-sm-4" for="pwd">Item Type : </label>
+            <div class="col-sm-6">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="veg" name="itemType">Veg
                     </label>
-                    <label class="radio-inline">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="nonVeg" name="itemType">Non-Veg
                     </label>
-                    <label class="radio-inline">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="na" name="itemType">N/A
                     </label>
-              </div>
             </div>
+          </div>
           <div class="form-group">
             <div class="text-center col-sm-12">
               <button ng-click="addItem()" class="btn btn-primary">Save</button>
@@ -131,31 +131,31 @@
             </div>
           </div>
           <div class="form-group">
-              <label class="control-label col-sm-4" for="pwd">Item Description : </label>
-              <div class="col-sm-6">
-                  <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
-              </div>
+            <label class="control-label col-sm-4" for="pwd">Item Description : </label>
+            <div class="col-sm-6">
+              <textarea class="form-control" rows="5" id="comment" ng-model="itemData.description" placeholder="Enter Item Description"></textarea>
+            </div>
           </div>
           <div class="form-group">
-              <label class="control-label col-sm-4" for="pwd">Item Price : </label>
-              <div class="col-sm-6">
-                <input type="number" class="form-control" id="itmprc" ng-model="itemData.price" placeholder="Enter Item Price">
-              </div>
+            <label class="control-label col-sm-4" for="pwd">Item Price : </label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="itmprc" ng-model="itemData.price" placeholder="Enter Item Price">
+            </div>
           </div>
           <div class="form-group">
-              <label class="control-label col-sm-4" for="pwd">Item Type : </label>
-              <div class="col-sm-6">
-                  <label class="radio-inline">
+            <label class="control-label col-sm-4" for="pwd">Item Type : </label>
+            <div class="col-sm-6">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="veg" name="itemType">Veg
                     </label>
-                    <label class="radio-inline">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="nonVeg" name="itemType">Non-Veg
                     </label>
-                    <label class="radio-inline">
+              <label class="radio-inline">
                       <input type="radio" ng-model="itemData.type" value="na" name="itemType">N/A
                     </label>
-              </div>
             </div>
+          </div>
           <div class="form-group">
             <div class="text-center col-sm-12">
               <button ng-click="updateItem()" class="btn btn-primary">Save</button>
@@ -169,30 +169,30 @@
 </div>
 
 <div id="deleteItemModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="text-center modal-title">Delete Item</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal text-center">            
-            <div class="form-group">
-                <span>Do you want to delete <strong>{{selectedItem.title}}</strong> item under category <strong>{{categorySelected.title}}</strong> ?</span>
-            </div>
-            <div class="form-group">
-              <div class="text-center col-sm-12">
-                <button ng-click="deleteItem()" class="btn btn-primary">Delete</button>
-              </div>
-            </div>
-          </form>
-        </div>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center modal-title">Delete Item</h4>
       </div>
-  
+      <div class="modal-body">
+        <form class="form-horizontal text-center">
+          <div class="form-group">
+            <span>Do you want to delete <strong>{{selectedItem.title}}</strong> item under category <strong>{{categorySelected.title}}</strong> ?</span>
+          </div>
+          <div class="form-group">
+            <div class="text-center col-sm-12">
+              <button ng-click="deleteItem()" class="btn btn-primary">Delete</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+
   </div>
+</div>
 
 <div id="itemDetailModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -274,6 +274,20 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="text-center modal-title">Sale - All Items</h4>
+        <br/>
+        <form class="form-inline text-center">
+          <div class="form-group has-feedback">
+            <label>From :</label>
+            <input type="text" ng-model="fromItemSaleGraphDate" id="fromItemSaleGraphDate" class="form-control">
+            <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <label>To :</label>
+            <input type="text" ng-model="toItemSaleGraphDate" id="toItemSaleGraphDate" class="form-control">
+            <span class="glyphicon glyphicon-calendar form-control-feedback atZeroIndex"></span>
+          </div>
+          <button ng-click="filterWholeItemGraph()" class="btn btn-primary btn-sm form-control">Filter</button>
+        </form>
       </div>
       <div class="modal-body">
         <div class="row">

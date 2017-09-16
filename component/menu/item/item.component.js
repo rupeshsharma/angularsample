@@ -114,6 +114,33 @@ angular.
           });
         }
 
+        $scope.filterWholeItemGraph = function () {
+          menuService.showWholeItemGraphInRange($scope.fromItemSaleGraphDate, $scope.toItemSaleGraphDate, data => {
+            $scope.wholeItemChart.options.data[0].dataPoints = data;
+            $scope.wholeItemChart.render();
+          });
+        }
+
+        $("#fromItemSaleGraphDate").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.fromItemSaleGraphDate = date;
+          }
+        });
+
+        $("#toItemSaleGraphDate").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: "dd-mm-yy",
+          maxDate: 0,
+          onSelect: function (date) {
+            $scope.toItemSaleGraphDate = date;
+          }
+        });
+
         $scope.chart = new CanvasJS.Chart("perItemChart", {
           title: {
             text: "Weekly"
