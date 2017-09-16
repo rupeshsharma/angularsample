@@ -28,6 +28,9 @@ APP.factory('customerService', ['httpService',
                     resp => {
                         callback(resp.data);
                     });
+            },
+            updateLastVisit: function updateLastVisit(id){
+                return httpService.updateLastVisit(id);
             }
         }
     }

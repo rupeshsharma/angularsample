@@ -2,19 +2,19 @@
     {
         "id":1,
         "name":"some name 1",
-        "lastVisitedDate":"12-09-2017",
+        "lastVisited":"12-09-2017",
         "mobile":"1234567890"
     },
     {
         "id":2,
         "name":"some name 2",
-        "lastVisitedDate":"12-09-2017",
+        "lastVisited":"12-09-2017",
         "mobile":"1234567890"
     },
     {
         "id":3,
         "name":"some name 3",
-        "lastVisitedDate":"12-09-2017",
+        "lastVisited":"12-09-2017",
         "mobile":"1234567890"
     }
 ]

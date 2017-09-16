@@ -203,6 +203,9 @@ angular.
 
             //printing invoice
             $("#myModal .close").click();
+            if (!sessionService.isAnonymousCustomer()) {
+              customerService.updateLastVisit(customerData.id);
+            }
             $timeout(function () {
               document.getElementById("printInvoice").click();
             }, 50);

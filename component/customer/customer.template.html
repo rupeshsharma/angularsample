@@ -25,7 +25,7 @@
       <tr ng-repeat="cust in customerList">
         <td class="text-left">{{cust.name}}</td>
         <td class="text-left">{{cust.mobile}}</td>
-        <td class="text-left">{{cust.lastVisitedDate}}</td>
+        <td class="text-left">{{cust.lastVisited}}</td>
         <td class="text-left"><a ng-click="showCustomerHistory(cust)" data-toggle="modal" data-target="#customerModal">View History</a></td>
       </tr>
     </tbody>
@@ -66,7 +66,7 @@
               <tr ng-repeat="custorhl in customerOrderHistoryList">
                 <td>{{custorhl.diningMode}}</td>
                 <td>{{custorhl.paymentType}}</td>
-                <td>{{custorhl.amount}}</td>
+                <td>{{custorhl.grandTotal}}</td>
                 <td>{{custorhl.orderDate}}</td>
                 <td><a ng-click="viewOrderDetail(custorhl.id)" data-toggle="modal" data-target="#customerHistoryModal">View Detail</a></td>
               </tr>
@@ -136,35 +136,33 @@
                     <td class="thick-line"></td>
                     <td class="thick-line"></td>
                     <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                    <td class="thick-line text-right">{{orderDetail.amount}}</td>
+                    <td class="thick-line text-right">{{orderDetail.total}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">Discount @ {{orderDetail.discount}}%</td>
-                    <td class="no-line text-right">{{(orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) | number : 2}}</td>
+                    <td class="no-line text-right">{{orderDetail.afterDiscountTotal | number : 2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">CGST @ 6%</td>
-                    <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) | number :
+                    <td class="no-line text-right">{{orderDetail.cgst | number :
                       2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">SGST @ 6%</td>
-                    <td class="no-line text-right">{{(((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) | number :
+                    <td class="no-line text-right">{{orderDetail.sgst | number :
                       2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center"><strong>Grand Total</strong></td>
-                    <td class="no-line text-right">{{((orderDetail.amount - ((orderDetail.amount / 100) * orderDetail.discount)) + (((orderDetail.amount
-                      - ((orderDetail.amount / 100) * orderDetail.discount)) / 100) * 6) + (((orderDetail.amount - ((orderDetail.amount
-                      / 100) * orderDetail.discount)) / 100) * 6)) | number : 2}}</td>
+                    <td class="no-line text-right">{{orderDetail.grandTotal | number : 2}}</td>
                   </tr>
                 </tbody>
               </table>

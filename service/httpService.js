@@ -198,11 +198,25 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 });
                 // return $http.get('./stubs/reviewData.json');
             },
-            searchCustomerVisitedBefore: function searchCustomerVisitedBefore() {
-                return $http.get('./stubs/searchCustomer.json');
+            searchCustomerVisitedBefore: function searchCustomerVisitedBefore(lastVisitedDate) {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/visitBefore/" + lastVisitedDate,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/searchCustomer.json');
             },
             getCustomerHistory: function getCustomerHistory(id) {
-                return $http.get('./stubs/orderHistory.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/history/customer/" + id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/orderHistory.json');
             },
             getTotalOrderInRange: function getTotalOrderInRange(fromDate, toDate) {
                 return $http({
@@ -267,6 +281,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             },
             changePassword: function changePassword(request) {
 
+            },
+            updateLastVisit: function updateLastVisit(id) {
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/" + id + "/lastVisit",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             }
         }
 
