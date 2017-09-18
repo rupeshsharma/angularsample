@@ -259,13 +259,21 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 // return $http.get('./stubs/dashboardData.json');
             },
             getChartData: function getChartData(request) {
-                if (request.renderChartBy == 'm') {
-                    return $http.get('./stubs/monthlyChartData.json');
-                } else if (request.renderChartBy == 'y') {
-                    return $http.get('./stubs/yearlyChartData.json');
-                } else {
-                    return $http.get('./stubs/dailyChartData.json');
-                }
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/chart/dashboardGraph",
+                    data:request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // if (request.renderChartBy == 'm') {
+                //     return $http.get('./stubs/monthlyChartData.json');
+                // } else if (request.renderChartBy == 'y') {
+                //     return $http.get('./stubs/yearlyChartData.json');
+                // } else {
+                //     return $http.get('./stubs/dailyChartData.json');
+                // }
             },
             getWholeItemGraph: function getWholeItemGraph() {
                 return $http({

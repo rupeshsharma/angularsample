@@ -84,10 +84,10 @@
                                 <form role="form">
                                   <div class="form-group form-inline">
                                     <label ng-if="renderChartBy == 'd'" text-right for="email">Month:</label>
-                                    <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="mn as mn for mn in masterData.month"><option disabled="disabled" value="">Please select</option></select>
+                                    <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="x for (x, y) in month"><option disabled="disabled" value="">Please select</option></select>
                                     <label ng-if="renderChartBy == 'd' || renderChartBy == 'm'" for="email">Year:</label>
                                     <select ng-if="renderChartBy == 'd' || renderChartBy == 'm'" class="form-control" ng-model="selectedYear" ng-change="yrChange(selectedYear)"
-                                      data-ng-options="yr as yr for yr in masterData.year"><option disabled="disabled" value="">Please select</option></select>
+                                      data-ng-options="yr as yr for yr in year"><option disabled="disabled" value="">Please select</option></select>
                                   </div>
                                   <br>
                                   <div class="form-group form-inline">

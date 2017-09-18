@@ -30,11 +30,13 @@ angular.
           delete $rootScope.viewButtonClicked;
         }
 
-        $scope.masterData = {
-          "chartType": ["Revenue", "Sales"],
-          "month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          "year": ["2017"]
+        $scope.masterData = sessionService.getMasterData();
+
+        $scope.month = {
+          "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
         };
+
+        $scope.year = [2017];
 
         $("#reviewDate").datepicker({
           changeMonth: true,
@@ -61,7 +63,7 @@ angular.
           } else {
             if ($scope.renderChartBy == 'd' && ($scope.selectedMonth == undefined || $scope.selectedMonth == '' || $scope.selectedYear == undefined || $scope.selectedYear == '')) {
               return true;
-            }else if($scope.renderChartBy == 'm' && ($scope.selectedYear == undefined || $scope.selectedYear == '')){
+            } else if ($scope.renderChartBy == 'm' && ($scope.selectedYear == undefined || $scope.selectedYear == '')) {
               return true;
             }
             return false;
