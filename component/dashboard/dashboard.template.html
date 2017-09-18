@@ -60,6 +60,10 @@
                           </div>
                           <div class="panel-body">
                             <div class="row">
+                              <div ng-if="chartType != undefined && chartType != ''" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <span style="color:#72BBC5;" class="glyphicon glyphicon-stop"><label ng-if="chartType == 'Sales'">&nbsp;Order</label><label ng-if="chartType == 'Revenue'">&nbsp;Collection</label></span> &nbsp;&nbsp; <span style="color:#C24642;"
+                                  class="glyphicon glyphicon-record"><label ng-if="chartType == 'Sales'">&nbsp;Item</label><label ng-if="chartType == 'Revenue'">&nbsp;Expense</label></span>
+                              </div>
                               <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br />
                                 <form class="form-inline">
                                   <div class="form-group">
