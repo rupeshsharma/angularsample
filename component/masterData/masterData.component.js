@@ -10,12 +10,12 @@ angular.
         });
 
         $scope.masterDataInit = function () {
-          // $scope.masterData = sessionService.getMasterData();
-          $scope.masterData = {
-            "a": ["1", "2", "3"],
-            "b": ["4", "5", "6"],
-            "c": ["8", "9", "10"]
-          }
+          $scope.masterData = sessionService.getMasterData();
+          //$scope.masterData = {
+          //  "a": ["1", "2", "3"],
+           // "b": ["4", "5", "6"],
+           // "c": ["8", "9", "10"]
+         // }
           closeLoadingIndicator();
         }
 
