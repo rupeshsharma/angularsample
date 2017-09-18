@@ -1,3 +1,69 @@
 <div class="row text-center">
-  master component
+  <div class="col-md-3"></div>
+  <div class="dual-list list-left col-md-6">
+    <div class="well text-right">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="form-group">
+            <select ng-change="setDefault()" name="masterDataList" class="form-control" ng-model="selectedMasterData" ng-options="x as x for (x, y) in masterData">
+                              <option value= "" ng-disabled="true">Please Select</option>
+                            </select>
+          </div>
+          <br>
+        </div>
+        <!--<div class="col-md-2">
+          
+        </div>-->
+        <div class="col-md-5">
+          <div class="btn-group">
+            <button ng-click="showAddValueModal()" data-toggle="modal" data-target="#addMasterDataValueModal" ng-disabled="selectedMasterData == undefined || selectedMasterData == ''"
+              class="btn btn-success selector" title="Add"><i class="glyphicon glyphicon-plus"></i></button>
+          </div>
+          &nbsp;
+          <div class="btn-group">
+            <button ng-click="showEditValueModal()" data-toggle="modal" data-target="#addMasterDataValueModal" ng-disabled="selectedMasterDataValue == undefined || selectedMasterDataValue == ''"
+              class="btn btn-info selector" title="Edit"><i class="glyphicon glyphicon-edit"></i></button>
+          </div>
+          &nbsp;
+          <div class="btn-group">
+            <button ng-click="removeMasterDataValue()" ng-disabled="selectedMasterDataValue == undefined || selectedMasterDataValue ==''"
+              class="btn btn-danger selector" title="Remove"><i class="glyphicon glyphicon-minus"></i></button>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group text-center">
+        <a id="{{mdv}}" href="" ng-click="selectMasterDataValue(mdv, this)" ng-repeat="mdv in selectedMasterDataValueList" class="list-group-item">{{mdv}}</a>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<div id="addMasterDataValueModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Value in <strong>{{selectedMasterData}}</strong></h4>
+      </div>
+      <div class="modal-body text-center">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-3">New Value:</label>
+            <div class="col-sm-9">
+              <input ng-model="newValue" type="text" class="form-control"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="text-center col-sm-12 ">
+              <button ng-click="addEditMasterDataValue()" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
 </div>
