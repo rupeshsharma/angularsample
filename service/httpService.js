@@ -306,6 +306,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                         'Content-Type': 'application/json'
                     }
                 });
+            },
+            addMasterDataValue: function addMasterDataValue(type, value) {
+                return $http.get('./stubs/staffData.json');
+            },
+            removeMasterDataValue: function removeMasterDataValue(type, value) {
+                return $http.get('./stubs/staffData.json');
+            },
+            updateMasterDataValue: function updateMasterDataValue(type, value) {
+                return $http.get('./stubs/staffData.json');
             }
         }
 
