@@ -295,16 +295,44 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 });
             },
             getStaffList: function getStaffList() {
-                return $http.get('./stubs/staffData.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/user",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/staffData.json');
             },
             updateUser: function updateUser(request) {
-
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/user/update",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             createUser: function createUser(request) {
-
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/user/create",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             changePassword: function changePassword(request) {
-
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/user/changePassword",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             updateLastVisit: function updateLastVisit(id) {
                 return $http({
