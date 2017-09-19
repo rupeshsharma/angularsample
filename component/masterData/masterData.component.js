@@ -64,7 +64,7 @@ angular.
               closeLoadingIndicator();
             });
           } else {
-            masterService.updateMasterDataValue($scope.selectedMasterData, $scope.newValue, resp => {
+            masterService.updateMasterDataValue($scope.selectedMasterData, $scope.selectedMasterDataValue, $scope.newValue, resp => {
               var index = $scope.masterData[$scope.selectedMasterData].indexOf($scope.selectedMasterDataValue);
               $scope.masterData[$scope.selectedMasterData][index] = $scope.newValue;
               sessionService.setMasterData($scope.masterData);
