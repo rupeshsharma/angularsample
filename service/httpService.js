@@ -316,13 +316,34 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
                 });
             },
             addMasterDataValue: function addMasterDataValue(type, value) {
-                return $http.get('./stubs/staffData.json');
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/master/add/" + type + "/" + value,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/staffData.json');
             },
             removeMasterDataValue: function removeMasterDataValue(type, value) {
-                return $http.get('./stubs/staffData.json');
+                return $http({
+                    method: "DELETE",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/master/remove/" + type + "/" + value,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/staffData.json');
             },
             updateMasterDataValue: function updateMasterDataValue(type, previousValue, newValue) {
-                return $http.get('./stubs/staffData.json');
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/master/update/" + type + "/" + previousValue + "/" + newValue,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/staffData.json');
             }
         }
 
