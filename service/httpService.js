@@ -321,7 +321,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
             removeMasterDataValue: function removeMasterDataValue(type, value) {
                 return $http.get('./stubs/staffData.json');
             },
-            updateMasterDataValue: function updateMasterDataValue(type, value) {
+            updateMasterDataValue: function updateMasterDataValue(type, previousValue, newValue) {
                 return $http.get('./stubs/staffData.json');
             }
         }
