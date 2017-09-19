@@ -25,8 +25,8 @@ APP.factory('masterService', ['httpService',
                     }
                 );
             },
-            updateMasterDataValue: function (key, value, callback) {
-                httpService.updateMasterDataValue(key, value).then(
+            updateMasterDataValue: function (key, previousValue, newValue, callback) {
+                httpService.updateMasterDataValue(key, previousValue, newValue).then(
                     resp => {
                         callback(resp);
                     }
