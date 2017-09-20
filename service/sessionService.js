@@ -13,8 +13,28 @@ APP.factory('sessionService', ['$sessionStorage',
             getMasterData: getMasterData,
             setOrderDetail: setOrderDetail,
             getOrderDetail: getOrderDetail,
-            removeOrderDetail: removeOrderDetail
+            removeOrderDetail: removeOrderDetail,
+            setXAuthHeader: setXAuthHeader,
+            getXAuthHeader: getXAuthHeader,
+            setLoggedInUserData: setLoggedInUserData,
+            getLoggedInUserData: getLoggedInUserData
         };
+        
+        function setLoggedInUserData(data) {
+            $sessionStorage.loggedInUser = data;
+        }
+
+        function getLoggedInUserData() {
+            return $sessionStorage.loggedInUser;
+        }
+
+        function setXAuthHeader(xAuthData) {
+            $sessionStorage.xAuthData = xAuthData;
+        }
+
+        function getXAuthHeader() {
+            return $sessionStorage.xAuthData;
+        }
 
         function getCustomerData() {
             return $sessionStorage.customerData;
