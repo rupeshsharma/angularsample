@@ -10,6 +10,8 @@ APP.run(function ($rootScope, $location, sessionService) {
     sessionService.clearUserSession();
     $location.path('/');
   }
+  
+  $rootScope.loggedInUser = sessionService.getLoggedInUserData();
 });
 
 APP.config(['$locationProvider', '$routeProvider',
