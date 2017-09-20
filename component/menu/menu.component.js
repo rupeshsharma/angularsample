@@ -12,7 +12,7 @@ angular.
           $scope.discount = 0;
           getCustomerData();
           $scope.masterData = sessionService.getMasterData();
-          setUpMenu(menuService);
+          setUpMenu();
         }
         
         function closeLoadingIndicator() {
@@ -61,7 +61,7 @@ angular.
             });
         }
 
-        function setUpMenu(menuService) {
+        function setUpMenu() {
           document.getElementById("loadingIndicator").style.display = 'block';
           document.getElementById("menuComponent").style.display = 'none';
           menuService.getMenu(resp => {
@@ -72,8 +72,10 @@ angular.
 
         function getCustomerData() {
           var userData = sessionService.getCustomerData();
-          $rootScope.customerMobile = userData.mobile;
-          $rootScope.customerName = userData.name;
+          if (userData) {
+            $rootScope.customerMobile = userData.mobile;
+            $rootScope.customerName = userData.name;
+          }
           $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
         }
 
