@@ -3,7 +3,7 @@ var APP = angular.module('sample');
 APP.run(function ($rootScope, $location, sessionService) {
   $rootScope.logOut = function () {
     for (var prop in $rootScope) {
-      if (prop.substring(0, 1) !== '$') {
+      if (prop.substring(0, 1) !== '$' && prop !== 'logOut') {
         delete $rootScope[prop];
       }
     }
