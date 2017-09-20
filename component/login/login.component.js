@@ -6,6 +6,16 @@ angular.
       function loginController($scope, $timeout, $rootScope, $location, sessionService, masterService, base64Service, loginService) {
 
         $scope.credential = {};
+        
+        $rootScope.logOut = function () {
+          for (var prop in $rootScope) {
+            if (prop.substring(0, 1) !== '$') {
+              delete $rootScope[prop];
+            }
+          }
+          sessionService.clearUserSession();
+          $location.path('/');
+        }
 
         $scope.doLogin = function () {
           $("#loginComponent").addClass("disabledDiv");
