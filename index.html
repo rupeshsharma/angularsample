@@ -131,7 +131,7 @@
                             </div>
                         </div>
 
-                        <button ng-disabled="newPasswordLoggedInUser != newPasswordLoggedInUserConfirm" ng-click="changePasswordLoggedInUser(newPasswordLoggedInUser)" class="btn btn-primary">Save</button>
+                        <button ng-disabled="newPasswordLoggedInUser == undefined || newPasswordLoggedInUser == '' || newPasswordLoggedInUserConfirm == undefined || newPasswordLoggedInUserConfirm == '' || newPasswordLoggedInUser != newPasswordLoggedInUserConfirm" ng-click="changePasswordLoggedInUser(newPasswordLoggedInUser)" class="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>
