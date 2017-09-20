@@ -4,7 +4,12 @@ angular.
     templateUrl: './component/checkin/checkin.template.html',
     controller: ['$scope', '$timeout', '$rootScope', '$location','sessionService','customerService', 'masterService',
       function checkInController($scope, $timeout, $rootScope, $location, sessionService, customerService, masterService) {
-        $rootScope.viewType = 'checkin';
+        
+        if (!sessionService.getLoggedInUserData()) {
+          $rootScope.logOut();
+        } else {
+          $rootScope.viewType = 'checkin';
+        }
 
         $scope.checkIn = function(isAnonymous){
           if(!isAnonymous){
