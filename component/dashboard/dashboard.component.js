@@ -5,21 +5,25 @@ angular.
     controller: ['$scope', '$rootScope', '$filter', '$timeout', '$location', 'sessionService', 'menuService', 'dashboardService',
       function dashBoardController($scope, $rootScope, $filter, $timeout, $location, sessionService, menuService, dashboardService) {
 
+        if (!sessionService.getLoggedInUserData()) {
+          $location.path('/');
+        } else {
+          $rootScope.viewType = 'dashboard';
+          $scope.reviewDate = $filter('date')(new Date(), "dd-MM-yyyy");
+          dashboardService.getReviewByDate($scope.reviewDate, data => {
+            $scope.dailyReviewData = data;
+            closeLoadingIndicator();
+          });
+        }
+        
         function closeLoadingIndicator() {
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("dashBoardComponent").style.display = 'block';
         }
-        $scope.reviewDate = $filter('date')(new Date(), "dd-MM-yyyy");
-        dashboardService.getReviewByDate($scope.reviewDate, data => {
-          $scope.dailyReviewData = data;
-          closeLoadingIndicator();
-        });
 
         $scope.onTabClick = function (tabClicked) {
           $scope.$broadcast(tabClicked);
         }
-
-        $rootScope.viewType = 'dashboard';
 
         $rootScope.viewButtonClicked = function () {
           console.log('dashboard wala wala');
