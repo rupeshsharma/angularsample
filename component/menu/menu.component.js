@@ -5,19 +5,21 @@ angular.
     controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'customerService',
       function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, customerService) {
 
+        if (!sessionService.getLoggedInUserData()) {
+          $location.path('/');
+        } else {
+          $rootScope.viewType = 'menu';
+          $scope.discount = 0;
+          getCustomerData();
+          $scope.masterData = sessionService.getMasterData();
+          setUpMenu(menuService);
+        }
+        
         function closeLoadingIndicator() {
           document.getElementById("loadingIndicator").style.display = 'none';
           document.getElementById("menuComponent").style.display = 'block';
         }
 
-        $rootScope.viewType = 'menu';
-        $scope.discount = 0;
-        getCustomerData();
-        $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
-
-        $scope.masterData = sessionService.getMasterData();
-
-        setUpMenu(menuService);
         $scope.cart = {
           "quantity": 0,
           "items": [],
@@ -72,6 +74,7 @@ angular.
           var userData = sessionService.getCustomerData();
           $rootScope.customerMobile = userData.mobile;
           $rootScope.customerName = userData.name;
+          $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
         }
 
         $scope.addToCart = function (item) {
