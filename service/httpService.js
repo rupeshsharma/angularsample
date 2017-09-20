@@ -5,6 +5,16 @@ APP.factory('httpService', ['$resource', '$http', '$timeout',
     function ($resource, $http, $timeout) {
 
         return {
+            authenticate: function authenticate(request) {
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/login",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
             getCustomerByMobile: function getCustomerByMobile(mobile) {
                 return $http({
                     method: "GET",
