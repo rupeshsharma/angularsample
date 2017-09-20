@@ -74,7 +74,7 @@
                     </ul>
                 </div>
             </form>
-            <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
+            <form ng-if="viewType == 'dashboard'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> {{loggedInUser.name}} </label>
                 <div class="btn-group pull-right">
                     <button type="button" ng-click="close()" class="btn btn-danger btn-sm">Close</button>
                     <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -86,7 +86,7 @@
                     </ul>
                 </div>
             </form>
-            <form ng-if="viewType == 'checkin'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> Admin </label>
+            <form ng-if="viewType == 'checkin'" class="navbar-form text-center"> <label>Welcome <span class="glyphicon glyphicon-user"></span> {{loggedInUser.name}} </label>
                 <div class="btn-group pull-right">
                     <button type="button" ng-click="logOut()" class="btn btn-danger btn-sm">Log Out</button>
                     <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">
