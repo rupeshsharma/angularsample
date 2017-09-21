@@ -5,6 +5,10 @@ angular.
     controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'masterService', 'base64Service', 'loginService',
       function loginController($scope, $timeout, $rootScope, $location, sessionService, masterService, base64Service, loginService) {
 
+        if (sessionService.getLoggedInUserData()) {
+          $location.path('/checkin');
+        }
+        
         $scope.credential = {};
 
         $scope.doLogin = function () {
