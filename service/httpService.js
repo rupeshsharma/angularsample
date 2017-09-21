@@ -1,9 +1,9 @@
 var APP = angular.module('sample')
 var CONTEXT_ROOT = "http://localhost:8081";
 var APP_ROOT = "/sample"
-APP.factory('httpService', ['$resource', '$http', '$timeout',
-    function ($resource, $http, $timeout) {
-
+APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
+    function ($resource, $http, $timeout, sessionService) {
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + sessionService.getXAuthHeader();
         return {
             authenticate: function authenticate(request) {
                 return $http({
