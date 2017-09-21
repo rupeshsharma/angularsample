@@ -10,22 +10,29 @@ APP.run(function ($rootScope, $location, sessionService) {
     sessionService.clearUserSession();
     $location.path('/');
   }
-  
-  $rootScope.changePasswordLoggedInUser = function(password){
+
+  $rootScope.changePasswordLoggedInUser = function (password) {
     console.log(password);
   }
-  
+
   $rootScope.loggedInUser = sessionService.getLoggedInUserData();
 });
 
-APP.factory('httpInterceptor', function ($q, $location, $rootScope) {
+APP.factory('httpInterceptor', function ($q, $location, $rootScope, sessionService) {
   return {
 
+    'request': function (config) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = sessionService.getXAuthHeader();
+      return config;
+    },
+    
     'response': function (response) {
       return response || $q.when(response);
     },
 
     'responseError': function (rejection) {
+      console.log(rejection.status);
       $rootScope.globalError = rejection.status;
       $rootScope.lastFailedPath = $location.url();
       $location.path('/error');
