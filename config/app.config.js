@@ -18,10 +18,27 @@ APP.run(function ($rootScope, $location, sessionService) {
   $rootScope.loggedInUser = sessionService.getLoggedInUserData();
 });
 
-APP.config(['$locationProvider', '$routeProvider',
-  function config($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
+APP.factory('httpInterceptor', function ($q, $location, $rootScope) {
+  return {
 
+    'response': function (response) {
+      return response || $q.when(response);
+    },
+
+    'responseError': function (rejection) {
+      $rootScope.globalError = rejection.status;
+      $rootScope.lastFailedPath = $location.url();
+      $location.path('/error');
+      return $q.reject(rejection);
+    }
+
+  };
+});
+
+APP.config(['$locationProvider', '$routeProvider', '$httpProvider',
+  function config($locationProvider, $routeProvider, $httpProvider) {
+    $locationProvider.hashPrefix('!');
+    $httpProvider.interceptors.push('httpInterceptor');
     $routeProvider.
       when('/', {
         template: '<log-in></log-in>'
