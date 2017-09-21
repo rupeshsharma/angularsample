@@ -16,7 +16,7 @@ angular.
           document.getElementById("loadingIndicator").style.display = 'block';
 
           loginService.authenticate($scope.credential, data => {
-            sessionService.setXAuthHeader(base64Service.encode($scope.credential.username + ":" + $scope.credential.password));
+            sessionService.setXAuthHeader(base64Service.encode($scope.credential.userName + ":" + $scope.credential.password));
             sessionService.setLoggedInUserData(data);
             $rootScope.loggedInUser = data;
             masterService.getMasterData(function (data) {
