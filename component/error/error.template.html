@@ -1,6 +1,14 @@
-<div class="centered container text-center">
-	<div>
-		<h1>Oops! Something went wrong...</h1>
-		<button ng-click="tryAgain()" class="btn btn-info"> Try Again </button> -or- <button ng-click="goHome()" class="btn btn-primary"> Go Home </button>
-	</div>
+<div class="container">
+
+	 <div id="fof" class="clear">
+      <!-- ####################################################################################################### -->
+      <div class="hgroup">
+        <h1>Something Just Went Wrong !</h1>
+        <h2><span>{{error}}</span> Error</h2>
+      </div>
+      <p>For some reason, the service you requested could not be found on our server. Please choose from below option :</p>
+      <p><button ng-click="tryAgain()" class="btn btn-info"> Try Again </button>&nbsp; -or- &nbsp;<button ng-click="goHome()" class="btn btn-primary"> Go Home </button></p>
+      <!-- ####################################################################################################### -->
+    </div>
+	
 </div>
