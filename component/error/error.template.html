@@ -1,14 +1,18 @@
 <div class="container">
 
-	 <div id="fof" class="clear">
-      <!-- ####################################################################################################### -->
-      <div class="hgroup">
-        <h1>Something Just Went Wrong !</h1>
-        <h2><span>{{error}}</span> Error</h2>
-      </div>
-      <p>For some reason, server could not process your request. Please choose from below option :</p>
-      <p><button ng-click="tryAgain()" class="btn btn-info"> Try Again </button>&nbsp; -or- &nbsp;<button ng-click="goHome()" class="btn btn-primary"> Go Home </button></p>
-      <!-- ####################################################################################################### -->
+  <div id="fof" class="clear">
+    <!-- ####################################################################################################### -->
+    <div class="hgroup">
+      <h1 ng-hide="error == 401">Something Just Went Wrong !</h1>
+      <h1 ng-show="error == 401">Access Denied</h1>
+      <h2><span>{{error}}</span> <span ng-hide="error == 401">Error</span></h2>
     </div>
-	
+    <p ng-hide="error == 401">For some reason, server could not process your request. Please choose from below option :</p>
+    <p ng-show="error == 401">You do not have permission to access the service. </p>
+    <p><button ng-hide="error == 401" ng-click="tryAgain()" class="btn btn-info"> Try Again </button><span ng-hide="error == 401">&nbsp; -or- &nbsp;</span>
+      <button ng-click="goHome()" class="btn btn-primary"> Go Home </button>
+    </p>
+    <!-- ####################################################################################################### -->
+  </div>
+
 </div>
