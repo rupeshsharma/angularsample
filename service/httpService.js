@@ -314,6 +314,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                 });
                 // return $http.get('./stubs/staffData.json');
             },
+            removeStaff: function removeStaff(id) {
+                return $http({
+                    method: "DELETE",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/user/remove/"+id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
             updateUser: function updateUser(request) {
                 return $http({
                     method: "PUT",
