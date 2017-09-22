@@ -33,6 +33,14 @@ APP.factory('userService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+
+            removeStaff: function (id, callback){
+                httpService.removeStaff(id).then(
+                    resp => {
+                        callback();
+                    }
+                );
             }
         }
     }
