@@ -12,7 +12,9 @@ APP.run(function ($rootScope, $location, sessionService) {
   }
 
   $rootScope.changePasswordLoggedInUser = function (password) {
-    console.log(password);
+    userService.changePassword({ "id": sessionService.getLoggedInUserData().id, "password": password }, function() {
+      $("#changePassModal .close").click();
+    });
   }
 
   $rootScope.loggedInUser = sessionService.getLoggedInUserData();
