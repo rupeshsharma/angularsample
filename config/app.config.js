@@ -1,6 +1,6 @@
 var APP = angular.module('sample');
 
-APP.run(function ($rootScope, $location, sessionService) {
+APP.run(function ($rootScope, $location, sessionService, userService) {
   $rootScope.logOut = function () {
     for (var prop in $rootScope) {
       if (prop.substring(0, 1) !== '$' && prop !== 'logOut' && prop !== 'changePasswordLoggedInUser') {

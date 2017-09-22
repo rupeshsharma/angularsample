@@ -9,6 +9,7 @@ angular.
           $rootScope.logOut();
         } else {
           $rootScope.viewType = 'checkin';
+          $scope.loggedInUser = sessionService.getLoggedInUserData()
         }
 
         $scope.checkIn = function(isAnonymous){
