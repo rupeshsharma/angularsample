@@ -12,7 +12,7 @@ APP.run(function ($rootScope, $location, sessionService) {
   }
 
   $rootScope.changePasswordLoggedInUser = function (password) {
-    userService.changePassword({ "id": sessionService.getLoggedInUserData().id, "password": password }, function() {
+    userService.changePassword({ "id": sessionService.getLoggedInUserData().id, "password": password }, function () {
       $("#changePassModal .close").click();
     });
   }
@@ -28,7 +28,7 @@ APP.factory('httpInterceptor', function ($q, $location, $rootScope, sessionServi
       config.headers.Authorization = sessionService.getXAuthHeader();
       return config;
     },
-    
+
     'response': function (response) {
       return response || $q.when(response);
     },
@@ -37,7 +37,9 @@ APP.factory('httpInterceptor', function ($q, $location, $rootScope, sessionServi
       console.log(rejection.status);
       $rootScope.globalError = rejection.status;
       $rootScope.lastFailedPath = $location.url();
-      $location.path('/error');
+      if ($location.url() != '/') {
+        $location.path('/error');
+      }
       return $q.reject(rejection);
     }
 
