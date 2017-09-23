@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('item', {
     templateUrl: './component/menu/item/item.template.html',
-    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'menuService',
-      function itemController($scope, $timeout, $rootScope, $location, sessionService, menuService) {
+    controller: ['$scope', '$timeout', '$rootScope', '$location', 'sessionService', 'menuService', 'dashboardService',
+      function itemController($scope, $timeout, $rootScope, $location, sessionService, menuService, dashboardService) {
         $scope.itemData = {};
         $scope.$on('itemInit', function (event) {
           $scope.itemInit();
@@ -13,6 +13,66 @@ angular.
           document.getElementById("loadingIndicator").style.display = 'block';
           document.getElementById("itemComponent").style.display = 'none';
           getAllCategories();
+          $scope.month = {
+            "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
+          };
+          $scope.year = [2017];
+        }
+
+        $scope.mnChange = function (data) {
+          $scope.selectedMonth = data;
+        }
+
+        $scope.yrChange = function (data) {
+          $scope.selectedYear = data;
+        }
+
+        $scope.generateChart = function (id) {
+          document.getElementById("perItemChart").style.display = 'block';
+          $scope.chart = new CanvasJS.Chart("perItemChart", {
+            title: {
+              text: ""
+            },
+            data: [
+              {
+                type: "line",
+                dataPoints: [
+                ]
+              }
+            ]
+          });
+          var request = {
+            "renderChartBy": $scope.renderChartBy,
+            "year": $scope.selectedYear,
+            "month": $scope.selectedMonth
+          };
+
+          dashboardService.getPerItemChartData(request, id, data => {
+            var chartTitle;
+            if ($scope.renderChartBy == 'm') {
+              chartTitle = "Monthly";
+            } else if ($scope.renderChartBy == 'y') {
+              chartTitle = "Yearly";
+            } else {
+              chartTitle = "Daily";
+            }
+            $scope.chart.options.data[0].dataPoints = data;
+            $scope.chart.options.title.text = chartTitle;
+            $scope.chart.render();
+          });
+        }
+
+        $scope.validateGenerateChart = function () {
+          if ($scope.renderChartBy == undefined || $scope.renderChartBy == '') {
+            return true;
+          } else {
+            if ($scope.renderChartBy == 'd' && ($scope.selectedMonth == undefined || $scope.selectedMonth == '' || $scope.selectedYear == undefined || $scope.selectedYear == '')) {
+              return true;
+            } else if ($scope.renderChartBy == 'm' && ($scope.selectedYear == undefined || $scope.selectedYear == '')) {
+              return true;
+            }
+          }
+          return false;
         }
 
         function getAllCategories() {
@@ -141,66 +201,23 @@ angular.
           }
         });
 
-        $scope.chart = new CanvasJS.Chart("perItemChart", {
-          title: {
-            text: "Weekly"
-          },
-          data: [
-            {
-              type: "line",
-              dataPoints: [
-                { label: "10/7/2017", y: 10 },
-                { label: "17/7/2017", y: 15 },
-                { label: "24/7/2017", y: 25 },
-                { label: "31/7/2017", y: 30 },
-                { label: "7/8/2017", y: 28 }
-              ]
-            }
-          ]
-        });
         $scope.updateChart = function (updateBy) {
           $scope.renderChartBy = updateBy;
-          if (updateBy == 'm') {
-            $scope.chart.options.title.text = "Monthly";
-            $scope.chart.options.data[0].dataPoints = [
-              { label: "Jan", y: 10 },
-              { label: "Feb", y: 15 },
-              { label: "Mar", y: 25 },
-              { label: "Apr", y: 30 },
-              { label: "May", y: 28 },
-              { label: "Jun", y: 28 },
-              { label: "Jul", y: 50 },
-              { label: "Aug", y: 28 },
-              { label: "Sep", y: 60 },
-              { label: "Oct", y: 28 },
-              { label: "Nov", y: 28 },
-              { label: "Dec", y: 100 }
-            ];
-          } else if (updateBy == 'y') {
-            $scope.chart.options.title.text = "Yearly";
-            $scope.chart.options.data[0].dataPoints = [
-              { label: "2014", y: 10 },
-              { label: "2015", y: 15 },
-              { label: "2016", y: 25 },
-              { label: "2017", y: 30 },
-              { label: "2018", y: 28 }
-            ];
-          } else {
-            $scope.chart.options.title.text = "Weekly";
-            $scope.chart.options.data[0].dataPoints = [
-              { label: "10/7/2017", y: 10 },
-              { label: "17/7/2017", y: 15 },
-              { label: "24/7/2017", y: 25 },
-              { label: "31/7/2017", y: 30 },
-              { label: "7/8/2017", y: 28 }
-            ];
-          }
-          $scope.chart.render();
         }
 
         $scope.viewitemDetail = function (item) {
+          document.getElementById("perItemChart").style.display = 'none';
+          $scope.selectedMonth = undefined;
+          $scope.selectedYear = undefined;
+          if ($scope.renderChartBy == 'd') {
+            document.getElementById("dailyChartView").classList.remove("active");
+          } else if ($scope.renderChartBy == 'm') {
+            document.getElementById("monthlyChartView").classList.remove("active");
+          } else if ($scope.renderChartBy == 'y') {
+            document.getElementById("yearlyChartView").classList.remove("active");
+          }
+          $scope.renderChartBy = undefined;
           $scope.viewedItem = item;
-          $scope.updateChart('w');
         }
 
         $scope.showWholeItemGraph = function () {

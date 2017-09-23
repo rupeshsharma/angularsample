@@ -44,6 +44,13 @@ APP.factory('dashboardService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getPerItemChartData: function(request, id, callback){
+                return httpService.getPerItemChartData(request, id).then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }

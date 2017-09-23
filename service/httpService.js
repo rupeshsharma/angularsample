@@ -285,6 +285,16 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                 //     return $http.get('./stubs/dailyChartData.json');
                 // }
             },
+            getPerItemChartData: function getPerItemChartData(request, id){
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/chart/perItemGraph/"+id,
+                    data:request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            },
             getWholeItemGraph: function getWholeItemGraph() {
                 return $http({
                     method: "GET",

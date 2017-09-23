@@ -209,54 +209,31 @@
             <div class="white-box">
               <!--<h3 class="box-title">Sales Chart </h3>-->
               <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary active" ng-click="updateChart('w')">
-                    <input type="radio" name="options" id="option1" autocomplete="off"> Weekly
+                <label id="dailyChartView" class="btn btn-primary" ng-click="updateChart('d')">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Daily
                   </label>
-                <label class="btn btn-primary" ng-click="updateChart('m')">
+                <label id="monthlyChartView" class="btn btn-primary" ng-click="updateChart('m')">
                     <input type="radio" name="options" id="option2" autocomplete="off"> Monthly
                   </label>
-                <label class="btn btn-primary" ng-click="updateChart('y')">
+                <label id="yearlyChartView" class="btn btn-primary" ng-click="updateChart('y')">
                     <input type="radio" name="options" id="option3" autocomplete="off"> Yearly
                   </label>
               </div>
-              <div ng-show="renderChartBy == 'w'" class="text-right">
-                <div class="form-group form-inline">
-                  <label for="email">Month:</label>
-                  <select class="form-control">
-                    <option>Jan</option>
-                    <option>Feb</option>
-                    <option>Mar</option>
-                    <option>Apr</option>
-                    <option>May</option>
-                    <option>Jun</option>
-                    <option>Jul</option>
-                    <option selected>Aug</option>
-                    <option>Sep</option>
-                    <option>Oct</option>
-                    <option>Nov</option>
-                    <option>Dec</option>
-                  </select>
-                  <label for="email">Year:</label>
-                  <select class="form-control">
-                    <option>2014</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option selected>2017</option>
-                  </select>
-                </div>
+              <div class="form-group form-inline pull-right">
+              <button ng-disabled="validateGenerateChart()" ng-click="generateChart(viewedItem.id)" class="form-control btn btn-primary">Generate Chart</button>
               </div>
-              <div ng-show="renderChartBy == 'm'" class="text-right">
+
+              <form role="form">
+                <br>
                 <div class="form-group form-inline">
-                  <label for="email">Year:</label>
-                  <select class="form-control">
-                    <option>2014</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option selected>2017</option>
-                  </select>
+                  <label ng-if="renderChartBy == 'd'" text-right for="email">Month:</label>
+                  <select ng-if="renderChartBy == 'd'" class="form-control" ng-model="selectedMonth" ng-change="mnChange(selectedMonth)" data-ng-options="x for (x, y) in month"><option disabled="disabled" value="">Please select</option></select>
+                  <label ng-if="renderChartBy == 'd' || renderChartBy == 'm'" for="email">Year:</label>
+                  <select ng-if="renderChartBy == 'd' || renderChartBy == 'm'" class="form-control" ng-model="selectedYear" ng-change="yrChange(selectedYear)"
+                    data-ng-options="yr as yr for yr in year"><option disabled="disabled" value="">Please select</option></select>
                 </div>
-              </div>
-              <div class="text-center" id="perItemChart" style="height: 405px;"></div>
+              </form>              
+              <div class="text-center" id="perItemChart" style="height: 405px;display: none;"></div>
             </div>
           </div>
         </div>
