@@ -160,7 +160,7 @@
                   </table>
                 </div>
                 <div class="text-center">
-                  <button ng-disabled="paymentType == undefined || diningMode == undefined" ng-click="buildOrder()" class="btn btn-primary ">Build Order</button>
+                  <button ng-disabled="paymentType == undefined || diningMode == undefined || orderFrom == undefined" ng-click="buildOrder()" class="btn btn-primary ">Build Order</button>
                   <button style="display:none;" id="printInvoice" ng-print print-element-id="printThisElement"></button>
                 </div>
               </div>
