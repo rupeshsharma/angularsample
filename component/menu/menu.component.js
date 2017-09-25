@@ -190,6 +190,7 @@ angular.
             "customer": customerData,
             "paymentType": $scope.paymentType,
             "diningMode": $scope.diningMode,
+            "orderFrom": $scope.orderFrom,
             "discount": $scope.discount,
             "orderDetail": orderDetailList,
             "afterDiscountTotal": ($scope.discount != 0 && $scope.discount != '') ? $scope.cart.afterDiscount : $scope.cart.total,
@@ -227,6 +228,10 @@ angular.
 
         $scope.dmChange = function (diningMode) {
           $scope.diningMode = diningMode;
+        }
+        
+        $scope.ofChange = function (orderFrom) {
+          $scope.orderFrom = orderFrom;
         }
 
         $scope.getCurrentDate = function () {
