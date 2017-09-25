@@ -60,24 +60,24 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title text-center">Order</h4>
         <div class="row">
-          <form ng-if="cart.quantity != 0" class="form-inline text-center">
-            <div class="form-group">
-              <label>Payment Type :</label>
-              <select class="form-control" ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in masterData.paymentType"><option disabled="disabled" value="">Please select</option></select>
+          <form ng-if="cart.quantity != 0" class="form-inline text-center row">
+            <div class="form-group form-group-sm col-sm-3">
+              <label class="control-label">Payment Type :</label>
+              <select class="form-control input-sm" ng-model="paymentType" ng-change="ptChange(paymentType)" data-ng-options="pt as pt for pt in masterData.paymentType"><option disabled="disabled" value="">Please select</option></select>
             </div>
-            <div class="form-group">
-              <label>Dining Mode :</label>
-              <select class="form-control" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in masterData.diningMode"><option disabled="disabled" value="">Please select</option></select>
+            <div class="form-group form-group-sm col-sm-3">
+              <label class="control-label">Dining Mode :</label>
+              <select class="form-control input-sm" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in masterData.diningMode"><option disabled="disabled" value="">Please select</option></select>
             </div>
-            <div class="form-group">
-              <label>Discount :</label>
-              <input class="form-control" type="number" max="100" ng-model="discount" ng-change="updateDiscount(discount)"></input>
+            <div class="form-group form-group-sm col-sm-3">
+              <label class="control-label">Discount :</label>
+              <input class="form-control input-sm " type="number" max="100" ng-model="discount" ng-change="updateDiscount(discount)"></input>
+            </div>
+            <div class="form-group form-group-sm col-sm-3">
+              <label class="control-label">Order From :</label>
+              <select class="form-control input-sm" ng-model="orderFrom" ng-change="ofChange(orderFrom)" data-ng-options="of as of for of in masterData.orderFrom"><option disabled="disabled" value="">Please select</option></select>
             </div>
           </form>
-
-          <div ng-if="cart.quantity != 0" class="col-sm-4 text-left">
-
-          </div>
         </div>
       </div>
       <div class="modal-body">
