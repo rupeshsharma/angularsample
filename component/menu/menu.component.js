@@ -2,8 +2,8 @@ angular.
   module('sample').
   component('menuCart', {
     templateUrl: './component/menu/menu.template.html',
-    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'customerService',
-      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, customerService) {
+    controller: ['$scope', '$rootScope', '$timeout', '$location', 'sessionService', 'menuService', 'customerService', '$localStorage',
+      function menuCartController($scope, $rootScope, $timeout, $location, sessionService, menuService, customerService, $localStorage) {
 
         if (!sessionService.getLoggedInUserData()) {
           $location.path('/');
@@ -33,6 +33,7 @@ angular.
         $rootScope.clearCustomerSession = function () {
           sessionService.removeCustomerData();
           sessionService.removeOrderDetail();
+          $localStorage.$reset();
           $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
@@ -105,6 +106,10 @@ angular.
             $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
           }
         }
+        
+        $localStorage.somedata = $scope.cart;
+        $localStorage.discount = $scope.discount;
+        $localStorage.customer = $rootScope.customerName;
 
         $scope.updateDiscount = function (discount) {
           if (discount != undefined && discount != "" && discount != "undefined") {
