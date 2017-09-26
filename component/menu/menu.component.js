@@ -32,6 +32,7 @@ angular.
         };
         $rootScope.clearCustomerSession = function () {
           sessionService.removeCustomerData();
+          sessionService.removeOrderDetail();
           $location.path('/checkin');
           delete $rootScope.viewType;
           delete $rootScope.viewButtonClicked;
