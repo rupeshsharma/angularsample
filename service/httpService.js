@@ -34,6 +34,9 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                     }
                 });
             },
+            advanceSearch: function advanceSearch(request){
+                return $http.get('./stubs/searchCustomer.json');
+            },
             getMenu: function getMenu() {
                 return $http({
                     method: "GET",
