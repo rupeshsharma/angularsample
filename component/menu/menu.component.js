@@ -13,6 +13,7 @@ angular.
           getCustomerData();
           $scope.masterData = sessionService.getMasterData();
           setUpMenu();
+          $scope.isOrderPlaced = (sessionService.getOrderDetail() != undefined) ? true : false;
         }
         
         function closeLoadingIndicator() {
@@ -204,9 +205,13 @@ angular.
           menuService.buildOrder(request, function (data) {
             sessionService.setOrderDetail({
               "orderNumber": data,
-              "customerName": $rootScope.customerName
+              "customerName": $rootScope.customerName,
+              "cart": $scope.cart,
+              "paymentType" : $scope.paymentType,
+              "diningMode" : $scope.diningMode,
+              "discount": $scope.discount
             });
-
+            $scope.isOrderPlaced = true;
             //printing invoice
             $("#myModal .close").click();
             if (!sessionService.isAnonymousCustomer()) {
@@ -215,9 +220,9 @@ angular.
             $timeout(function () {
               document.getElementById("printInvoice").click();
             }, 50);
-            $timeout(function () {
-              $rootScope.clearCustomerSession();
-            }, 100);
+            // $timeout(function () {
+            //   $rootScope.clearCustomerSession();
+            // }, 100);
           });
 
         }
