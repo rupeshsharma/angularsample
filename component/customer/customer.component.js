@@ -32,7 +32,21 @@ angular.
           });
         }
 
-        $scope.viewOrderDetail = function (id){
+        $scope.showAdvanceSearchModal = function () {
+          $scope.searchCustomer = {};
+        }
+
+        $scope.advanceSearch = function () {
+          document.getElementById("loadingIndicator").style.display = 'block';
+          document.getElementById("customerComponent").style.display = 'none';
+          customerService.advanceSearch($scope.searchCustomer, data => {
+            $scope.customerList = data;
+            $("#advanceSearchModal .close").click();
+            closeLoadingIndicator();
+          });
+        }
+
+        $scope.viewOrderDetail = function (id) {
           orderHistoryService.getOrderDetailById(id, data => {
             $scope.orderDetail = data;
           });
