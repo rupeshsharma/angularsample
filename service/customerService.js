@@ -31,6 +31,12 @@ APP.factory('customerService', ['httpService',
             },
             updateLastVisit: function updateLastVisit(id){
                 return httpService.updateLastVisit(id);
+            },
+            advanceSearch: function (request, callback) {
+                return httpService.advanceSearch(request).then(
+                    resp => {
+                        callback(resp.data);
+                    });
             }
         }
     }
