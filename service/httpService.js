@@ -35,7 +35,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                 });
             },
             advanceSearch: function advanceSearch(request){
-                return $http.get('./stubs/searchCustomer.json');
+                return $http({
+                    method: "POST",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/advanceSearch",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/searchCustomer.json');
             },
             getMenu: function getMenu() {
                 return $http({
