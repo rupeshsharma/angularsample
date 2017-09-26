@@ -2,7 +2,7 @@
   <div class="row content">
     <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px; display: none;"></span>
     <div class="centered" ng-if="isOrderPlaced">
-        <label>Print : </label>
+        <label style="font-size:22px;">Print : </label>
         <button ng-print print-element-id="printThisElement" class="btn btn-primary btn-lg">Customer Copy</button> &nbsp;&nbsp; <button ng-print print-element-id="printStaffCopy" class="btn btn-primary btn-lg">Staff Copy</button>
     </div>
     <div ng-hide="isOrderPlaced" id="menuComponent" class="row">
