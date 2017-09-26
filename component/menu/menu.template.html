@@ -1,7 +1,11 @@
 <div style="margin-top: 55px;" class="container text-center">
   <div class="row content">
     <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px; display: none;"></span>
-    <div id="menuComponent" class="row">
+    <div class="centered" ng-if="isOrderPlaced">
+        <label>Print : </label>
+        <button ng-print print-element-id="printThisElement" class="btn btn-primary btn-lg">Customer Copy</button> &nbsp;&nbsp; <button ng-print print-element-id="printStaffCopy" class="btn btn-primary btn-lg">Staff Copy</button>
+    </div>
+    <div ng-hide="isOrderPlaced" id="menuComponent" class="row">
       <ul class="nav nav-tabs" id="myTab">
         <li ng-repeat="cat in menu.categories" class=""><a data-target="#{{cat.id+'catdiv'}}" data-toggle="tab">{{cat.title}}</a></li>
       </ul>
@@ -202,12 +206,12 @@
         <div class="row">
           <div class="col-xs-6">
             <address>
-              <strong>Payment Method:</strong><br> {{paymentType}}
+              <strong>Payment Method:</strong><br> {{getOrderDetail().paymentType}}
             </address>
           </div>
           <div class="col-xs-6 text-right">
             <address>
-              <strong>Dining Mode:</strong><br> {{diningMode}}
+              <strong>Dining Mode:</strong><br> {{getOrderDetail().diningMode}}
             </address>
           </div>
         </div>
@@ -233,7 +237,7 @@
                 </thead>
                 <tbody>
                   <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                  <tr ng-repeat="item in cart.items">
+                  <tr ng-repeat="item in getOrderDetail().cart.items">
                     <td class="col-sm-6">{{item.title}}</td>
                     <td class="col-sm-2 text-center">{{item.price}}</td>
                     <td class="col-sm-2 text-center">{{item.quantity}}</td>
@@ -243,31 +247,31 @@
                     <td class="thick-line"></td>
                     <td class="thick-line"></td>
                     <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                    <td class="thick-line text-right">{{cart.total}}</td>
+                    <td class="thick-line text-right">{{getOrderDetail().cart.total}}</td>
                   </tr>
-                  <tr ng-if="discount != 0">
+                  <tr ng-if="getOrderDetail().discount != 0">
                     <td class="no-line"></td>
                     <td class="no-line"></td>
-                    <td class="no-line text-center">Discount @ {{discount}}%</td>
-                    <td class="no-line text-right">{{cart.afterDiscount | number : 2}}</td>
+                    <td class="no-line text-center">Discount @ {{getOrderDetail().discount}}%</td>
+                    <td class="no-line text-right">{{getOrderDetail().cart.afterDiscount | number : 2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">CGST @ 6%</td>
-                    <td class="no-line text-right">{{cart.cgst | number : 2}}</td>
+                    <td class="no-line text-right">{{getOrderDetail().cart.cgst | number : 2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">SGST @ 6%</td>
-                    <td class="no-line text-right">{{cart.sgst | number : 2}}</td>
+                    <td class="no-line text-right">{{getOrderDetail().cart.sgst | number : 2}}</td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center"><strong>Grand Total</strong></td>
-                    <td class="no-line text-right">{{cart.finalPrice | number : 2}}</td>
+                    <td class="no-line text-right">{{getOrderDetail().cart.finalPrice | number : 2}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -278,3 +282,31 @@
     </div>
   </div>
 </div>
+
+<div id="printStaffCopy" class="row" style="display : none;">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center"><strong>Order # {{getOrderDetail().orderNumber}}</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <td><strong>Item</strong></td>
+                    <td class="text-center"><strong>Quantity</strong></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in getOrderDetail().cart.items">
+                    <td class="col-sm-10">{{item.title}}</td>
+                    <td class="col-sm-2 text-center">{{item.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
