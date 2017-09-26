@@ -63,6 +63,9 @@ APP.config(['$locationProvider', '$routeProvider', '$httpProvider',
       when('/dashboard', {
         template: '<dash-board></dash-board>'
       }).
+      when('/customerview', {
+        template: '<customer-view></customer-view>'
+      }).
       when('/error', {
         template: '<error></error>'
       });
