@@ -39,7 +39,19 @@
 <script src="./assets/lib/jquery-ui.js"></script>
 <link rel="stylesheet" href="./assets/css/jquery-ui.css">
 <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+<script>
+window.onbeforeunload = function (e) {
+    e = e || window.event;
 
+    // For IE and Firefox prior to version 4
+    if (e) {
+        e.returnValue = 'Sure?';
+    }
+
+    // For Safari
+    return 'Sure?';
+};
+</script>
 <body ng-app="sample">
     <!-- nav bar starts -->
     <nav class="navbar-default navbar-fixed-top container-fluid">
