@@ -68,6 +68,9 @@ APP.config(['$locationProvider', '$routeProvider', '$httpProvider',
       }).
       when('/error', {
         template: '<error></error>'
+      }).
+      when('/customerstatus', {
+        template: '<customer-status></customer-status>'
       });
   }
 ]);
