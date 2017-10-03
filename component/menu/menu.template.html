@@ -137,7 +137,14 @@
                         <td class="no-line"></td>
                         <td class="no-line"></td>
                         <td class="no-line text-center">Discount @ {{discount}}%</td>
-                        <td class="no-line text-right">{{cart.afterDiscount | number : 2}}</td>
+                        <td class="no-line text-right">- {{cart.total - cart.afterDiscount | number : 2}}</td>
+                      </tr>
+                      <tr ng-if="discount != undefined && discount != '' && discount != 0">
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><strong>Net Total</strong></td>
+                        <td class="no-line text-right"><strong>{{cart.afterDiscount | number : 2}}</strong></td>
                       </tr>
                       <tr>
                         <td class="no-line"></td>
@@ -253,7 +260,13 @@
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center">Discount @ {{getOrderDetail().discount}}%</td>
-                    <td class="no-line text-right">{{getOrderDetail().cart.afterDiscount | number : 2}}</td>
+                    <td class="no-line text-right">- {{getOrderDetail().cart.total - getOrderDetail().cart.afterDiscount | number : 2}}</td>
+                  </tr>
+                  <tr ng-if="getOrderDetail().discount != 0">
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Net Total</strong></td>
+                    <td class="no-line text-right"><strong>{{getOrderDetail().cart.afterDiscount | number : 2}}</strong></td>
                   </tr>
                   <tr>
                     <td class="no-line"></td>
