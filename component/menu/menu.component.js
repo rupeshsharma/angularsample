@@ -108,7 +108,6 @@ angular.
         }
         
         $localStorage.somedata = $scope.cart;
-        $localStorage.discount = $scope.discount;
         $localStorage.customer = $rootScope.customerName;
 
         $scope.updateDiscount = function (discount) {
@@ -124,7 +123,7 @@ angular.
             $scope.cart.sgst = ($scope.cart.total / 100) * 6;
             $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
           }
-
+          $localStorage.discount = $scope.discount;
         }
 
         $scope.removeFromCart = function (item) {
