@@ -72,7 +72,7 @@ APP.config(['$locationProvider', '$routeProvider', '$httpProvider',
       when('/customerstatus', {
         template: '<customer-status></customer-status>'
       }).
-      when('/staffStatus', {
+      when('/staffstatus', {
         template: '<staff-status></staff-status>'
       });
   }
