@@ -4,6 +4,7 @@ angular.
     templateUrl: './component/order/customerView/customerView.template.html',
     controller: ['$scope', '$timeout', '$rootScope', '$location', '$localStorage', '$interval',
       function customerViewController($scope, $timeout, $rootScope, $location, $localStorage, $interval) {
+        $rootScope.viewType = 'customerReview';
         function getOrderDetail() {
           $scope.cart = $localStorage.somedata;
           $scope.discount = $localStorage.discount;
