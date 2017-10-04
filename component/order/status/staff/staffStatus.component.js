@@ -19,7 +19,7 @@ angular.
         $scope.updateOrderStatus = function (status, orderData) {
           if (status == 0) {
             orderHistoryService.setServingOrderStatus(orderData.id);
-            orderData.orderStatus = 'Serving';
+            orderData.status = 'Serving';
           } else {
             orderHistoryService.setCompletedOrderStatus(orderData.id);
             var index = $scope.orderList.indexOf(orderData);
