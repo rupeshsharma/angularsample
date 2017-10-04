@@ -4,7 +4,7 @@ angular.
     templateUrl: './component/order/status/staff/staffStatus.template.html',
     controller: ['$scope', '$timeout', '$rootScope', '$location', '$localStorage', '$interval',
       function staffStatusController($scope, $timeout, $rootScope, $location, $localStorage, $interval) {
-
+        $rootScope.viewType = 'staffStatus'; 
         $scope.orderList = [{"orderNumber":111,"orderStatus":"Preparing"},
         {"orderNumber":222,"orderStatus":"Preparing"},
         {"orderNumber":333,"orderStatus":"Serving"},
