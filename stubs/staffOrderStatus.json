@@ -10,7 +10,7 @@
         "paymentType": "Card",
         "diningMode": "Dine In",
         "orderNumber": 10,
-        "orderStatus": "Received",
+        "status": "Received",
         "discount": 5,
         "orderDetail": [
             {
@@ -44,7 +44,7 @@
         "paymentType": "Card",
         "diningMode": "Dine In",
         "orderNumber": 10,
-        "orderStatus": "Received",
+        "status": "Received",
         "discount": 5,
         "orderDetail": [
             {
@@ -78,7 +78,7 @@
         "paymentType": "Card",
         "diningMode": "Dine In",
         "orderNumber": 10,
-        "orderStatus": "Received",
+        "status": "Received",
         "discount": 5,
         "orderDetail": [
             {
