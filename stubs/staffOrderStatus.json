@@ -1,0 +1,104 @@
+[
+    {
+        "id": 1,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 500,
+        "orderDate": "12/09/2017",
+        "paymentType": "Card",
+        "diningMode": "Dine In",
+        "orderNumber": 10,
+        "orderStatus": "Received",
+        "discount": 5,
+        "orderDetail": [
+            {
+                "id": 1,
+                "item": {
+                    "id": 1,
+                    "title": "Noodles"
+                },
+                "quantity": 2,
+                "unitPrice": 120
+            },
+            {
+                "id": 2,
+                "item": {
+                    "id": 2,
+                    "title": "Masala Sandwich"
+                },
+                "quantity": 2,
+                "unitPrice": 130
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 500,
+        "orderDate": "12/09/2017",
+        "paymentType": "Card",
+        "diningMode": "Dine In",
+        "orderNumber": 10,
+        "orderStatus": "Received",
+        "discount": 5,
+        "orderDetail": [
+            {
+                "id": 1,
+                "item": {
+                    "id": 1,
+                    "title": "Noodles"
+                },
+                "quantity": 2,
+                "unitPrice": 120
+            },
+            {
+                "id": 2,
+                "item": {
+                    "id": 2,
+                    "title": "Masala Sandwich"
+                },
+                "quantity": 2,
+                "unitPrice": 130
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "customer": {
+            "id": 1,
+            "name": "Some Name"
+        },
+        "amount": 500,
+        "orderDate": "12/09/2017",
+        "paymentType": "Card",
+        "diningMode": "Dine In",
+        "orderNumber": 10,
+        "orderStatus": "Received",
+        "discount": 5,
+        "orderDetail": [
+            {
+                "id": 1,
+                "item": {
+                    "id": 1,
+                    "title": "Noodles"
+                },
+                "quantity": 2,
+                "unitPrice": 120
+            },
+            {
+                "id": 2,
+                "item": {
+                    "id": 2,
+                    "title": "Masala Sandwich"
+                },
+                "quantity": 2,
+                "unitPrice": 130
+            }
+        ]
+    }
+]
