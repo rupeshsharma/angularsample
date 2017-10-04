@@ -1,30 +1,30 @@
 <div class="container">
   <br>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2" ng-repeat="ord in orderList">
-        <div class="content">
-          <div class="well text-center">
-            <strong style="font-size:36px;">{{ord.orderNumber}}</strong> <br> 
-            <label ng-if="ord.orderStatus == 'Received'" style="font-size:16px;" class="label label-default">{{ord.orderStatus}} &nbsp;<span class="glyphicon glyphicon-tag"></span></label>
-            <label ng-if="ord.orderStatus == 'Preparing'" style="font-size:16px;" class="label label-primary">{{ord.orderStatus}} &nbsp;<i class="fa fa-circle-o-notch fa-spin" style="font-size:14px"></i>&nbsp;</label>
-            <label ng-if="ord.orderStatus == 'Serving'" style="font-size:16px;" class="label label-success">{{ord.orderStatus}} &nbsp;<span class="glyphicon glyphicon-ok-circle"></span></label>
-          </div>
-        </div>
+  <div class="panel panel-default" ng-repeat="order in orderList">
+    <div class="panel-heading">
+      <h3 class="panel-title text-right">
+        <strong class="pull-left">Order # {{order.orderNumber}}</strong>
+        <button ng-if="order.orderStatus == 'Received'" ng-click="updateOrderStatus(0,order)" class="btn btn-sm btn-primary">Serve</button>
+        <button ng-if="order.orderStatus == 'Serving'" ng-click="updateOrderStatus(1, order)" class="btn btn-sm btn-success">Complete</button>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <td><strong>Item</strong></td>
+              <td class="text-center"><strong>Quantity</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="ordtl in order.orderDetail">
+              <td class="col-sm-8">{{ordtl.item.title}}</td>
+              <td class="col-sm-4 text-center">{{ordtl.quantity}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
-
-<style>
-  @media (min-width: 992px) {
-    .col-md-2 {
-      float: left;
-    }
-  }
-  
-  .content {
-    height: auto;
-    margin-top: 5px;
-  }
-</style>
