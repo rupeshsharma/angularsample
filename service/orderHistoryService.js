@@ -23,6 +23,13 @@ APP.factory('orderHistoryService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getCustomerOrderStatus: function getCustomerOrderStatus(callback) {
+                httpService.getCustomerOrderStatus().then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
             }
         }
     }
