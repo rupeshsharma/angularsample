@@ -413,17 +413,43 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                 });
                 // return $http.get('./stubs/staffData.json');
             },
-            getCustomerOrderStatus: function getCustomerOrderStatus(){
-                return $http.get('./stubs/customerOrderStatus.json');
+            getCustomerOrderStatus: function getCustomerOrderStatus() {
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/status/customer",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/customerOrderStatus.json');
             },
             getOrderForStaff: function getOrderForStaff() {
-                return $http.get('./stubs/staffOrderStatus.json');
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/status/staff",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/staffOrderStatus.json');
             },
             setServingOrderStatus: function (id) {
-
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/status/serve/" + id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             },
             setCompletedOrderStatus: function (id) {
-
+                return $http({
+                    method: "GET",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/order/status/complete/" + id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             }
         }
 
