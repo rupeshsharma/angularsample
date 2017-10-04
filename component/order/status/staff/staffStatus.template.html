@@ -4,8 +4,8 @@
     <div class="panel-heading">
       <h3 class="panel-title text-right">
         <strong class="pull-left">Order # {{order.orderNumber}}</strong>
-        <button ng-if="order.orderStatus == 'Received'" ng-click="updateOrderStatus(0,order)" class="btn btn-sm btn-primary">Serve</button>
-        <button ng-if="order.orderStatus == 'Serving'" ng-click="updateOrderStatus(1, order)" class="btn btn-sm btn-success">Complete</button>
+        <button ng-if="order.status == 'Received'" ng-click="updateOrderStatus(0,order)" class="btn btn-sm btn-primary">Serve</button>
+        <button ng-if="order.status == 'Serving'" ng-click="updateOrderStatus(1, order)" class="btn btn-sm btn-success">Complete</button>
       </h3>
     </div>
     <div class="panel-body">
