@@ -415,6 +415,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
             },
             getCustomerOrderStatus: function getCustomerOrderStatus(){
                 return $http.get('./stubs/customerOrderStatus.json');
+            },
+            getOrderForStaff: function getOrderForStaff() {
+                return $http.get('./stubs/staffOrderStatus.json');
+            },
+            setServingOrderStatus: function (id) {
+
+            },
+            setCompletedOrderStatus: function (id) {
+
             }
         }
 
