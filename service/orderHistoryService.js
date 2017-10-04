@@ -30,6 +30,19 @@ APP.factory('orderHistoryService', ['httpService',
                         callback(resp.data);
                     }
                 );
+            },
+            getOrderForStaff: function getOrderForStaff(callback) {
+                httpService.getOrderForStaff().then(
+                    resp => {
+                        callback(resp.data);
+                    }
+                );
+            },
+            setServingOrderStatus: function setServingOrderStatus(id) {
+                httpService.setServingOrderStatus(id);
+            },
+            setCompletedOrderStatus: function (id) {
+                httpService.setCompletedOrderStatus(id);
             }
         }
     }
