@@ -1,5 +1,5 @@
 var APP = angular.module('sample')
-var CONTEXT_ROOT = "http://localhost:8081";
+var CONTEXT_ROOT = "http://192.168.0.105:8081";
 var APP_ROOT = "/sample"
 APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
     function ($resource, $http, $timeout, sessionService) {
