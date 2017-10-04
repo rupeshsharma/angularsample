@@ -59,7 +59,7 @@ window.onbeforeunload = function (e) {
     <!-- nav bar starts -->
     <nav class="navbar-default navbar-fixed-top container-fluid">
         <div class="container-fluid">
-            <div class="navbar-header">
+            <div ng-if="viewType != 'customerStatus'" class="navbar-header">
                 <span class="navbar-brand" style="color:#337ab7;"><strong>Resto Management</strong></span>
             </div>
             <form ng-if="viewType == 'menu'" class="navbar-form text-center">
@@ -118,6 +118,9 @@ window.onbeforeunload = function (e) {
                 <a href="/#!/customerstatus" target="blank" class="btn btn-primary btn-sm pull-right">Customer Status</a>
                 <span class="pull-right">&nbsp;</span>
                 <a href="/#!/staffstatus" target="blank" class="btn btn-primary btn-sm pull-right">Staff Status</a>
+            </form>
+            <form ng-if="viewType == 'customerStatus'" class="navbar-form text-center">
+                <h2><strong>Please Collect</strong></h2>
             </form>
         </div>
     </nav>
