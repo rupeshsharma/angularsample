@@ -412,6 +412,9 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                     }
                 });
                 // return $http.get('./stubs/staffData.json');
+            },
+            getCustomerOrderStatus: function getCustomerOrderStatus(){
+                return $http.get('./stubs/customerOrderStatus.json');
             }
         }
 
