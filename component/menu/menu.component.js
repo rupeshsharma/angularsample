@@ -258,10 +258,8 @@ angular.
           $scope.customerAddress = customerAddress;
           document.getElementById("customerAddressLoadingIndicator").style.display = 'block';
           document.getElementById("customerAddressComponent").style.display = 'none';
-          var customerData = {
-            "id": sessionService.getCustomerData().id,
-            "address": customerAddress
-          }
+          var customerData = sessionService.getCustomerData();
+          customerData.address = customerAddress;
           customerService.updateAddress(customerData, data => {
             document.getElementById("customerAddressLoadingIndicator").style.display = 'none';
             document.getElementById("customerAddressComponent").style.display = 'block';
