@@ -71,7 +71,7 @@
             </div>
             <div class="form-group form-group-sm col-sm-3">
               <label class="control-label">Dining Mode :</label>
-              <select class="form-control input-sm" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm for dm in masterData.diningMode"><option disabled="disabled" value="">Please select</option></select>
+              <select class="form-control input-sm" ng-model="diningMode" ng-change="dmChange(diningMode)" data-ng-options="dm as dm disable when dm == 'Delivery' && isAnonymousCustomer for dm in masterData.diningMode"><option disabled="disabled" value="">Please select</option></select>
             </div>
             <div class="form-group form-group-sm col-sm-3">
               <label class="control-label">Discount :</label>
@@ -82,6 +82,19 @@
               <select class="form-control input-sm" ng-model="orderFrom" ng-change="ofChange(orderFrom)" data-ng-options="of as of for of in masterData.orderFrom"><option disabled="disabled" value="">Please select</option></select>
             </div>
           </form>
+        <div ng-if="diningMode == 'Delivery'" class="form-group row text-center">
+            <div id="customerAddressComponent">
+              <br>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-9">
+                <input class="form-control" type="text" ng-model="customerAddress" placeholder="Enter Customer Address Here...">
+              </div>
+              <div class="col-xs-2">
+                <button ng-disabled="customerAddress == undefined || customerAddress == ''" class="btn btn-primary btn-sm" ng-click="updateAddress(customerAddress)">Update</button>
+              </div>
+            </div>
+            <span id="customerAddressLoadingIndicator" class="fa fa-spinner fa-spin text-center" style="color:#337ab7; font-size:14px; display:none;"></span>
+          </div>
         </div>
       </div>
       <div class="modal-body">
@@ -202,6 +215,7 @@
               </div>
               <div ng-show="getOrderDetail().customerName == undefined || getOrderDetail().customerName == ''"> Guest
               </div>
+              <span ng-if="getOrderDetail().diningMode == 'Delivery'">{{getOrderDetail().customerAddress}}</span>
             </address>
           </div>
           <div class="col-xs-6 text-right">
