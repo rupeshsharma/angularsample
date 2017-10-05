@@ -457,7 +457,15 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                 });
             },
             updateAddress: function updateAddress(request) {
-                return $http.get('./stubs/user.json');
+                return $http({
+                    method: "PUT",
+                    url: CONTEXT_ROOT + APP_ROOT + "/api/customer/update",
+                    data: request,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // return $http.get('./stubs/user.json');
             }
         }
 
