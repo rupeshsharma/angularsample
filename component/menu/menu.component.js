@@ -80,6 +80,7 @@ angular.
             $rootScope.customerName = userData.name;
           }
           $rootScope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
+          $scope.isAnonymousCustomer = sessionService.isAnonymousCustomer();
         }
 
         $scope.addToCart = function (item) {
@@ -211,6 +212,7 @@ angular.
             sessionService.setOrderDetail({
               "orderNumber": data,
               "customerName": $rootScope.customerName,
+              "customerAddress": $scope.customerAddress,
               "cart": $scope.cart,
               "paymentType" : $scope.paymentType,
               "diningMode" : $scope.diningMode,
@@ -250,6 +252,21 @@ angular.
 
         $scope.getOrderDetail = function () {
           return sessionService.getOrderDetail();
+        }
+        
+        $scope.updateAddress = function (customerAddress) {
+          $scope.customerAddress = customerAddress;
+          document.getElementById("customerAddressLoadingIndicator").style.display = 'block';
+          document.getElementById("customerAddressComponent").style.display = 'none';
+          var customerData = {
+            "id": sessionService.getCustomerData().id,
+            "address": customerAddress
+          }
+          customerService.updateAddress(customerData, data => {
+            document.getElementById("customerAddressLoadingIndicator").style.display = 'none';
+            document.getElementById("customerAddressComponent").style.display = 'block';
+          });
+
         }
       }
     ]
