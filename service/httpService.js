@@ -14,6 +14,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/user.json');
             },
             getCustomerByMobile: function getCustomerByMobile(mobile) {
                 return $http({
@@ -23,6 +24,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/user.json');
             },
             updateCustomer: function updateCustomer(request) {
                 return $http({
@@ -53,6 +55,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/menu.json');
             },
             getTodaysExpenses: function getTodaysExpenses() {
                 return $http({
@@ -168,6 +171,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+                //return $http.get('./stubs/masterData.json');
             },
             createOrder: function createOrder(request) {
                 return $http({
@@ -178,6 +182,7 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+                // return $http.get('./stubs/dashboardData.json');
             },
             getTodayOrderList: function getTodayOrderList() {
                 return $http({
@@ -450,6 +455,9 @@ APP.factory('httpService', ['$resource', '$http', '$timeout', 'sessionService',
                         'Content-Type': 'application/json'
                     }
                 });
+            },
+            updateAddress: function updateAddress(request) {
+                return $http.get('./stubs/user.json');
             }
         }
 
