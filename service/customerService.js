@@ -37,6 +37,12 @@ APP.factory('customerService', ['httpService',
                     resp => {
                         callback(resp.data);
                     });
+            },
+            updateAddress: function updateAddress(request, callback) {
+                return httpService.updateAddress(request).then(
+                    resp => {
+                        callback(resp.data);
+                    });
             }
         }
     }
