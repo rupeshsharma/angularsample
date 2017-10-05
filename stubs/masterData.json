@@ -1,0 +1,7 @@
+{
+    "masterData": {
+        "diningMode":["Dine In", "Take Away", "Delivery"],
+        "orderFrom":["Self"],
+        "paymentType":["Cash", "Card"]
+    }
+}
