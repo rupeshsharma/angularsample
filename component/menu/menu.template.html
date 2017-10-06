@@ -1,7 +1,89 @@
 <div style="margin-top: 55px;" class="container text-center">
   <div class="row content">
     <span id="loadingIndicator" class="fa fa-spinner fa-spin centered" style="color:#337ab7; font-size:34px; display: none;"></span>
-    <div class="centered" ng-if="isOrderPlaced">
+    <div class="text-center" ng-if="isOrderPlaced">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title text-center"><strong>Order # {{getOrderDetail().orderNumber}}</strong></h3>
+              <form class="form-inline text-center row">
+                <div class="form-group form-group-sm col-sm-4">
+                  <span>Payment Type :</span>
+                  <span><strong>{{getOrderDetail().paymentType}}</strong></span>
+                </div>
+                <div class="form-group form-group-sm col-sm-4">
+                  <span>Dining Mode :</span>
+                  <span><strong>{{getOrderDetail().diningMode}}</strong></span>
+                </div>
+                <div class="form-group form-group-sm col-sm-4">
+                  <span>Discount :</span>
+                  <span><strong>{{getOrderDetail().discount}}</strong></span>
+                </div>
+              </form>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <td class="text-left"><strong>Item</strong></td>
+                      <td class="text-center"><strong>Price</strong></td>
+                      <td class="text-center"><strong>Quantity</strong></td>
+                      <td class="text-right"><strong>Total <span class="fa fa-rupee"></strong></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                    <tr ng-repeat="item in getOrderDetail().cart.items">
+                      <td class="col-sm-6 text-left">{{item.title}}</td>
+                      <td class="col-sm-2 text-center">{{item.price}}</td>
+                      <td class="col-sm-2 text-center">{{item.quantity}}</td>
+                      <td class="col-sm-2 text-right">{{item.price * item.quantity}}</td>
+                    </tr>
+                    <tr>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"></td>
+                      <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                      <td class="thick-line text-right">{{getOrderDetail().cart.total}}</td>
+                    </tr>
+                    <tr ng-if="getOrderDetail().discount != 0">
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center">Discount @ {{getOrderDetail().discount}}%</td>
+                      <td class="no-line text-right">- {{getOrderDetail().cart.total - getOrderDetail().cart.afterDiscount | number : 2}}</td>
+                    </tr>
+                    <tr ng-if="getOrderDetail().discount != 0">
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong>Net Total</strong></td>
+                      <td class="no-line text-right"><strong>{{getOrderDetail().cart.afterDiscount | number : 2}}</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center">CGST @ 6%</td>
+                      <td class="no-line text-right">{{getOrderDetail().cart.cgst | number : 2}}</td>
+                    </tr>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center">SGST @ 6%</td>
+                      <td class="no-line text-right">{{getOrderDetail().cart.sgst | number : 2}}</td>
+                    </tr>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong>Grand Total</strong></td>
+                      <td class="no-line text-right">{{getOrderDetail().cart.finalPrice | number : 2}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         <label style="font-size:22px;">Print : </label>
         <button ng-print print-element-id="printThisElement" class="btn btn-primary btn-lg">Customer Copy</button> &nbsp;&nbsp; <button ng-print print-element-id="printStaffCopy" class="btn btn-primary btn-lg">Staff Copy</button>
     </div>
