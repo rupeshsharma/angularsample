@@ -13,6 +13,8 @@ angular.
           });
         }
 
+        getOrderStatus();
+
         $interval(getOrderStatus, 15000);
 
       }
