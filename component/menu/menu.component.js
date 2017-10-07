@@ -110,7 +110,7 @@ angular.
         
         $localStorage.somedata = $scope.cart;
         $localStorage.customer = $rootScope.customerName;
-
+        $localStorage.discount = $scope.discount;
         $scope.updateDiscount = function (discount) {
           if (discount != undefined && discount != "" && discount != "undefined") {
             $scope.discount = discount;
