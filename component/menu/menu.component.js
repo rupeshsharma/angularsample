@@ -171,8 +171,9 @@ angular.
             $scope.cart.finalPrice = $scope.cart.total + $scope.cart.cgst + $scope.cart.sgst;
           }
         }
-
+        $scope.createButtonDisabled = false;
         $scope.buildOrder = function () {
+          $scope.createButtonDisabled = true;
           var index;
           var orderDetailList = [];
 
